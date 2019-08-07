@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="banner">
+  <image src="./images/banner.png"></image>
+</view>
+
+<view class="center">
+  <view class="topBox">
+    <view class="line1">
+        <image src="./images/sbgz.png" style="width:65rpx;height:70rpx"></image>
+        <view class="tips">
+          <text>商标转让公证</text>
+          <text>公证费：360/件</text>
+        </view>
+        <image src="images/support.png" style="width:177rpx;height:37rpx"></image>
+        <view class="liji">立即办理</view>
+    </view>
+
+    <view class="line2"><image src="./images/yes.png" style="width:31rpx;height:31rpx"></image>同意在线公证服务协议</view>
+  </view>
+</view>

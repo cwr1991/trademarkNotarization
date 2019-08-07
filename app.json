@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "尚标在线公证",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color":"#666",
+    "selectedColor": "#F44444",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "在线公证",
+        "iconPath": "pages/index/images/tabbar1.png",
+        "selectedIconPath": "pages/index/images/tabbar1.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "个人中心",
+        "iconPath": "pages/index/images/tabbar2.png",
+        "selectedIconPath": "pages/index/images/tabbar2.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+/**index.wxss**/
+page{
+  height: 100%;
+}
+.banner image{
+  width: 750rpx;
+  height: 366rpx;
+  display: block;
+}
+
+.center{
+  height: 100%;
+  padding: 0 22rpx;
+  background: #adff2f;
+  position: relative;
+}
+.topBox{
+  /* display: flex;
+  flex-direction: column; */
+  background: #fff;
+  padding: 56rpx 29rpx 56rpx 43rpx;
+  position: absolute;
+  top: -30rpx;
+  border-radius: 10rpx;
+}
+.line1{
+  display: flex;
+}
+.line1 .tips{
+  display: flex;
+  flex-direction: column;
+}
+.line1 .liji{
+  color: #fff;
+  background: #FFA944;
+  border-radius: 20px;
+  width:152rpx;
+  height: 60rpx; 
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+.line2{
+  display: flex;
+  background: #FFE3E3;
+  color: #F44444;
+}
