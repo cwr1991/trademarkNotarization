@@ -15,6 +15,6 @@
         <view class="liji">立即办理</view>
     </view>
 
-    <view class="line2"><image src="./images/yes.png" style="width:31rpx;height:31rpx"></image>同意在线公证服务协议</view>
+    <!-- <view class="line2"><image src="./images/yes.png" style="width:31rpx;height:31rpx"></image>同意在线公证服务协议</view> -->
   </view>
 </view>
