@@ -1,0 +1,253 @@
+/* pages/buyerpersonage/buyerpersonage.wxss */
+.nav{
+  padding: 70rpx 24rpx 0 24rpx;
+  box-sizing: border-box;
+}
+.nav::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+.nav view{
+  width: 334rpx;
+  height: 130rpx;
+  float: left;
+  background:url('https://b.86sb.com.cn/wximg/buy01.png')no-repeat;
+  background-position: 43rpx center;
+  background-size: 80rpx;
+  padding-left: 147rpx;
+  box-sizing: border-box;
+  color: #080808;
+  line-height: 130rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.nav view:last-child{
+  background:#fff7f7 url('https://b.86sb.com.cn/wximg/buy04.png')no-repeat;
+  background-position: 43rpx center;
+  background-size: 80rpx;
+  margin-left: 35rpx;
+  color: #f44444;
+}
+
+.innerbox{
+  margin-top: 50rpx;
+}
+.innerbox .title{
+  width: 750rpx;
+	height: 90rpx;
+  padding-left: 24rpx;
+  box-sizing: border-box;
+  background: #f5f5f5;
+  color: #080808;
+  font-weight: 600;
+  font-size: 30rpx;
+  line-height: 90rpx;
+}
+.innerbox .inner{
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+.innerbox .inner .section{
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1px solid #ededed;
+  position: relative;
+}
+.innerbox .inner .section .but{
+  position: absolute;
+  top:0;right: 0;
+  width: 160rpx;
+	height: 60rpx;
+	background-color: #fff7f7;
+	border-radius: 6rpx;
+	border: solid 1px #ffe4e4;
+  color: #f44444;
+  line-height: 60rpx;
+  font-size: 22rpx;
+  text-align: center;
+  margin-top: 21rpx;
+}
+.innerbox .inner .section::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+.innerbox .inner .section view{
+  width: 184rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  float: left;
+  font-size: 30rpx;
+  color: #080808;
+}
+.innerbox .inner .section input{
+  width: 500rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  float: left;
+  font-size: 30rpx;
+  color: #080808;
+}
+.innerbox .inner .section input.right{
+    width: 450rpx;
+    float: right;
+}
+.innerbox .inner .section picker{
+  width: 450rpx;
+  height: 100rpx;
+  display: block;
+  float: right;
+  background: url('https://b.86sb.com.cn/wximg/buy11.png')no-repeat;
+  background-position: right center;
+  background-size: 14rpx 23rpx;
+}
+.innerbox .inner .section picker .picker{
+  width: 100%;
+}
+
+.place-holder{
+  color: #c6c6c6;
+}
+.filebox.active{
+  padding-bottom: 50rpx;
+}
+.filebox .titles{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #080808;
+}
+.filebox .titles text{
+  font-size: 21rpx;
+  color: #ff995b;
+  margin-left: 5rpx;
+}
+.filebox .titles text.active{
+  color: #c6c6c6;
+}
+.filebox .file{
+  width: 100%;
+}
+.filebox .file::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+.filebox .file.idcard .itemfile{
+  width: 321rpx;
+	height: 188rpx;
+	background-color: #ffffff;
+	border-radius: 16rpx;
+	border: solid 1px #c3c9d6;
+  margin-right: 40rpx;
+  background: url('https://b.86sb.com.cn/wximg/buy20.png')no-repeat;
+   background-size: cover;
+}
+.filebox .file.idcard .itemfile.actives{
+  background: none;
+}
+.filebox .file.idcard .itemfile:last-child.actives{
+  background: none;
+}
+.filebox .file.idcard .itemfile:last-child{
+  margin-right: 0;
+  background: url('https://b.86sb.com.cn/wximg/buy21.png')no-repeat;
+  background-size: cover;
+}
+
+.filebox .file .itemfile{
+  width: 180rpx;
+	height: 180rpx;
+	background: url('https://b.86sb.com.cn/wximg/buy07.png')no-repeat;
+  background-position: center center;
+  background-size: 180rpx;
+	border: solid 1px #ededed;
+  float: left;
+  position: relative;
+  text-align: center;
+}
+.filebox .file .itemfile.active{
+  background:none;
+  margin-right: 50rpx;
+  margin-bottom:30rpx; 
+  line-height: 180rpx;
+}
+.filebox .file .itemfile.actives{
+  background:none;
+}
+.filebox .file .itemfile image{
+  width:180rpx;
+  max-height: 180rpx;
+  position: absolute;
+  top:0;left: 0;right: 0;bottom: 0;
+  margin: auto;
+}
+.filebox .file .itemfile .close{
+  width: 36rpx;
+	height: 36rpx;
+  position: absolute;
+  top:-18rpx;right: -18rpx;
+  z-index: 88;
+}
+.filebox .file .itemfile .close image{
+  width: 100%;
+}
+.filebox .infos{
+  font-size: 22rpx;
+  color: #c6c6c6;
+  line-height: 80rpx;
+}
+label{
+  background: url('https://b.86sb.com.cn/wximg/buy09.png')no-repeat;
+  background-size: 35rpx;
+  background-position: left center;
+  position: relative;
+  padding-left: 45rpx;
+  box-sizing: border-box;
+  margin-right: 20rpx;
+}
+label.active{
+  background: url('https://b.86sb.com.cn/wximg/buy10.png')no-repeat;
+  background-size: 35rpx;
+  background-position: left center;
+}
+radio{
+  opacity: 0;
+  font-size: 30rpx;
+  position: absolute;
+  top: 0;
+}
+
+.example{
+  width: 100%;
+  background: #f5f5f5;
+  padding-top: 50rpx;
+}
+.example image{
+  width: 647rpx;
+  display: block;
+  margin: 0 auto;
+}
+.nextbut{
+  width: 702rpx;
+	height: 90rpx;
+	background-color: #f44444;
+	border-radius: 6rpx;
+  text-align: center;
+  line-height: 90rpx;
+  margin: 0 auto;
+  font-size: 32rpx;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.nextbut  button{
+  position: absolute;
+  top: 0;left: 0;
+  width: 100%;height: 130rpx;
+  opacity: 0;
+}

@@ -1,0 +1,92 @@
+<!--pages/buyercompany/buyercompany.wxml-->
+<view class="nav">
+  <view>买方为公司 </view>
+  <navigator url="/pages/buyerpersonage/buyerpersonage"><view>买方为个人</view></navigator>
+</view>
+
+<form bindsubmit="formSubmit">
+<view class="innerbox">
+    <view class="title">商标信息</view>
+    <view class="inner">
+
+    <view class="section">
+      <view>商标注册号</view>
+      <input name="phone" placeholder-class="place-holder"  placeholder="请输入注册号"/>
+      <view class="but">获取商标信息</view>
+    </view>
+    <view class="section">
+      <view>商标名称</view>
+      <input name="phone" placeholder-class="place-holder" placeholder="请输入商标名称"/>
+    </view>
+    <view class="section">
+      <view>商标类别</view>
+      <input name="phone" placeholder-class="place-holder" placeholder="请输入商标类别"/>
+    </view>
+    <view class="section">
+      <view>商标状态</view>
+      <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio {{isradioActive==index?'active':''}}" wx:for="{{items}}" wx:key="{{index}}" >
+              <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+         </label>
+      </radio-group>
+    </view>
+    <view class="filebox">
+      <view class="titles">
+        商标证书
+        <text>（如未下证的请上传受理通知书）</text>
+      </view>
+      <view class="file">
+          <view class="itemfile active" wx:for="{{trademarkimgList}}"  wx:key="{{index}}" wx:if="{{item}}" >
+              <view class="close" bindtap="rmtrademarkimgList" id="{{index}}"><image src="../../images/buy08.png"  mode="widthFix"></image></view>
+              <image src="{{item}}"  mode="widthFix"></image>
+          </view>
+          <view class="itemfile" bindtap="chooseImage"></view>
+      </view>
+      <view class="infos">(上传商标证书、核准转让证明、变更、续展证明)</view>
+    </view>
+    </view>
+
+    <view class="title">买方信息</view>
+    <view class="inner">
+     <view class="section">
+        <view>公司类型</view>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">
+              {{array[index]}}
+            </view>
+          </picker>
+      </view>
+      <view class="section">
+        <view>买方公司名称</view>
+        <input class="right" name="phone" placeholder-class="place-holder"  placeholder="请输入公司名称"/>
+      </view>
+
+    <view class="filebox active">
+      <view class="titles" wx:if="{{index==0}}">
+        营业执照
+        <text class="active">（附件上传后部分资料自动识别）</text>
+      </view>
+      <view class="titles" wx:if="{{index==1}}">
+        上传证件
+      </view>
+      <view class="file">
+          <view class="itemfile {{businessImg?'actives':''}}" bindtap="chooseImages">
+             <image src="{{businessImg}}"  mode="widthFix"></image>
+          </view>
+      </view>
+       <view class="infos" wx:if="{{index==1}}">(上传公司注册证明、翻译件)</view>
+    </view>
+
+    </view>
+
+    <view class="example">
+      <image src="https://b.86sb.com.cn/wximg/buy12.png" mode="widthFix"></image>
+
+      <view class="nextbut">下一步
+         <button form-type="submit"></button>
+      </view>
+    </view>
+
+
+</view>
+</form>

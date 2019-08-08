@@ -1,0 +1,4 @@
+/* pages/operation/operation.wxss */
+image{
+  width: 100%;
+}

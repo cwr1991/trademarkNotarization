@@ -1,13 +1,31 @@
 <!--pages/login/login.wxml-->
+<view class="form">
 <form bindsubmit="formSubmit">
     <view class="section">
-        <input name="input" placeholder="请输入手机号码登录" />
+        <input name="phone" value="{{phoneval}}"  placeholder-class="place-holder" placeholder="请输入手机号码登录" bindinput="bindPhoneInput" />
     </view>
-    <view class="section">
-        <view>
-          <input name="input" placeholder="请输入验证码" />
+    <view class="section active">
+        <view class="code">
+          <input name="code" value="{{codeval}}" placeholder-class="place-holder" placeholder="请输入验证码" bindinput="bindCodeInput" />
+          <view class="close"  wx:if="{{isCloseCode}}" bindtap="rmInputCode">
+              <image src="../../images/loginicon02.png" mode="widthFix"></image>
+          </view>
         </view>
-        <view>获取验证码</view>
+        <view class="getcode" bindtap="getCode">{{codeNameVal}}</view>
     </view>
-     <button form-type="submit">Submit</button>
+
+    <view class="but {{isbut?'active':''}}">登录
+     <button form-type="submit"></button>
+    </view>
 </form>
+</view>
+
+<view class="info">
+  <text> 或从以下方式登录</text>
+</view>
+
+<view class="weixinbut">
+  <image src="../../images/loginicon01.png" mode="widthFix"></image>
+  微信登陆
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+</view>

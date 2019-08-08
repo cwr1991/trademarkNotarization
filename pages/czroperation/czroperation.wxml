@@ -1,0 +1,24 @@
+<!--pages/czroperation/czroperation.wxml-->
+<form bindsubmit="formSubmit">
+  <view class="inner">
+    <view class="section">
+      <view>操作人员姓名    </view>
+      <input name="phone" placeholder-class="place-holder"  placeholder="请输入操作人员姓名"/>
+    </view>
+      <view class="section">
+      <view>操作人员电话 </view>
+      <input name="phone" placeholder-class="place-holder"  placeholder="请输入操作人员电话号码"/>
+    </view>
+  </view>
+
+  <view class="info">
+    <text>温馨提示：</text>
+    <view>提示操作人员录入订单，法人刷脸认证！微信登录默认操作人</view>
+    <view>员。</view>
+  </view>
+
+  <view class="nextbut">确定
+    <button form-type="submit"></button>
+  </view>
+
+</form>

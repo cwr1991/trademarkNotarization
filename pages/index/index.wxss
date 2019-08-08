@@ -126,3 +126,90 @@ page{
   position: absolute;
   top:25rpx;left:20rpx;
 }
+
+.announcement{
+  position: fixed;
+  top:0;left: 0;right: 0;bottom: 0;
+  margin: auto;
+  background: rgba(0,0,0,0.7);
+  display: none;
+}
+.announcement.active{
+  display: block;
+}
+.announcement image{
+  display: block;
+  position: absolute;
+  width: 615rpx;
+  top:0;left: 0;right: 0;bottom: 0;
+  margin: auto;
+}
+
+.agreementBox{
+  position: fixed;
+  top:0;left: 0;right: 0;bottom: 0;
+  margin: auto;
+}
+.agreementBox .shadow{
+  position: absolute;
+  top:0;left: 0;right: 0;bottom: 0;
+  margin: auto;
+  background: rgba(0,0,0,0.7);
+  z-index: 1;
+}
+.agreementBox .agreementInner{
+  width: 650rpx;
+	height: 920rpx;
+	background-color: #ffffff;
+	border-radius: 12rpx;
+  position: absolute;
+  top:0;left: 0;right: 0;bottom: 0;
+  margin: auto;
+  z-index: 8;
+  padding-top: 50rpx;
+  box-sizing: border-box;
+  text-align: center;
+}
+.agreementBox .agreementInner .agreementClose{
+  width: 40rpx;
+	height: 40rpx;
+  position: absolute;
+  right: 30rpx;top:30rpx;
+}
+.agreementBox .agreementInner .agreementClose image{
+  width: 100%;
+}
+.agreementBox .agreementInner text{
+  font-size: 38rpx;
+  color: #080808;
+  font-weight: 600;
+}
+.textinfo{
+  margin-top: 40rpx;
+  padding: 0 68rpx;
+  height: 630rpx;
+  font-size: 22rpx;
+  color: #666;
+  text-align: left;
+  overflow: auto;
+  line-height: 32rpx;
+}
+.announcementBut{
+  position: absolute;
+  left: 0;right: 0;
+  bottom: 0;margin: auto;
+  height: 100rpx;
+}
+.announcementBut view{
+  width: 50%;
+  height: 100rpx;
+  float: left;
+  color: #666666;
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 100rpx;
+}
+.announcementBut view:last-child{
+  background: #ff4444;
+  color: #fff;
+}

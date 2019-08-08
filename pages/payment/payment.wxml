@@ -1,0 +1,23 @@
+<!--pages/payment/payment.wxml-->
+<view class="money">
+    <text>支付金额（元）</text>
+    <view>360.00</view>
+</view>
+<view class="inner">
+  <view class="item">
+    订单编号
+    <text>SB754242018100919095941</text>
+  </view>
+  <view class="item">
+    订单内容
+    <text>商标转让公证服务费</text>
+  </view>
+  <view class="item">
+    支付方式
+    <text>微信支付</text>
+  </view>
+</view>
+
+<view class="payment">
+    去支付
+</view>

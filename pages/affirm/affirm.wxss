@@ -1,0 +1,187 @@
+/* pages/affirm/affirm.wxss */
+.inner{
+  border-top: 20rpx solid #f5f5f5;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+.title{
+  font-size: 30rpx;
+  color: #000000;
+  font-weight: 600;
+  line-height: 90rpx;
+}
+.item{
+  line-height: 70rpx;
+  font-size: 28rpx;
+  color: #080808;
+}
+.item text{
+  font-size: 28rpx;
+  color: #666666;
+  width: 250rpx;
+  display: inline-block;
+}
+.imglist{
+  width: 100%;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+.imglist::after{
+  content: "";
+  clear:both;
+  display: block;
+}
+.imglist .imgitem{
+  width: 110rpx;
+  height: 110rpx;
+  border: solid 1px #f2f2f2;
+  float: left;
+  margin-right: 20rpx;
+  text-align: center;
+  line-height: 110rpx;
+}
+.imglist .imgitem image{
+  display:table-cell;
+  vertical-align:middle;
+  width: 100%;
+}
+
+.but{
+  width: 100%;
+  height: 90rpx;
+  margin-bottom: 20rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+.but view{
+  width: 330rpx;
+	height: 90rpx;
+	background-color: #f5f5f5;
+	border-radius: 6rpx;
+  float: left;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #080808;
+  font-weight: 600;
+}
+.but view:last-child{
+  background-color: #f44444;
+  color: #fff;
+  float: right;
+}
+
+.shadowBox{
+  position: fixed;
+  top: 0;left: 0;bottom: 0;right: 0;
+  margin: 0 auto;
+}
+.shadowBox .shadow{
+  position: absolute;
+  top: 0;left: 0;bottom: 0;right: 0;
+  margin: 0 auto;
+  background: rgba(0,0,0,0.7)
+}
+.shadowBox .shaInner{
+  position: absolute;
+  left: 0;bottom: 0;right: 0;
+  width: 100%;
+	height: 685rpx;
+	background-color: #ffffff;
+	border-radius: 16px 20px 0px 0px;
+  padding-top: 60rpx;
+  box-sizing: border-box;
+}
+.shadowBox .shaInner.active{
+  height: 545rpx;
+}
+.shadowBox .shaInner .close{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top:30rpx;right: 30rpx;
+}
+.shadowBox .shaInner .close image{
+  width: 100%;
+}
+.shadowBox .shaInner .title{
+  color: #080808;
+  font-size: 38rpx;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}
+.inners .section{
+  width: 700rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 auto;
+}
+.inners .section:first-child{
+  border-top: 1px solid #ededed;
+}
+
+.inners .section text{
+  font-size: 30rpx;
+  color: #181818;
+  display: block;
+  float: left;
+  width: 300rpx;
+}
+.inners .section input{
+  width: 380rpx;
+  float: right;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: right;
+  font-size: 30rpx;
+  color: #666;
+}
+.place-holder{
+  color: #c6c6c6;
+}
+.inners .section::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+.inners .section switch{
+  float: right;
+}
+.inners .section:last-child{
+  height: 140rpx;
+  line-height: 140rpx;
+  background: url('https://b.86sb.com.cn/wximg/buy11.png')no-repeat;
+  background-position: right center;
+  background-size: 14rpx 23rpx;
+  border-bottom: 1px solid #ededed;
+}
+.inners .section:last-child view{
+  width: 358rpx;
+  line-height: 40rpx;
+  display: block;
+  float: right;
+  margin-right: 30rpx;
+  font-size: 24rpx;
+  margin-top: 35rpx;
+}
+.inners .section.avtive{
+  background: #f5f5f5;
+  width: 100%;
+  padding: 0 30rpx;
+  height: 110rpx;
+  box-sizing: border-box;
+}
+
+.shaInner .nextbut{
+  width: 690rpx;
+	height: 90rpx;
+	background-color: #f44444;
+	border-radius: 6px;
+  text-align: center;
+  line-height: 90rpx;
+  margin: 0 auto;
+  color: #ffffff;
+  margin-top: 50rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+}

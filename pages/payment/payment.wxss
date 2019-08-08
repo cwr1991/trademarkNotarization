@@ -1,0 +1,54 @@
+/* pages/payment/payment.wxss */
+page{
+  height: 100%;
+  background: #f5f5f5;
+}
+.money{
+  height: 250rpx;
+  background:url('https://b.86sb.com.cn/wximg/money.jpg')no-repeat;
+  background-size: cover;
+  padding-top: 55rpx;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+}
+.money view{
+  font-size: 66rpx;
+  font-weight: 600;
+  margin-top: 20rpx;
+}
+.inner{
+  background: #fff;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+.inner .item{
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1px solid #ededed;
+  font-size: 30rpx;
+  color: #666666;
+}
+.inner .item text{
+  float: right;
+  color: #181818;
+  font-size: 30rpx;
+}
+.inner .item:last-child{
+  border: none;
+}
+.payment{
+	width: 690rpx;
+	height: 90rpx;
+	background-color: #1aac19;
+	border-radius: 8rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 34rpx;
+  color: #ffffff;
+  font-weight: 600;
+}

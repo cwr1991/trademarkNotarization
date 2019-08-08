@@ -14,12 +14,12 @@
               </view>
               <text>公证费：360/件</text>
            </view>
-           <view class="but">
-              <navigator url="">立即办理</navigator>
+           <view class="but" bindtap="tobuyercompany">
+             立即办理
            </view>
            <view class="clea"></view>
         </view>
-        <view class="protocol">
+        <view class="protocol {{isprotocol?'active':''}}" bindtap="openAgreement">
            同意在线公证服务协议
         </view>
     </view>
@@ -29,22 +29,44 @@
 <view class="service">
   <view class="text">
     <text>服务助手</text>
-    <view>操作流程
+    <view bindtap="toOperation"> 
+        操作流程
        <image src="../../images/lefticon.png" mode="widthFix"></image>
     </view>
   </view>
   <view class="nav">
       <view class="itemnav">
-        <navigator url="">
+        <navigator url="/pages/froperation/froperation">
           <view class="itemname">法人操作</view>
            <image src="../../images/navicon01.png" mode="widthFix"></image>
         </navigator>
       </view>
       <view class="itemnav">
-        <navigator url="">
+        <navigator url="/pages/czroperation/czroperation">
           <view class="itemname">代人操作</view>
            <image src="../../images/navicon02.png" mode="widthFix"></image>
         </navigator>
       </view>
   </view>
+</view>
+
+<view class="announcement {{isAnnouncement?'active':''}}" bindtap="rmAnnouncement">
+  <image src="https://b.86sb.com.cn/wximg/announcement.png" mode="widthFix"></image>
+</view>
+
+<view class="agreementBox" wx:if="{{isagreement}}">
+    <view class="shadow" bindtap="rmAgreement"></view>
+    <view class="agreementInner">
+         <view class="agreementClose"  bindtap="rmAgreement"><image src="../../images/indexicon01.png" mode="widthFix"></image></view>
+         <text>尚标线上公证协议</text>
+         <view class="textinfo">
+         <view>尚标线上公证协议是您通过尚标平台办理线上公证的法律服务依据，由尚标平台提供线上公证的官方支持与认证，平台运维方是上海尚标互联网科技有限公司。</view>
+ <view>一、协议声明与内容</view>
+<view>1、本协议内容包括协议正文及其所涵盖其它合同、协议、规则，以及所有有关在尚标平台已经发布的或将来可能发布的各类规范、规则、服务条款等。所有规则为本协议不可分割的组成部分，与协议正文具有同等法律效力。除另行明确声明外，尚标平台通过尚标平台提供的各项服务均受本协议约束。</view>
+         </view>
+         <view class="announcementBut">
+            <view bindtap="rmAgreementNo">不同意</view>
+            <view  bindtap="rmAgreementYes">同意并继续</view>
+         </view>
+    </view>
 </view>

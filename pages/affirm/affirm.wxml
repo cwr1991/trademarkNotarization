@@ -1,0 +1,71 @@
+<!--pages/affirm/affirm.wxml-->
+<view class="inner">
+   <view class="title">申请人信息</view>
+   <view class="item"><text>申请人姓名</text>陈晓霞 </view>
+   <view class="item"><text>申请人身份证号</text>陈晓霞 </view>
+   <view class="item"><text>手机号码</text>陈晓霞 </view>
+</view>
+<view class="inner">
+   <view class="title">商标信息</view>
+   <view class="item"><text>商标名称</text>陈晓霞 </view>
+   <view class="item"><text>商标注册号</text>陈晓霞 </view>
+   <view class="item"><text>商标类别</text>陈晓霞 </view>
+   <view class="imglist">
+      <view class="imgitem">
+          <image src="" mode="widthFix"></image>
+      </view>
+      <view class="imgitem">
+          <image src="" mode="widthFix"></image>
+      </view>
+      <view class="imgitem">
+          <image src="" mode="widthFix"></image>
+      </view>
+   </view>
+</view>
+<view class="inner">
+   <view class="title">买方信息</view>
+   <view class="item"><text>买方人姓名</text>陈晓霞 </view>
+   <view class="item"><text>买方身份证号</text>陈晓霞 </view>
+   <view class="imglist">
+      <view class="imgitem">
+          <image src="" mode="widthFix"></image>
+      </view>
+      <view class="imgitem">
+          <image src="" mode="widthFix"></image>
+      </view>
+   </view>
+</view>
+
+<view class="but">
+    <view>返回修改</view>
+    <view bindtap="sumbit">确认提交</view>
+</view>
+
+<view class="shadowBox" wx:if="{{isshadowBox}}">
+  <view class="shadow" bindtap="rmshadowBox"></view>
+  <view class="shaInner {{!issite?'active':''}}">
+    <view class="close" bindtap="rmshadowBox">
+      <image src="../../images/indexicon01.png" mode="widthFix"></image>
+    </view>
+     <view class="title">接收信息</view>
+     <view class="inners">
+        <view class="section">
+           <text>电子邮箱</text>
+           <input name="phone" placeholder-class="place-holder"  placeholder="请输入电子邮箱地址"/>
+        </view>
+        <view class="section avtive">
+           <text>是否索取纸质公证书</text>
+            <switch bindchange="switch1Change"/>
+        </view>
+        <view class="section" wx:if="{{issite}}">
+           <text>收件地址</text>
+           <view>
+              上海市浦东新区龙东大道3000号1幢B座11层(张江高科技园区)
+           </view>
+        </view>
+     </view> 
+     <view class="nextbut">
+      下一步
+     </view>
+  </view>
+</view>

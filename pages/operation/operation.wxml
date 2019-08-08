@@ -1,0 +1,5 @@
+<!--pages/operation/operation.wxml-->
+<view>
+  <image src="https://b.86sb.com.cn/wximg/operation01.jpg" mode="widthFix"></image>
+  <image src="https://b.86sb.com.cn/wximg/operation02.jpg" mode="widthFix"></image>
+</view>

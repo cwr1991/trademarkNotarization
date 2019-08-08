@@ -1,0 +1,23 @@
+<!--pages/froperation/froperation.wxml-->
+<form bindsubmit="formSubmit">
+  <view class="inner">
+    <view class="section">
+      <view>法人姓名  </view>
+      <input name="phone" placeholder-class="place-holder"  placeholder="请输入法人姓名 "/>
+    </view>
+      <view class="section">
+      <view>法人电话号码  </view>
+      <input name="phone" placeholder-class="place-holder"  placeholder="请输入法人电话号码"/>
+    </view>
+  </view>
+
+  <view class="info">
+    <text>温馨提示：</text>
+    <view>统一手机登陆，操作人员录入订单，法人刷脸认证，微信登录默认操作人员。</view>
+  </view>
+
+  <view class="nextbut">确定
+    <button form-type="submit"></button>
+  </view>
+
+</form>
