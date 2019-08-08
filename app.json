@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/login/login"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,14 +17,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "在线公证",
-        "iconPath": "pages/index/images/tabbar1.png",
-        "selectedIconPath": "pages/index/images/tabbar1.png"
+        "iconPath": "images/tabbar1.png",
+        "selectedIconPath": "images/tabbar1.png"
       },
       {
         "pagePath": "pages/logs/logs",
         "text": "个人中心",
-        "iconPath": "pages/index/images/tabbar2.png",
-        "selectedIconPath": "pages/index/images/tabbar2.png"
+        "iconPath": "images/tabbar2.png",
+        "selectedIconPath": "images/tabbar2.png"
       }
     ]
   },

@@ -10,6 +10,17 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if(res.code){
+          wx.request({
+            url: 'http://italwebapi.86sb.com/gzynew/openid',
+            data:{
+              code:res.code
+            },
+            success(res){
+              console.log(res)
+            }
+          })
+        }
       }
     })
     // 获取用户信息

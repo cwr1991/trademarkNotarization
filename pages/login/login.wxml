@@ -1,2 +1,13 @@
 <!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<form bindsubmit="formSubmit">
+    <view class="section">
+        <input name="input" placeholder="请输入手机号码登录" />
+    </view>
+    <view class="section">
+        <view>
+          <input name="input" placeholder="请输入验证码" />
+        </view>
+        <view>获取验证码</view>
+    </view>
+     <button form-type="submit">Submit</button>
+</form>
