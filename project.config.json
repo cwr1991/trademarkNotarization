@@ -65,9 +65,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "选择申请人",
 					"pathName": "pages/applicantSelect/applicantSelect",
+					"query": "openid= oKjx85fKXjZHMP2l3qyLfhryqFSM",
 					"scene": null
 				}
 			]

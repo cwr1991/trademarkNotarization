@@ -4,92 +4,141 @@
             <view class="list_label">申请人类型</view>
             <view class="radio_group">
                 <radio-group class="radio-group" bindchange="radioChange">
-                    <label class="radio" wx:for="{{applicantType}}" wx:key="{{item.value}}">
-                        <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+                    <label class="radio" wx:for="{{applicantType}}" wx:key="{{item.name}}">
+                        <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
                     </label>
                 </radio-group>
             </view>
         </view>
         <!-- 个人模块 -->
-        <block>
+        <block wx:if="{{type == '3'}}">
             <view class="list list_box">
-            <view class="list_label">姓名</view>
-            <view class="list_input">
-                <input placeholder="请输入姓名" value="{{personal.name}}" bindinput="inputName"  type="text"/>
-            </view>
-        </view>
-        <view class="list list_box">
-            <view class="list_label">身份证号</view>
-            <view class="list_input">
-                <input placeholder="请输入代表人身份证号" value="{{personal.idcard}}" bindinput="inputIdcard" type="idcard" />
-            </view>
-        </view>
-        <view class="list list_box">
-            <view class="list_label">注册人手机号码</view>
-            <view class="list_input">
-                <input placeholder="请输入手机号码" value="{{personal.phone}}" bindinput="inputPhone" type="number" />
-            </view>
-        </view>
-        <view class="idcard_tip">
-            <text class="idcard_title">身份证</text>
-            <text class="idcard_tips">（附件上传后部分资料自动识别）  </text>
-        </view>
-        <view class="upload_idcard">
-            <view class="upload_face upload_box" >
-                <image src="{{faceFile[0]}}" bind:tap="chooseFaceImage" wx:if="{{faceFile.length > 0}}"/>
-                <image src="../../images/applicant05.png" bind:tap="chooseFaceImage" wx:if="{{faceFile.length == 0}}" />
-                <view class="upload_text">点击上传人像面</view>
-            </view>
-            <view class="upload_emblem upload_box">
-                 <image src="{{emblemFile[0]}}" bind:tap="chooseEmblemImage"  wx:if="{{emblemFile.length > 0}}"/>
-                 <image src="../../images/applicant04.png" bind:tap="chooseEmblemImage" wx:if="{{emblemFile.length == 0}}"/>
-                <view class="upload_text">点击上传国徽面</view>
-            </view>
-        </view>
-        <view class="upload_example">
-            <view class="upload_tips">
-                    <text class="tips_title">拍摄时,  请确保身份证  </text>
-                    <text class="tips_title_c">  边框完整,  字体清晰,  亮度均匀</text>
-            </view>
-            <view class="example_images">
-                <view class="example_images_box">
-                    <view class="example_list">
-                        <image src="../../images/applicant06.png"></image>
-                    </view>
-                    <view class="bottom_text">
-                        <image src="../../images/applicant10.png"  class="ico"/>
-                        标准    
-                    </view>
-                </view>
-                <view class="example_images_box">
-                    <view class="example_list">
-                        <image src="../../images/applicant07.png"></image>
-                    </view>
-                    <view class="bottom_text">
-                        <image src="../../images/applicant11.png"  class="ico_error"/>
-                        边框缺失       
-                    </view>
-                </view>
-                <view class="example_images_box">
-                    <view class="example_list">
-                        <image src="../../images/applicant08.png"></image>
-                    </view>
-                    <view class="bottom_text">
-                        <image src="../../images/applicant11.png"  class="ico_error"/>
-                        照片模糊    
-                    </view>
-                </view>
-                <view class="example_images_box">
-                    <view class="example_list">
-                        <image src="../../images/applicant09.png"></image>
-                    </view>
-                    <view class="bottom_text">
-                        <image src="../../images/applicant11.png"  class="ico_error"/>
-                        闪光强烈    
-                    </view>
+                <view class="list_label">姓名</view>
+                <view class="list_input">
+                    <input placeholder="请输入姓名" value="{{personal.name}}" bindinput="inputName"  type="text"/>
                 </view>
             </view>
-        </view>
+            <view class="list list_box">
+                <view class="list_label">身份证号</view>
+                <view class="list_input">
+                    <input placeholder="请输入代表人身份证号" value="{{personal.idcard}}" bindinput="inputIdcard" type="idcard" />
+                </view>
+            </view>
+            <view class="list list_box">
+                <view class="list_label">注册人手机号码</view>
+                <view class="list_input">
+                    <input placeholder="请输入手机号码" value="{{personal.phone}}" bindinput="inputPhone" type="number" />
+                </view>
+            </view>
+            <view class="idcard_tip">
+                <text class="idcard_title">身份证</text>
+                <text class="idcard_tips">（附件上传后部分资料自动识别）  </text>
+            </view>
+            <view class="upload_idcard">
+                <view class="upload_face upload_box" >
+                    <image src="{{faceFile[0]}}" bind:tap="chooseFaceImage" wx:if="{{faceFile.length > 0}}"/>
+                    <image src="../../images/applicant05.png" bind:tap="chooseFaceImage" wx:if="{{faceFile.length == 0}}" />
+                    <view class="upload_text">点击上传人像面</view>
+                </view>
+                <view class="upload_emblem upload_box">
+                    <image src="{{emblemFile[0]}}" bind:tap="chooseEmblemImage"  wx:if="{{emblemFile.length > 0}}"/>
+                    <image src="../../images/applicant04.png" bind:tap="chooseEmblemImage" wx:if="{{emblemFile.length == 0}}"/>
+                    <view class="upload_text">点击上传国徽面</view>
+                </view>
+            </view>
+            <view class="upload_example">
+                <view class="upload_tips">
+                        <text class="tips_title">拍摄时,  请确保身份证  </text>
+                        <text class="tips_title_c">  边框完整,  字体清晰,  亮度均匀</text>
+                </view>
+                <view class="example_images">
+                    <view class="example_images_box">
+                        <view class="example_list">
+                            <image src="../../images/applicant06.png"></image>
+                        </view>
+                        <view class="bottom_text">
+                            <image src="../../images/applicant10.png"  class="ico"/>
+                            标准    
+                        </view>
+                    </view>
+                    <view class="example_images_box">
+                        <view class="example_list">
+                            <image src="../../images/applicant07.png"></image>
+                        </view>
+                        <view class="bottom_text">
+                            <image src="../../images/applicant11.png"  class="ico_error"/>
+                            边框缺失       
+                        </view>
+                    </view>
+                    <view class="example_images_box">
+                        <view class="example_list">
+                            <image src="../../images/applicant08.png"></image>
+                        </view>
+                        <view class="bottom_text">
+                            <image src="../../images/applicant11.png"  class="ico_error"/>
+                            照片模糊    
+                        </view>
+                    </view>
+                    <view class="example_images_box">
+                        <view class="example_list">
+                            <image src="../../images/applicant09.png"></image>
+                        </view>
+                        <view class="bottom_text">
+                            <image src="../../images/applicant11.png"  class="ico_error"/>
+                            闪光强烈    
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <!-- 企业模块 -->
+        <block wx:if="{{type == '1'}}">
+            <view class="list list_box">
+                <view class="list_label">法人姓名</view>
+                <view class="list_input">
+                    <input placeholder="请输入法人姓名" value="{{company.name}}" bindinput="inputName"  type="text"/>
+                </view>
+            </view>
+            <view class="list list_box">
+                <view class="list_label">法人身份证号</view>
+                <view class="list_input">
+                    <input placeholder="请输入法人身份证号" value="{{company.idcard}}" bindinput="inputIdcard" type="idcard" />
+                </view>
+            </view>
+            <view class="list list_box list_border">
+                <view class="list_label">法人手机号码</view>
+                <view class="list_input">
+                    <input placeholder="请输入法人手机号码" value="{{company.phone}}" bindinput="inputPhone" type="number" />
+                </view>
+            </view>
+            <view class="list list_box company_list">
+                <view class="list_label">公司名称</view>
+                <view class="list_input">
+                    <input placeholder="请输入公司名称" value="{{company.companyName}}" bindinput="companyNameFun" type="text" />
+                </view>
+            </view>
+            <view class="list list_box company_list">
+                <view class="list_label">社会统一信用代码</view>
+                <view class="list_input">
+                    <input placeholder="请输入社会统一信用代码" value="{{company.companyCode}}" bindinput="companyCodeFun" type="text" />
+                </view>
+            </view>
+            <view class="idcard_tip company_tip">
+                <text class="idcard_title">营业执照</text>
+                <text class="idcard_tips">（附件上传后部分资料自动识别）  </text>
+            </view>
+            <view class="upload_license">
+                <view class="upload_face upload_box upload_license_img" bind:tap="chooseLicenseImage">
+                    <image src="{{licenseFile[0]}}"  wx:if="{{licenseFile.length > 0}}" />
+                </view>
+            </view>
+            <view class=" company_example">
+                <image src="https://b.86sb.com.cn/wximg/applicanticon01.png" />
+            </view>
+        </block>
+        <!-- 香港模块 -->
+        <block>
+            
         </block>
     </view>
     <view class="submit_btn" bind:tap="saveFun">

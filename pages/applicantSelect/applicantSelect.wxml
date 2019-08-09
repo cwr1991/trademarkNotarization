@@ -8,9 +8,9 @@
         </view>
         <view class="content">
             <block wx:for="{{list}}" wx:key="{{item.id}}">
-                <navigator url="" open-type="navigate">
+                <navigator url="/pages/buyercompany/buyercompany?id={{item.id}}" open-type="navigate">
                     <view class="list">
-                        <view class="name">{{item.name}}</view>
+                        <view class="name">{{item.username}}</view>
                     </view>
                 </navigator>
             </block>

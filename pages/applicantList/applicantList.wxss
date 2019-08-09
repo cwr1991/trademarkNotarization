@@ -69,7 +69,8 @@ page{
     position: fixed;
     width: 702rpx;
     margin: 0 24rpx;
-    bottom: 20rpx;
+    bottom: 0rpx;
+    border-bottom: 20rpx solid #fff;
     height: 90rpx;
     line-height: 90rpx;
     background-color: #f44444;

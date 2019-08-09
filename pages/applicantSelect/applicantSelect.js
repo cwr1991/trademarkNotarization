@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app = getApp()
 Page({
 
     /**
@@ -75,11 +76,35 @@ Page({
         mask:true
       })
     },
+    getList(){
+      // 调试模式
+      let openid = app.openid || "oKjx85fKXjZHMP2l3qyLfhryqFSM"
+      let data = {
+        openid,
+        keyword: ''
+      }
+      let _this = this
+      wx.request({
+        url: `${app.baseUrl}/gzynew/applysearch`, //仅为示例，并非真实的接口地址
+        method:"POST",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' // 默认值
+        },
+        data,
+        success (res) {
+          if(res.data.status == '0'){
+            _this.setData({
+              list:res.data.result
+            })
+          }
+        }
+      })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-
+      this.getList()
     },
 
     /**
