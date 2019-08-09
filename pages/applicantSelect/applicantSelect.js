@@ -6,82 +6,31 @@ Page({
      * 页面的初始数据
      */
     data: {
-        list:[
-          {
-            id:1,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:11,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:11111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:111111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:11111111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:21,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:31,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:41,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:2,
-            name:"上海尚标互联网科技公司2"
-          },
-          {
-            id:3,
-            name:"上海尚标互联网科技公司3"
-          },
-          {
-            id:4,
-            name:"上海尚标互联网科技公司4"
-          },
-          {
-            id:5,
-            name:"上海尚标互联网科技公司5"
-          },
-          {
-            id:6,
-            name:"上海尚标互联网科技公司6"
-          }
-        ],
+        list:[],
+        keyword:'',
         empty:false, //是否显示空状态
         checkAll:false //是否全选
     },
     // 搜索功能
     searchFun(e){
       console.log(e.detail)
-      let val = e.detail.value
+      let keyword = e.detail.value
+      this.setData({
+        keyword
+      })
       wx.showLoading({
         title: '搜索中',
         mask:true
       })
+      this.getList()
     },
     getList(){
       // 调试模式
-      let openid = app.openid || "oKjx85fKXjZHMP2l3qyLfhryqFSM"
+      let openid = app.openid 
+      let keyword = this.data.keyword
       let data = {
         openid,
-        keyword: ''
+        keyword
       }
       let _this = this
       wx.request({
@@ -97,6 +46,9 @@ Page({
               list:res.data.result
             })
           }
+        },
+        complete(){
+          wx.hideLoading()
         }
       })
     },
