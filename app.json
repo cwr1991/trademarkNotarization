@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/login/login",
+    "pages/buyercompany/buyercompany",
     "pages/affirm/affirm",
     "pages/payment/payment",
     "pages/czroperation/czroperation",
     "pages/froperation/froperation",
     "pages/buyerpersonage/buyerpersonage",
-    "pages/buyercompany/buyercompany",
-    "pages/login/login",
     "pages/logs/logs",
     "pages/operation/operation",
     "pages/applicantList/applicantList",

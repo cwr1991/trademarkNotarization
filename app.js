@@ -11,13 +11,21 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if(res.code){
+          var that = this;
+          that.code = res.code;
+          console.log(res.code);
           wx.request({
-            url: 'http://italwebapi.86sb.com/gzynew/openid',
+            url: that.baseUrl+'/gzynew/openid',
             data:{
               code:res.code
             },
             success(res){
-              console.log(res)
+              that.openid = res.data.result.openid;
+              if (res.data.status==1){
+                wx.navigateTo({
+                  url: '/pages/login/login',
+                })
+              }
             }
           })
         }
@@ -32,7 +40,6 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -46,5 +53,8 @@ App({
   },
   globalData: {
     userInfo: null
-  }
+  },
+  openid:'',
+  baseUrl:'https://wwxs.86sb.com',
+  code:''
 })

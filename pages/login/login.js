@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app = getApp();
 Page({
 
   /**
@@ -9,13 +10,51 @@ Page({
       phoneval:'',
       codeval:'',
       codeNameVal:'获取验证码',
-      isbut:false
+      isbut:false,
+      wxcode:''
   },
 
   getPhoneNumber(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
+    var that = this;
+    if ("getPhoneNumber:ok" != e.detail.errMsg) {
+      wx.showToast({
+        icon: 'none',
+        title: '快捷登陆失败'
+      })
+      return;
+    }
+    var iv = e.detail.iv;
+    var encryptedData = e.detail.encryptedData;
+    wx.request({
+      url: app.baseUrl + '/gzynew/getmobile',
+      data: {
+        code: that.data.wxcode,
+        encrypted_data: encryptedData,
+        iv: iv
+      },
+      success(res) {
+        if (res.data.phoneNumber){
+          wx.request({
+            url: app.baseUrl + '/gzynew/loginwx',
+            data: {
+              openid: app.openid,
+              mobile: res.data.phoneNumber
+            },
+            success(res) {
+              if(res.data.status==0){
+                wx.switchTab({
+                  url: '/pages/index/index',
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+
+
+
+
   },
 
   bindCodeInput(e){
@@ -60,20 +99,30 @@ Page({
       return false;
     }
     var that = this;
-    var aa = 60;
-    var interval = setInterval(function(){
-      aa--;
-      that.setData({
-        codeNameVal: aa+'s',
-      })
-      if(aa==0){
-        clearInterval(interval);
-        that.setData({
-          codeNameVal: '获取验证码',
-        })
-      }
-    },1000)
 
+    wx.request({
+      url: app.baseUrl +'/gzynew/sendsms',
+      data: {
+        mobile: that.data.phoneval
+      },
+      success(res) {
+        if(res.data.status==0){
+          var aa = 60;
+          var interval = setInterval(function () {
+            aa--;
+            that.setData({
+              codeNameVal: aa + 's',
+            })
+            if (aa == 0) {
+              clearInterval(interval);
+              that.setData({
+                codeNameVal: '获取验证码',
+              })
+            }
+          }, 1000)
+        }
+      }
+    })
   },
 
   formSubmit: function (e) {
@@ -101,6 +150,22 @@ Page({
       })
       return false;
     }
+    var that = this;
+    wx.request({
+      url: app.baseUrl + '/gzynew/loginwx',
+      data: {
+        mobile: that.data.phoneval,
+        openid: app.openid,
+        code: e.detail.value.code
+      },
+      success(res) {
+        if(res.data.status==0){
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+        }
+      }
+    })
 
   },
 
@@ -122,7 +187,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          that.setData({
+            wxcode:res.code
+          })
+        }
+      }
+    })
   },
 
   /**
