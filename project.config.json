@@ -39,13 +39,38 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "申请列表",
+					"pathName": "pages/applicantList/applicantList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加申请人",
+					"pathName": "pages/applicantAE/applicantAE",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择申请人",
+					"pathName": "pages/applicantSelect/applicantSelect",
+					"scene": null
+				}
+			]
 		}
 	}
 }

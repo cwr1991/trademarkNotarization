@@ -1,0 +1,50 @@
+<view class="applicant">
+    <block wx:if="{{!empty}}">
+        <view class="search">
+            <view class="search_input">
+                <image class="search_ico" src="../../images/applicant_search.png" />
+                <input confirm-type="search" bindconfirm="searchFun" placeholder="搜索常用申请人" auto-focus/>
+            </view>
+            <view class="manager" bind:tap="managerFun">{{manager ? "管理" : "完成  "}}</view>
+        </view>
+        <view class="content" wx:if="{{manager}}">
+            <block wx:for="{{list}}" wx:key="{{item.id}}">
+                <view class="list">
+                    <view class="name">{{item.name}}</view>
+                    <navigator class="edit" url="/pages/applicantAE/applicantAE?id={{item.id}}" hover-class="navigator-hover">编辑</navigator>
+                </view>
+            </block>
+        </view>
+        <view class="page__bd content" wx:if="{{!manager}}">
+            <view class="section section_gap">
+                <checkbox-group class="radio-group" bindchange="checkboxChange">
+                    <checkbox class="checkbox list" wx:for="{{list}}" wx:key="{{item.id}}" value="{{item.id}}" checked="{{item.checked}}">
+                        <text>{{item.name}}</text>
+                    </checkbox>
+                </checkbox-group>
+            </view>
+        </view>
+    </block>
+    <view class="empty" wx:if="{{empty}}">
+        <view class="empty_img">
+            <image src="../../images/applicant_empty.png" />
+        </view>
+        <view class="empty_text">暂无申请人信息，请先添加</view>
+    </view>
+    <navigator url="/pages/applicantAE/applicantAE">
+        <view class="applicant_add"  wx:if="{{manager}}">
+            <text class="add_ico">+</text>
+            <text class="add_f">新增申请人</text>
+        </view>
+    </navigator>
+    <view class="selectbox" wx:if="{{!manager}}">
+        <checkbox-group bindchange="selectChange" >
+            <checkbox  id="selectAll" class="check" checked="{{checkAll}}" value="1">
+                <text class="selectFont">全选</text>
+            </checkbox>
+        </checkbox-group>
+        <view class="delete" bind:tap="deleteFun">
+            删除
+        </view>
+    </view>
+</view>

@@ -9,7 +9,10 @@
     "pages/buyercompany/buyercompany",
     "pages/login/login",
     "pages/logs/logs",
-    "pages/operation/operation"
+    "pages/operation/operation",
+    "pages/applicantList/applicantList",
+    "pages/applicantAE/applicantAE", 
+    "pages/applicantSelect/applicantSelect"
   ],
   "window": {
     "backgroundTextStyle": "light",

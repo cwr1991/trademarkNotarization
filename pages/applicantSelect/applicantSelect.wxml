@@ -1,0 +1,31 @@
+<view class="applicant">
+    <block wx:if="{{!empty}}">
+        <view class="search">
+            <view class="search_input">
+                <image class="search_ico" src="../../images/applicant_search.png" />
+                <input confirm-type="search" bindconfirm="searchFun" placeholder="搜索常用申请人" auto-focus/>
+            </view>
+        </view>
+        <view class="content">
+            <block wx:for="{{list}}" wx:key="{{item.id}}">
+                <navigator url="" open-type="navigate">
+                    <view class="list">
+                        <view class="name">{{item.name}}</view>
+                    </view>
+                </navigator>
+            </block>
+        </view>
+    </block>
+    <view class="empty" wx:if="{{empty}}">
+        <view class="empty_img">
+            <image src="../../images/applicant_empty.png" />
+        </view>
+        <view class="empty_text">暂无申请人信息，请先添加</view>
+    </view>
+    <navigator url="/pages/applicantAE/applicantAE">
+        <view class="applicant_add">
+            <text class="add_ico">+</text>
+            <text class="add_f">新增申请人</text>
+        </view>
+    </navigator>
+</view>
