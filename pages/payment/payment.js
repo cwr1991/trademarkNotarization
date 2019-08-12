@@ -1,17 +1,32 @@
 // pages/payment/payment.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    orderid: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    that.setData({
+      orderid: options.orderid
+    })
+    wx.request({
+      url: app.baseUrl + '/gzynew/get-pay-data',
+      data: {
+        order_id: options.orderid,
+        openid: app.openid
+      },
+      success(res) {
+        console.log(res);
+      }
+    })
 
   },
 

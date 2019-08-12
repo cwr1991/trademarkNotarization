@@ -50,11 +50,12 @@ Page({
       return false;
     }
     wx.navigateTo({
-      url: '/pages/buyercompany/buyercompany'
+      url: '/pages/applicantSelect/applicantSelect'
     })
   },
   onLoad: function () {
 
   },
+
 
 })

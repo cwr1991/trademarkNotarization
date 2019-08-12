@@ -1,6 +1,6 @@
 <!--pages/buyerpersonage/buyerpersonage.wxml-->
 <view class="nav">
-  <view><navigator url="/pages/buyercompany/buyercompany">买方为公司</navigator></view>
+  <view><navigator url="/pages/buyercompany/buyercompany?id={{user_phone_id}}">买方为公司</navigator></view>
   <view>买方为个人 </view>
 </view>
 
@@ -11,20 +11,21 @@
 
     <view class="section">
       <view>商标注册号</view>
-      <input name="phone" placeholder-class="place-holder"  placeholder="请输入注册号"/>
-      <view class="but">获取商标信息</view>
+      <input name="sbRegistration" placeholder-class="place-holder" value="{{registrationVal}}" bindinput="bindRegistrationVal"  placeholder="请输入注册号"/>
+      <view class="but" bindtap="getTrademarkMsg">获取商标信息</view>
     </view>
     <view class="section">
       <view>商标名称</view>
-      <input name="phone" placeholder-class="place-holder" placeholder="请输入商标名称"/>
+      <input name="sbName" value="{{nameVal}}" placeholder-class="place-holder" placeholder="请输入商标名称"/>
     </view>
     <view class="section">
       <view>商标类别</view>
-      <input name="phone" placeholder-class="place-holder" placeholder="请输入商标类别"/>
+      <input name="sbClass" value="{{classVal}}" placeholder-class="place-holder" placeholder="请输入商标类别"/>
     </view>
+
     <view class="section">
       <view>商标状态</view>
-      <radio-group class="radio-group" bindchange="radioChange">
+      <radio-group class="radio-group" bindchange="radioChange" name="tm_type">
           <label class="radio {{isradioActive==index?'active':''}}" wx:for="{{items}}" wx:key="{{index}}" >
               <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
          </label>
@@ -44,7 +45,7 @@
       </view>
       <view class="infos">(上传商标证书、核准转让证明、变更、续展证明)</view>
     </view>
-    </view>
+  </view>
 
     <view class="title">买方信息</view>
     <view class="inner">
@@ -58,11 +59,11 @@
       </view>
       <view class="section">
         <view>买方姓名</view>
-        <input class="right" name="phone" placeholder-class="place-holder"  placeholder="请输入买方姓名"/>
+        <input class="right" name="code_name" value="{{code_names}}"   placeholder-class="place-holder"  placeholder="请输入买方姓名"/>
       </view>
         <view class="section">
         <view>身份证号码</view>
-        <input class="right" name="phone" placeholder-class="place-holder"  placeholder="请输入身份证号码"/>
+        <input class="right" name="idcordNumber" value="{{idcordNumbers}}"  placeholder-class="place-holder"  placeholder="请输入身份证号码"/>
       </view>
 
     <view class="filebox active">

@@ -1,7 +1,7 @@
 <!--pages/buyercompany/buyercompany.wxml-->
 <view class="nav">
   <view>买方为公司 </view>
-  <navigator url="/pages/buyerpersonage/buyerpersonage"><view>买方为个人</view></navigator>
+  <navigator url="/pages/buyerpersonage/buyerpersonage?id={{user_phone_id}}"><view>买方为个人</view></navigator>
 </view>
 
 <form bindsubmit="formSubmit">
@@ -11,20 +11,21 @@
 
     <view class="section">
       <view>商标注册号</view>
-      <input name="phone" placeholder-class="place-holder"  placeholder="请输入注册号"/>
-      <view class="but">获取商标信息</view>
+      <input name="sbRegistration" placeholder-class="place-holder" value="{{registrationVal}}" bindinput="bindRegistrationVal"  placeholder="请输入注册号"/>
+      <view class="but" bindtap="getTrademarkMsg">获取商标信息</view>
     </view>
     <view class="section">
       <view>商标名称</view>
-      <input name="phone" placeholder-class="place-holder" placeholder="请输入商标名称"/>
+      <input name="sbName" value="{{nameVal}}" placeholder-class="place-holder" placeholder="请输入商标名称"/>
     </view>
     <view class="section">
       <view>商标类别</view>
-      <input name="phone" placeholder-class="place-holder" placeholder="请输入商标类别"/>
+      <input name="sbClass" value="{{classVal}}" placeholder-class="place-holder" placeholder="请输入商标类别"/>
     </view>
+
     <view class="section">
       <view>商标状态</view>
-      <radio-group class="radio-group" bindchange="radioChange">
+      <radio-group class="radio-group" bindchange="radioChange" name="tm_type">
           <label class="radio {{isradioActive==index?'active':''}}" wx:for="{{items}}" wx:key="{{index}}" >
               <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
          </label>
@@ -58,7 +59,7 @@
       </view>
       <view class="section">
         <view>买方公司名称</view>
-        <input class="right" name="phone" placeholder-class="place-holder"  placeholder="请输入公司名称"/>
+        <input class="right" name="code_name"  value="{{code_names}}" placeholder-class="place-holder"  placeholder="请输入公司名称"/>
       </view>
 
     <view class="filebox active">

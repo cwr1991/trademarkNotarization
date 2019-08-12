@@ -13,24 +13,29 @@ App({
         if(res.code){
           var that = this;
           that.code = res.code;
-          console.log(res.code);
           wx.request({
             url: that.baseUrl+'/gzynew/openid',
             data:{
               code:res.code
             },
             success(res){
-              that.openid = res.data.result.openid;
+
               if (res.data.status==1){
                 wx.navigateTo({
                   url: '/pages/login/login',
                 })
+              }else{
+                that.openid = res.data.result.openid;
+                that.username = res.data.result.username;
               }
             }
           })
         }
       }
     })
+
+
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -56,5 +61,5 @@ App({
   },
   openid:'',
   baseUrl:'https://wwxs.86sb.com',
-  code:''
+  username:''
 })

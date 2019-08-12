@@ -1,43 +1,42 @@
 <!--pages/affirm/affirm.wxml-->
 <view class="inner">
    <view class="title">申请人信息</view>
-   <view class="item"><text>申请人姓名</text>陈晓霞 </view>
-   <view class="item"><text>申请人身份证号</text>陈晓霞 </view>
-   <view class="item"><text>手机号码</text>陈晓霞 </view>
+   <view class="item"><text>申请人姓名</text>{{data.yun_username}}</view>
+   <view class="item"><text>申请人身份证号</text>{{data.yun_idCode}} </view>
+   <view class="item"><text>手机号码</text>{{data.yun_mobile}} </view>
 </view>
 <view class="inner">
    <view class="title">商标信息</view>
-   <view class="item"><text>商标名称</text>陈晓霞 </view>
-   <view class="item"><text>商标注册号</text>陈晓霞 </view>
-   <view class="item"><text>商标类别</text>陈晓霞 </view>
+   <view class="item"><text>商标名称</text>{{data.sbname}} </view>
+   <view class="item"><text>商标注册号</text>{{data.sbid}}</view>
+   <view class="item"><text>商标类别</text>{{data.sbbigclassid}}  </view>
    <view class="imglist">
-      <view class="imgitem">
-          <image src="" mode="widthFix"></image>
-      </view>
-      <view class="imgitem">
-          <image src="" mode="widthFix"></image>
-      </view>
-      <view class="imgitem">
-          <image src="" mode="widthFix"></image>
+      <view class="imgitem" wx:for="{{imglist}}" wx:key="{{index}}">
+          <image src="{{item}}" mode="widthFix"></image>
       </view>
    </view>
 </view>
 <view class="inner">
    <view class="title">买方信息</view>
-   <view class="item"><text>买方人姓名</text>陈晓霞 </view>
-   <view class="item"><text>买方身份证号</text>陈晓霞 </view>
+
+  
+   <view class="item" wx:if="{{data.types==1}}"><text>买方人姓名</text>{{data.code_name}} </view>
+   <view class="item" wx:if="{{data.types==1}}"><text>买方身份证号</text>{{data.code_id}} </view>
+
+   <view class="item" wx:if="{{data.types==2}}"><text>买方公司姓名</text>{{data.code_name}} </view>
+
    <view class="imglist">
-      <view class="imgitem">
-          <image src="" mode="widthFix"></image>
+      <view class="imgitem" wx:if="{{data.code_front}}">
+          <image src="{{data.code_front}}" mode="widthFix"></image>
       </view>
-      <view class="imgitem">
-          <image src="" mode="widthFix"></image>
+      <view class="imgitem" wx:if="{{data.code_back}}">
+          <image src="{{data.code_back}}" mode="widthFix"></image>
       </view>
    </view>
 </view>
 
 <view class="but">
-    <view>返回修改</view>
+    <view bindtap="bindtapBack">返回修改</view>
     <view bindtap="sumbit">确认提交</view>
 </view>
 
@@ -51,7 +50,7 @@
      <view class="inners">
         <view class="section">
            <text>电子邮箱</text>
-           <input name="phone" placeholder-class="place-holder"  placeholder="请输入电子邮箱地址"/>
+           <input name="mail" bindinput="bindKeyInput" value="{{mail}}" placeholder-class="place-holder"  placeholder="请输入电子邮箱地址"/>
         </view>
         <view class="section avtive">
            <text>是否索取纸质公证书</text>
@@ -64,7 +63,7 @@
            </view>
         </view>
      </view> 
-     <view class="nextbut">
+     <view class="nextbut" bindtap="bindnext">
       下一步
      </view>
   </view>

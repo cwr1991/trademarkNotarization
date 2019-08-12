@@ -39,11 +39,13 @@
   margin-right: 20rpx;
   text-align: center;
   line-height: 110rpx;
+  overflow: hidden;
 }
 .imglist .imgitem image{
   display:table-cell;
   vertical-align:middle;
-  width: 100%;
+  width: 110rpx;
+  max-height: 100rpx;
 }
 
 .but{

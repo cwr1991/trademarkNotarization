@@ -67,6 +67,7 @@
   line-height: 60rpx;
   font-size: 22rpx;
   text-align: center;
+  z-index: 88;
   margin-top: 21rpx;
 }
 .innerbox .inner .section::after{
