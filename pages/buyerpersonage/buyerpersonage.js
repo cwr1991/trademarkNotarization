@@ -344,6 +344,7 @@ Page({
       success(res) {
         that.setData({
           orderid: res.data.result.orderid,
+          user_phone_id: options.id,
           order_id: res.data.result.order_id
         })
       }
