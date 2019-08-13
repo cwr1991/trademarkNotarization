@@ -7,6 +7,8 @@ Page({
    */
   data: {
     orderid: '',
+    order_id:'',
+    data:{}
   },
 
   /**
@@ -15,19 +17,47 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      orderid: options.orderid
+      orderid: options.orderid,
+      order_id: options.order_id
     })
     wx.request({
       url: app.baseUrl + '/gzynew/get-pay-data',
       data: {
-        order_id: options.orderid,
+        order_id: options.order_id,
         openid: app.openid
       },
       success(res) {
         console.log(res);
+        if (res.data.status==1){
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg
+          })
+          return false;
+        }
+        that.setData({
+            data:res.data.res
+        })
       }
     })
 
+  },
+  topayment:function(){
+    var that = this;
+    var timeStamp = that.data.data.timestamp;
+    wx.requestPayment({
+      timeStamp: timeStamp.toString(),
+      nonceStr: that.data.data.nonceStr,
+      package: that.data.data.package,
+      signType: that.data.data.signType,
+      paySign: that.data.data.paySign,
+      success(res) {
+        console.log(res);
+      },
+      fail(res) { 
+        console.log(res);
+      }
+    })
   },
 
   /**

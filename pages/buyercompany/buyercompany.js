@@ -16,6 +16,7 @@ Page({
     index: 0,
     businessImg:'',
     orderid:'',
+    order_id:'',
     user_phone_id:'',
     registrationVal:'',
     nameVal:'',
@@ -271,7 +272,7 @@ Page({
       success(res) {
         if (res.data.status==0){
           wx.navigateTo({
-            url: '/pages/affirm/affirm?orderid=' + that.data.orderid,
+            url: '/pages/affirm/affirm?orderid=' + that.data.orderid + '&order_id=' + that.data.order_id,
           })
         }else{
           wx.showToast({
@@ -299,7 +300,8 @@ Page({
       success(res) {
         that.setData({
           orderid: res.data.result.orderid,
-          user_phone_id:options.id
+          user_phone_id:options.id,
+          order_id: res.data.result.order_id
         })
       }
     })

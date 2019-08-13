@@ -9,6 +9,7 @@ Page({
     issite:false,
     isshadowBox:false,
     orderid:'',
+    order_id:'',
     data:{},
     imglist:[],
     mail:'',
@@ -111,7 +112,7 @@ Page({
           return false;
         }else{
           wx.navigateTo({
-            url: '/pages/payment/payment?orderid=' + that.data.orderid,
+            url: '/pages/payment/payment?orderid=' + that.data.orderid + '&order_id=' + that.data.order_id,
           })
         }
       }
@@ -124,7 +125,8 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      orderid: options.orderid
+      orderid: options.orderid,
+      order_id: options.order_id
     })
     wx.request({
       url: app.baseUrl + '/gzynew/orderinfo',
