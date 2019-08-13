@@ -10,7 +10,15 @@
         <view class="content" wx:if="{{manager}}">
             <block wx:for="{{list}}" wx:key="{{item.id}}">
                 <view class="list">
-                    <view class="name">{{item.username}}</view>
+                    <view class="name" wx:if="{{item.sbtypes == '1'}}">{{item.username}}</view>
+                    <view class="name" wx:if="{{item.sbtypes == '2'}}">{{item.enterprise_name}}</view>
+                    <block>
+                        <view class="name" wx:if="{{item.sbtypes == '3'}}">
+                            {{item.enterprise_name}}
+                            <text class="auditing " wx:if="{{!item.yun_uid}}">审核中</text>
+                        </view>
+                    </block>
+                    
                     <navigator class="edit" url="/pages/applicantAE/applicantAE?id={{item.id}}&types={{item.sbtypes}}" hover-class="navigator-hover">编辑</navigator>
                 </view>
             </block>

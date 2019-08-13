@@ -9,20 +9,19 @@ Page({
       applicantType:[
           {
             name: '企业',
-            value: '2'
-           
+            value: '2',
+            checked: 'true'
           },
           {
             name: '香港',
-            value: '3',
-            checked: 'true'
+            value: '3'
           },
           {
             name: '个人',
             value: '1'
           }
       ],
-      type:'3',
+      type:'2',
       personal:{
         username:"",
         mobile:"",

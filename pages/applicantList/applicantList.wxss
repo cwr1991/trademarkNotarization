@@ -60,6 +60,8 @@ page{
     flex: 1;
     color: #080808;
     font-size: 30rpx;
+    display: flex;
+    align-items: center;
 }
 .list .edit{
     color: #c6c6c6;
@@ -152,3 +154,18 @@ checkbox .wx-checkbox-input {
     transform: translate(-50%, -50%) scale(1);
     -webkit-transform: translate(-50%, -50%) scale(1);
   } */
+  .auditing{
+    width: 79rpx;
+    height: 38rpx;
+    background-color: #fff7f7;
+    border-radius: 18rpx;
+    border: solid 1px #f44444;
+    display: inline-block;
+    font-size: 18rpx;
+    color: #f44444;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    margin-left: 24rpx;
+  }

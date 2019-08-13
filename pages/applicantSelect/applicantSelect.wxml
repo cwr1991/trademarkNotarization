@@ -8,11 +8,26 @@
     <block wx:if="{{list.length > 0}}">
         <view class="content">
             <block wx:for="{{list}}" wx:key="{{item.id}}">
-                <navigator url="/pages/buyercompany/buyercompany?id={{item.id}}" open-type="navigate">
-                    <view class="list">
-                        <view class="name">{{item.username}}</view>
+                <block  wx:if="{{item.sbtypes == '1'}}">
+                    <navigator wx:if="{{item.sbtypes == '1'}}"  url="/pages/buyercompany/buyercompany?id={{item.id}}" open-type="navigate">
+                            <view class="list" >
+                                <view class="name">{{item.username}}</view>
+                            </view>
+                        </navigator>
+                </block>
+                <block wx:if="{{item.sbtypes != '1' && item.yun_uid }}">
+                     <navigator   url="/pages/buyercompany/buyercompany?id={{item.id}}" open-type="navigate">
+                        <view class="list" >
+                            <view class="name">{{item.enterprise_name}}</view>
+                        </view>
+                    </navigator>
+                </block>
+                <view class="list" wx:if="{{item.sbtypes == '3'&&!item.yun_uid}}" >
+                    <view class="name" >
+                        {{item.enterprise_name}}
+                        <text class="auditing " >审核中</text>
                     </view>
-                </navigator>
+                </view>
             </block>
         </view>
     </block>
