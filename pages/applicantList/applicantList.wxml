@@ -1,17 +1,17 @@
 <view class="applicant">
-    <block wx:if="{{!empty}}">
-        <view class="search">
-            <view class="search_input">
-                <image class="search_ico" src="../../images/applicant_search.png" />
-                <input confirm-type="search" bindconfirm="searchFun" placeholder="搜索常用申请人" auto-focus/>
-            </view>
-            <view class="manager" bind:tap="managerFun">{{manager ? "管理" : "完成  "}}</view>
+    <view class="search">
+        <view class="search_input">
+            <image class="search_ico" src="../../images/applicant_search.png" />
+            <input confirm-type="search" bindconfirm="searchFun" placeholder="搜索常用申请人" auto-focus/>
         </view>
+        <!-- <view class="manager" bind:tap="managerFun">{{manager ? "管理" : "完成  "}}</view> -->
+    </view>
+    <block wx:if="{{list.length > 0}}">
         <view class="content" wx:if="{{manager}}">
             <block wx:for="{{list}}" wx:key="{{item.id}}">
                 <view class="list">
-                    <view class="name">{{item.name}}</view>
-                    <navigator class="edit" url="/pages/applicantAE/applicantAE?id={{item.id}}" hover-class="navigator-hover">编辑</navigator>
+                    <view class="name">{{item.username}}</view>
+                    <navigator class="edit" url="/pages/applicantAE/applicantAE?id={{item.id}}&types={{item.sbtypes}}" hover-class="navigator-hover">编辑</navigator>
                 </view>
             </block>
         </view>
@@ -19,13 +19,13 @@
             <view class="section section_gap">
                 <checkbox-group class="radio-group" bindchange="checkboxChange">
                     <checkbox class="checkbox list" wx:for="{{list}}" wx:key="{{item.id}}" value="{{item.id}}" checked="{{item.checked}}">
-                        <text>{{item.name}}</text>
+                        <text>{{item.username}}</text>
                     </checkbox>
                 </checkbox-group>
             </view>
         </view>
     </block>
-    <view class="empty" wx:if="{{empty}}">
+    <view class="empty" wx:if="{{list.length == 0}}">
         <view class="empty_img">
             <image src="../../images/applicant_empty.png" />
         </view>

@@ -1,80 +1,29 @@
 // pages/login/login.js
+const app = getApp()
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        list:[
-          {
-            id:1,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:11,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:11111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:111111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:11111111,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:21,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:31,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:41,
-            name:"上海尚标互联网科技公司1"
-          },
-          {
-            id:2,
-            name:"上海尚标互联网科技公司2"
-          },
-          {
-            id:3,
-            name:"上海尚标互联网科技公司3"
-          },
-          {
-            id:4,
-            name:"上海尚标互联网科技公司4"
-          },
-          {
-            id:5,
-            name:"上海尚标互联网科技公司5"
-          },
-          {
-            id:6,
-            name:"上海尚标互联网科技公司6"
-          }
-        ],
-        empty:false, //是否显示空状态
+        list:[],
         manager:true,//右上角管理功能 
-        checkAll:false //是否全选
+        checkAll:false ,//是否全选
+        keyword:""
     },
     // 搜索功能
     searchFun(e){
       console.log(e.detail)
-      let val = e.detail.value
+      let keyword = e.detail.value
+      this.setData({
+        keyword
+      })
       wx.showLoading({
         title: '搜索中',
         mask:true
       })
+      this.getList()
     },
     // 管理切换 function
     managerFun(){
@@ -160,18 +109,49 @@ Page({
     deleteReq(){
       console.log(12313123)
     },
+    // 获取数据fun
+    getList(){
+      // 调试模式
+      let openid = app.openid  || "oKjx85fKXjZHMP2l3qyLfhryqFSM"
+      let keyword = this.data.keyword
+      let data = {
+        openid,
+        keyword
+      }
+      let _this = this
+      wx.request({
+        url: `${app.baseUrl}/gzynew/applysearch`, //仅为示例，并非真实的接口地址
+        method:"POST",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' // 默认值
+        },
+        data,
+        success (res) {
+          if(res.data.status == '0'){
+            let list = res.data.result
+            list.forEach(element => {
+              element.checked = false
+            });
+            _this.setData({
+              list
+            })
+          }else{
+            wx.showToast({
+              title:res.data.msg,
+              icon:"none"
+            })
+          }
+        },
+        complete(){
+          wx.hideLoading()
+        }
+      })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-      let list = this.data.list
-        list.forEach(element => {
-          element.checked = false
-        });
-        console.log(list)
-        this.setData({
-          list
-        })
+      
     },
 
     /**
@@ -185,7 +165,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-  
+      this.getList()
     },
   
     /**

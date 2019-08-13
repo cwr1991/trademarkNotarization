@@ -8,12 +8,10 @@ Page({
     data: {
         list:[],
         keyword:'',
-        empty:false, //是否显示空状态
         checkAll:false //是否全选
     },
     // 搜索功能
     searchFun(e){
-      console.log(e.detail)
       let keyword = e.detail.value
       this.setData({
         keyword
@@ -45,6 +43,11 @@ Page({
             _this.setData({
               list:res.data.result
             })
+          }else{
+            wx.showToast({
+              title:res.data.msg,
+              icon:"none"
+            })
           }
         },
         complete(){
@@ -70,7 +73,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-  
+      
     },
   
     /**
