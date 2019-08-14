@@ -54,12 +54,15 @@
         </view>
         <view class="section avtive">
            <text>是否索取纸质公证书</text>
-            <switch bindchange="switch1Change"/>
+            <switch bindchange="switch1Change" checked="{{issite}}" />
         </view>
         <view class="section" wx:if="{{issite}}">
            <text>收件地址</text>
-           <view>
-              上海市浦东新区龙东大道3000号1幢B座11层(张江高科技园区)
+           <view wx:if="{{addr}}">
+              {{addr}}
+           </view>
+           <view wx:if="{{!addr}}" class="addr">
+             <navigator url="/page/navigate/navigate?title=navigate"></navigator>
            </view>
         </view>
      </view> 

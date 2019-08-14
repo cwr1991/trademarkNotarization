@@ -41,6 +41,7 @@ Page({
               mobile: res.data.phoneNumber
             },
             success(res) {
+              console.log(res);
               if(res.data.status==0){
                 wx.switchTab({
                   url: '/pages/index/index',

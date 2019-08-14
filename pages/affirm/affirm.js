@@ -31,7 +31,14 @@ Page({
         openid: app.openid
       },
       success(res) {
-        console.log(res);
+        if(res.data.result.length>0){
+          var r = res.data.result.filter(function (x) {
+            return x.check == 1;
+          });
+          that.setData({
+            addr: r[0].address
+          })
+        }
       }
     })
   },

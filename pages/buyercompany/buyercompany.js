@@ -97,7 +97,6 @@ Page({
   },
   chooseImages:function(){
     var that = this;
-    if(that.data.index==0){
       wx.chooseImage({
         count: 1,
         sizeType: ['original', 'compressed'],
@@ -140,10 +139,6 @@ Page({
 
         }
       })
-    }else if(that.data.index==1){
-
-    }
-
   },
   getTrademarkMsg:function(){
     if (this.data.registrationVal==''){

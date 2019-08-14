@@ -19,14 +19,16 @@ App({
               code:res.code
             },
             success(res){
-
+              that.openid = res.data.result.openid;
               if (res.data.status==1){
                 wx.navigateTo({
                   url: '/pages/login/login',
                 })
               }else{
-                that.openid = res.data.result.openid;
                 that.username = res.data.result.username;
+                wx.switchTab({
+                  url: '/pages/login/login',
+                })
               }
             }
           })

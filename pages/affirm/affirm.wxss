@@ -187,3 +187,13 @@
   font-size: 34rpx;
   font-weight: 600;
 }
+
+.addr{
+  width: 100%;
+  height: 140rpx;
+}
+.addr navigator{
+  display: block;
+  width: 100%;
+  height: 100%;
+}

@@ -11,8 +11,9 @@
     "pages/logs/logs",
     "pages/operation/operation",
     "pages/applicantList/applicantList",
-    "pages/applicantAE/applicantAE", 
-    "pages/applicantSelect/applicantSelect"
+    "pages/applicantAE/applicantAE",
+    "pages/applicantSelect/applicantSelect",
+    "pages/webview/webview"
   ],
   "window": {
     "backgroundTextStyle": "light",

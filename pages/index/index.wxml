@@ -12,7 +12,7 @@
                 商标转让公证
                  <image src="../../images/support.png" mode="widthFix"></image>
               </view>
-              <text>公证费：360/件</text>
+              <text>公证费：{{price}}/件</text>
            </view>
            <view class="but" bindtap="tobuyercompany">
              立即办理
@@ -60,9 +60,7 @@
          <view class="agreementClose"  bindtap="rmAgreement"><image src="../../images/indexicon01.png" mode="widthFix"></image></view>
          <text>尚标线上公证协议</text>
          <view class="textinfo">
-         <view>尚标线上公证协议是您通过尚标平台办理线上公证的法律服务依据，由尚标平台提供线上公证的官方支持与认证，平台运维方是上海尚标互联网科技有限公司。</view>
- <view>一、协议声明与内容</view>
-<view>1、本协议内容包括协议正文及其所涵盖其它合同、协议、规则，以及所有有关在尚标平台已经发布的或将来可能发布的各类规范、规则、服务条款等。所有规则为本协议不可分割的组成部分，与协议正文具有同等法律效力。除另行明确声明外，尚标平台通过尚标平台提供的各项服务均受本协议约束。</view>
+              <rich-text nodes="{{nodes}}"></rich-text>
          </view>
          <view class="announcementBut">
             <view bindtap="rmAgreementNo">不同意</view>

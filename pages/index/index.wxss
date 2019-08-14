@@ -213,3 +213,8 @@ page{
   background: #ff4444;
   color: #fff;
 }
+rich-text{
+  font-size: 22rpx;
+  color: #666;
+  line-height: 32rpx;
+}

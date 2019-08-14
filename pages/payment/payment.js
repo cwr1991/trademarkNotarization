@@ -8,7 +8,8 @@ Page({
   data: {
     orderid: '',
     order_id:'',
-    data:{}
+    data:{},
+    price:''
   },
 
   /**
@@ -41,6 +42,19 @@ Page({
       }
     })
 
+    wx.request({
+      url: app.baseUrl + '/gzynew/get-order-info',
+      data: {
+        order_id: options.order_id,
+        field: 'pay_charge'
+      },
+      success(res) {
+        that.setData({
+          price: res.data.result.pay_charge
+        })
+      }
+    })
+
   },
   topayment:function(){
     var that = this;
@@ -52,10 +66,26 @@ Page({
       signType: that.data.data.signType,
       paySign: that.data.data.paySign,
       success(res) {
-        console.log(res);
+        wx.request({
+          url: app.baseUrl + '/gzynew/get-order-info',
+          data: {
+            order_id: that.data.order_id,
+            field: 'pay_status,gz_url'
+          },
+          success(res) {
+            if (res.data.result.pay_status==1){
+              wx.navigateTo({
+                url: '/pages/webview/webview?weburl=' + res.data.result.gz_url,
+              })
+            }
+          }
+        })
       },
       fail(res) { 
-        console.log(res);
+        wx.showToast({
+          icon: 'none',
+          title: res.errMsg
+        })
       }
     })
   },
