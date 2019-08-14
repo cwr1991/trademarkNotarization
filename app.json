@@ -4,7 +4,6 @@
     "pages/order/order",
     "pages/address/address",
     "pages/index/index",
-<<<<<<< Updated upstream
     "pages/login/login",
     "pages/buyercompany/buyercompany",
     "pages/affirm/affirm",
@@ -18,8 +17,6 @@
     "pages/applicantAE/applicantAE",
     "pages/applicantSelect/applicantSelect",
     "pages/webview/webview",
-=======
->>>>>>> Stashed changes
     "pages/address/editAddress/editAddress",
     "pages/invoice/invoice",
     "pages/invoice/editInvoice/editInvoice",
