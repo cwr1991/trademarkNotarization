@@ -32,7 +32,8 @@ Page({
         legalPersonCardNo:"", //法人身份证号
         legalPersonMobile:"",   //法人手机号
         enterpriseName:'',     //企业名称
-        businessLicenseId:''   //信用代码
+        businessLicenseId:'',  //信用代码
+        business_license_img:"" //营业执照
       },
       hk:{
         legalPersonName:"", //代表人姓名
@@ -44,7 +45,6 @@ Page({
       },
       faceFile:[],
       emblemFile:[],
-      licenseFile:[],//营业执照
       hkFile:[]//香港图片附件
     },
     radioChange(e){
@@ -179,9 +179,56 @@ Page({
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFilePaths = res.tempFilePaths
-          let licenseFile = tempFilePaths
-          _this.setData({
-            licenseFile
+          wx.uploadFile({
+            url: app.baseUrl + '/gzynew/upload-img', //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[0],
+            name: 'pic',
+            header: {
+                  "Content-Type": "multipart/form-data"//记得设置
+            },
+            success(res) {
+              let result = JSON.parse(res.data)
+              if (result.status != 0) {
+                return false;
+              }else{
+                let company = _this.data.company
+                company.business_license_img = result.imgUrl.pic
+                _this.setData({
+                  company
+                })
+              }
+              wx.showLoading({
+                title:"自动识别中"
+              })
+              wx.request({
+                url: app.baseUrl + '/gzynew/get-business-info',
+                method:"POST",
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded' // 默认值
+                },
+                data:{
+                    pic : result.imgUrl.pic
+                },
+                success(res) {
+                  if (res.data.status == 0) {
+                    let company = _this.data.company
+                    company.legalPersonName = res.data.result.person
+                    company.enterpriseName = res.data.result.name
+                      _this.setData({
+                        company
+                      })
+                  }else{
+                    wx.showToast({
+                      title:res.data.msg,
+                      icon:"none"
+                    })
+                  }
+                },
+                complete(){
+                  wx.hideLoading()
+                }
+              })
+            }
           })
         }
       })
@@ -234,17 +281,15 @@ Page({
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFilePaths = res.tempFilePaths
-          let hkFile = tempFilePaths
           let hk = _this.data.hk
           hk.pic = tempFilePaths[0]
           _this.setData({
-            hkFile,
             hk
           })
         }
       })
     },
-    // 保存function
+    // 验证fun
     validateP(){
       let personal = this.data.personal
       if(!personal.username){
@@ -281,6 +326,9 @@ Page({
       if(!company.businessLicenseId){
         return {code:'error',msg:"请输入社会统一信用代码"}
       }
+      if(!company.business_license_img){
+        return {code:'error',msg:"请上传营业执照"}
+      }
       return {code:'ok',msg:"success"}
     },
     validateH(){
@@ -311,7 +359,7 @@ Page({
     // 保存个人信息fun
     personalReq(){
       let personal = this.data.personal
-      let openid = app.openid || "oKjx85fKXjZHMP2l3qyLfhryqFSM"
+      let openid = app.openid 
       let data = {
         username:personal.username,
         mobile:personal.mobile,
@@ -355,7 +403,7 @@ Page({
      // 保存公司信息fun
     companyReq(){
       let company = this.data.company
-      company.openid = app.openid || "oKjx85fKXjZHMP2l3qyLfhryqFSM"
+      company.openid = app.openid 
       wx.showLoading({
         title:'保存中'
       })
@@ -367,7 +415,6 @@ Page({
         },
         data:company,
         success (res) {
-          console.log(res.data)
           if(res.data.status == '0' ){
             wx.navigateBack({
               delta: 1
@@ -390,9 +437,10 @@ Page({
         }
       })
     },
+    // 保存香港信息fun
     hkReq(){
       let hk = this.data.hk
-      hk.openid = app.openid || "oKjx85fKXjZHMP2l3qyLfhryqFSM"
+      hk.openid = app.openid 
       wx.showLoading({
         title:'保存中'
       })
@@ -464,7 +512,7 @@ Page({
     getEditList(id){
       let _this = this
       let data = {
-        openid: app.openid ||  "oKjx85fKXjZHMP2l3qyLfhryqFSM",
+        openid: app.openid ,
         user_phone_id:id
       }
       wx.request({
@@ -493,7 +541,8 @@ Page({
                   legalPersonCardNo:result.yun_idCode,
                   legalPersonMobile:result.phone,  
                   enterpriseName:result.enterprise_name,     
-                  businessLicenseId:result.business_license_id
+                  businessLicenseId:result.business_license_id,
+                  business_license_img:result.business_license_img
                 }
                 _this.setData({
                   company
@@ -505,7 +554,8 @@ Page({
                   legalPersonMobile:result.phone,  
                   offshoreCompanyName:result.enterprise_name, 
                   offshoreCompanyNo:result.business_license_id, 	
-                  offshoreCompanyDate:result.offshore_company_date
+                  offshoreCompanyDate:result.offshore_company_date,
+                  pic:result.business_license_img
                 }
                 _this.setData({
                   hk

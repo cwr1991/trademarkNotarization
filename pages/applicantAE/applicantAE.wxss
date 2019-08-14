@@ -75,6 +75,9 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .list_box{
     display: flex;
 }
+.list_p_box{
+  margin-bottom:60rpx;
+}
 .list_input{
     flex:1;
 }

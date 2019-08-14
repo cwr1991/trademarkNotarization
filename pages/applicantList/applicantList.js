@@ -112,7 +112,7 @@ Page({
     // 获取数据fun
     getList(){
       // 调试模式
-      let openid = app.openid  || "oKjx85fKXjZHMP2l3qyLfhryqFSM"
+      let openid = app.openid  
       let keyword = this.data.keyword
       let data = {
         openid,

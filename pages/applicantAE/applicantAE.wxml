@@ -24,13 +24,13 @@
                     <input placeholder="请输入代表人身份证号" value="{{personal.yun_idCode}}" bindinput="inputIdcard" type="idcard" />
                 </view>
             </view>
-            <view class="list list_box">
+            <view class="list list_box list_p_box">
                 <view class="list_label">注册人手机号码</view>
                 <view class="list_input">
                     <input placeholder="请输入手机号码" value="{{personal.mobile}}" bindinput="inputPhone" type="number" />
                 </view>
             </view>
-            <view class="idcard_tip">
+            <!-- <view class="idcard_tip">
                 <text class="idcard_title">身份证</text>
                 <text class="idcard_tips">（附件上传后部分资料自动识别）  </text>
             </view>
@@ -89,7 +89,7 @@
                         </view>
                     </view>
                 </view>
-            </view>
+            </view> -->
         </block>
         <!-- 企业模块 -->
         <block wx:if="{{type == '2'}}">
@@ -130,7 +130,7 @@
             </view>
             <view class="upload_license">
                 <view class="upload_face upload_box upload_license_img" bind:tap="chooseLicenseImage">
-                    <image src="{{licenseFile[0]}}"  wx:if="{{licenseFile.length > 0}}" />
+                    <image src="{{company.business_license_img}}"  wx:if="{{company.business_license_img}}" />
                 </view>
             </view>
             <view class=" company_example">
@@ -185,7 +185,7 @@
             </view>
             <view class="upload_license">
                 <view class="upload_face upload_box upload_license_img" bind:tap="chooseHkImage">
-                    <image src="{{hkFile[0]}}"  wx:if="{{hkFile.length > 0}}" />
+                    <image src="{{hk.pic}}"  wx:if="{{hk.pic}}" />
                 </view>
             </view>
             <view class="hk_tip">
