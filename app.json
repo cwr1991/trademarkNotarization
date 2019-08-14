@@ -1,6 +1,10 @@
 {
   "pages": [
+    "pages/personCenter/personCenter",
+    "pages/order/order",
+    "pages/address/address",
     "pages/index/index",
+<<<<<<< Updated upstream
     "pages/login/login",
     "pages/buyercompany/buyercompany",
     "pages/affirm/affirm",
@@ -13,7 +17,13 @@
     "pages/applicantList/applicantList",
     "pages/applicantAE/applicantAE",
     "pages/applicantSelect/applicantSelect",
-    "pages/webview/webview"
+    "pages/webview/webview",
+=======
+>>>>>>> Stashed changes
+    "pages/address/editAddress/editAddress",
+    "pages/invoice/invoice",
+    "pages/invoice/editInvoice/editInvoice",
+    "pages/order/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -32,12 +42,12 @@
         "selectedIconPath": "images/tabbar1.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/personCenter/personCenter",
         "text": "个人中心",
         "iconPath": "images/tabbar2.png",
         "selectedIconPath": "images/tabbar2.png"
       }
     ]
   },
-  "sitemapLocation": "sitemap46.json"
+  "sitemapLocation": "sitemap23.json"
 }
