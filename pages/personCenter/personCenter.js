@@ -62,7 +62,7 @@ Page({
 
       case 1:
         wx.navigateTo({
-          url: '',
+          url: '/pages/applicantList/applicantList',
           success: function(res) {
             // 通过eventChannel向被打开页面传送数据
           }

@@ -16,8 +16,7 @@
   width: 500rpx;
   color: #666;
 }
-.list-item picker{
-}
+
 .input-placeholder,.textarea-placeholder{
   font-size: 30rpx;
   color: #c7c7c7;
