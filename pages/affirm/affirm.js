@@ -35,8 +35,11 @@ Page({
           var r = res.data.result.filter(function (x) {
             return x.check == 1;
           });
+          // that.setData({
+          //   addr: r[0].address
+          // })
           that.setData({
-            addr: r[0].address
+            addr: ''
           })
         }
       }

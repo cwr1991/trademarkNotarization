@@ -36,16 +36,14 @@
   </view>
   <view class="nav">
       <view class="itemnav">
-        <navigator url="/pages/froperation/froperation">
-          <view class="itemname">法人操作</view>
-           <image src="../../images/navicon01.png" mode="widthFix"></image>
-        </navigator>
-      </view>
-      <view class="itemnav">
         <navigator url="/pages/czroperation/czroperation">
           <view class="itemname">代人操作</view>
            <image src="../../images/navicon02.png" mode="widthFix"></image>
         </navigator>
+      </view>
+      <view class="itemnav" bindtap="tobuyercompany">
+          <view class="itemname">法人操作</view>
+           <image src="../../images/navicon01.png" mode="widthFix"></image>
       </view>
   </view>
 </view>

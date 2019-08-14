@@ -1,21 +1,59 @@
 // pages/czroperation/czroperation.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    names:''
   },
   formSubmit: function (e) {
-    console.log(e)
+    if (e.detail.value.name==''){
+      wx.showToast({
+        icon: 'none',
+        title: '请输入操作人姓名'
+      })
+      return false;
+    }
+    wx.request({
+      url: app.baseUrl + '/gzynew/operator',
+      method: 'post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        openid: app.openid,
+        operator: e.detail.value.name
+      },
+      success(res) {
+        if (res.data.status == 0) {
+          wx.navigateTo({
+            url: '/pages/applicantSelect/applicantSelect'
+          })
+        }
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.request({
+      url: app.baseUrl + '/gzynew/operator',
+      method:'post',
+      header: { 'content-type':'application/x-www-form-urlencoded'},
+      data: {
+        openid: app.openid
+      },
+      success(res) {
+        if (res.data.status==0){
+            that.setData({
+              names: res.data.result.operator
+            })
+        }
+      }
+    })
   },
 
   /**
