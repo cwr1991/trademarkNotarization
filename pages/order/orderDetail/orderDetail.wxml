@@ -1,0 +1,83 @@
+<!--pages/order/orderDetail.wxml-->
+<view class="content">
+  <view class="title">订单信息</view>
+  <view class="item">
+    <text class="leftTit">订单编号</text>
+    <text class="rightTit">{{detail.order_id}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">订单状态</text>
+    <text class="rightTit">{{detail.flow_name}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">订单金额</text>
+    <text class="rightTit">{{detail.pay_charge}}</text>
+  </view>
+</view>
+
+<view class="content">
+  <view class="title">商标信息</view>
+  <view class="item">
+    <text class="leftTit">商标名称</text>
+    <text class="rightTit">{{detail.sbname}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">商标注册号</text>
+    <text class="rightTit">{{detail.sbid}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">商标类别</text>
+    <text class="rightTit">{{detail.sbbigclassid}}</text>
+  </view>
+  <view class="item" style="flex-direction:column">
+    <text class="leftTit">商标证书</text>
+    <view class="imgBox">
+      <image wx:for="{{detail.tm_data}}" src="{{item}}"></image>
+
+    </view>
+  </view>
+</view>
+
+<view class="content">
+  <view class="title">申请人信息</view>
+  <view class="item">
+    <text class="leftTit">法定代表人姓名</text>
+    <text class="rightTit">{{detail.username}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">法定代表人电话</text>
+    <text class="rightTit">{{detail.phone}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">申请人身份证号</text>
+    <text class="rightTit">{{detail.yun_idCode}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">收货地址</text>
+    <text class="rightTit">{{detail.zs_addr}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">公司名称</text>
+    <text class="rightTit">{{detail.enterprise_name}}</text>
+  </view>
+  <view class="item">
+    <text class="leftTit">注册编码</text>
+    <text class="rightTit">{{detail.business_license_id}}</text>
+  </view>
+
+</view>
+
+<view class="content">
+  <view class="title">买方信息</view>
+  <view class="item">
+    <text class="leftTit">买方名称</text>
+    <text class="rightTit">{{detail.code_name}}</text>
+  </view>
+  <view class="item" style="flex-direction:column">
+    <text class="leftTit" >营业执照</text>
+    <view class="imgBox">
+      <image wx:for="{{detail.code_front}}" src="{{item}}"></image>
+
+    </view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+<!--pages/address/address.wxml-->
+<view class="wraper">
+  <view class="addressBox">
+  <!-- 数组循环 -->
+    <view class="address-item {{item.check==1?'active':''}}"  wx:for="{{addressInfo}}" wx:key="{{index}}">
+      <text class="username">{{item.sname}}</text>
+      <text class="tel">{{item.stel}}</text>
+      <text class="default" wx:if="{{item.check==1}}">默认</text>
+      <view class="bottom">
+        <view class="address">{{item.scity}} {{item.address}}</view>
+        <image src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/edit@2x.png" data-scity="{{item.scity}}" data-address="{{item.address}}" data-tel="{{item.stel}}" data-username="{{item.sname}}" data-isdefault="{{item.check}}" bindtap="toEditAddress" data-idx="{{index}}"/>
+      </view>
+    </view>
+  </view>
+  <button class="button" type="warn" hover-class="none" bindtap="toAddAddress">+新建常用地址</button>
+</view>

@@ -1,0 +1,71 @@
+<!-- pages/order/order.wxml -->
+<view class="orderTitle">
+  <text wx:for="{{navTab}}" wx:key="index" data-idx="{{index}}" bindtap="currentTab" class="{{currentTab==index ? 'cur' : ''}}">{{item}}
+  </text>
+</view>
+<!-- 内容 -->
+<view class="content">
+  <view id="itemBox" wx:for="{{content}}" wx:key="*this" wx:for-item="content" class="{{currentTab==index ? 'show' : 'hide'}}">
+    <!-- 已发证编辑 -->
+    <view wx:if="{{content.type==3}}" class="edit">
+      <view class="edit_left">共
+        <text>{{content.info.length}}</text>件商品</view>
+      <view class="edit_right" wx:if="{{!isClickEdit}}" bindtap="clickEdit">编辑</view>
+      <view class="edit_right" wx:elif="{{isClickEdit}}">完成</view>
+    </view>
+
+    <!-- 每条订单信息 -->
+    <view class="editBox" wx:for="{{content.info}}" wx:key="*infoIdx" wx:for-item="infoItem" wx:for-index="infoIdx" data-infoIdx="{{infoIdx}}" data-checkd="{{infoItem.singleChecked}}">
+      <!-- 单选checked -->
+      <view wx:if="{{content.type==3 && isClickEdit}}" class="{{!infoItem.singleChecked ? 'circle mar': 'circle mar checked'}}" bindtap="singleChecked" data-checked="{{infoItem.singleChecked}}" data-index="{{infoIdx}}"></view>
+      <!-- 订单item -->
+      <view class="{{infoIdx >= content.info.length-1? 'infoItem last': 'infoItem'}}">
+        <view class="first_row">
+          <view class="datetime">
+            <text>{{infoItem.times.date}}</text>
+            <text>{{infoItem.times.time}}</text>
+          </view>
+          <view style="font-size:24rpx;color:#F44444">{{infoItem.status}}</view>
+        </view>
+
+        <view class="second_row">
+          <view>
+            <text class="SB bot" style="font-size:30rpx;color:#080808">{{infoItem.SBname}}</text>
+            <text class="SB">
+            
+            <text>注册号：{{infoItem.SBnum}}</text>
+            </text>
+          </view>
+          <view>
+            <text class="SB bot">
+            <text>操作人：{{infoItem.SBperson}}</text>
+
+            </text>
+            <text class="SB">
+            <text>类别：{{infoItem.SBclass}}</text>
+
+            </text>
+          </view>
+        </view>
+
+        <view class="third_row">订单编号：{{infoItem.orderNum}}</view>
+
+        <view class="last_row">
+          <text wx:if="{{content.type==0}}" wx:for="{{infoItem.btntype}}" wx:key="0" class="{{item=='查看详情'?'btn detail':'btn pay'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text>
+          <text wx:if="{{content.type==3}}" wx:for="{{infoItem.btntype}}" wx:key="3" class="{{item=='索取发票'?'btn fapiao':'btn detail'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 已发证底部全选 -->
+    <view class="bottom" wx:if="{{content.type==3}}">
+      <view class="bot_left">
+        <view class="{{!allChecked?'circle':'circle.checked'}}" bindtap="allChecked"></view>
+        <text>全选</text>
+      </view>
+      <view class="bot_right">批量索取发票</view>
+    </view>
+
+  </view>
+</view>

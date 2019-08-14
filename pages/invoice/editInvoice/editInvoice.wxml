@@ -1,0 +1,48 @@
+<!--pages/invoice/editInvoice/editInvoice.wxml-->
+<view class="Box">
+  <view class="list-item">
+    <label>发票抬头</label>
+    <input type="text" wx:if="{{editInfo.isEdit=='true'}}" placeholder="" placeholder-class value="{{editInfo.company}}" bindinput="bindTaitou"></input>
+    <input type="text" wx:else placeholder="请输入发票抬头" placeholder-class value="{{editInfo.company}}" bindinput="bindTaitou"></input>
+  </view>
+  <view class="list-item">
+    <label>纳税人识别号</label>
+    <input type="text" wx:if="{{editInfo.isEdit=='true'}}" placeholder="" placeholder-class value="{{editInfo.num}}" bindinput="bindNum"></input>
+    <input type="text" wx:else placeholder="请输入纳税识别号" placeholder-class value="{{editInfo.num}}" bindinput="bindNum"></input>
+  </view>
+ 
+  <view class="list-item">
+    <label>公司地址</label>
+    <input type="text" wx:if="{{editInfo.isEdit=='true'}}" placeholder="" placeholder-class value="{{editInfo.address}}" bindinput="bindAddress"></input>
+    <input type="text" wx:else placeholder="写到门牌、楼层房间号等信息" placeholder-class value="{{editInfo.address}}" bindinput="bindAddress"></input>
+
+  </view>
+  <view class="list-item">
+    <label>公司开户行</label>
+    <input type="text" wx:if="{{editInfo.isEdit=='true'}}" placeholder="" placeholder-class value="{{editInfo.bank}}" bindinput="bindBank"></input>
+    <input type="text" wx:else placeholder="请输入开户行" placeholder-class value="{{editInfo.bank}}" bindinput="bindBank"></input>
+
+  </view>
+  <view class="list-item">
+    <label>账号</label>
+    <input type="text" wx:if="{{editInfo.isEdit=='true'}}" placeholder="请输入账号" placeholder-class value="{{editInfo.count}}" bindinput="bindAccount"></input>
+    <input type="text" wx:else placeholder="请输入账号" placeholder-class value="{{editInfo.count}}" bindinput="bindAccount"></input>
+
+  </view>
+  <view class="list-item" style="justify-content:space-between">
+    <label style="width:200rpx">设为默认</label>
+    <switch bindchange="switchChange" checked="{{editInfo.isDefault==1?true:false}}" />
+  </view>
+
+  <!-- 底部按钮判断 -->
+  <view class="bottomBtn">
+    <block wx:if="{{editInfo.isEdit=='true'}}">
+      <view class="delete" bindtap="deleteData">删除</view>
+      <view class="save" bindtap="editsaveData">保存</view>
+    </block>
+
+    <block wx:else>
+      <view class="save add" bindtap="addsaveData">保存</view> 
+    </block>
+  </view>
+</view>

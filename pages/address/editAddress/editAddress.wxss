@@ -1,0 +1,63 @@
+/* pages/address/editAddress/editaddress.wxss */
+.Box{
+  border-top: 20rpx solid #f5f5f5;
+}
+.list-item{
+  display: flex;
+  padding: 30rpx 0 30rpx 23rpx;
+  border-bottom: 1px solid #ededed;
+}
+.list-item label{
+  font-size: 32rpx;
+  color: #090909;
+  width: 160rpx;
+}
+.list-item input,.list-item picker,.list-item textarea{
+  width: 500rpx;
+  color: #666;
+}
+.list-item picker{
+}
+.input-placeholder,.textarea-placeholder{
+  font-size: 30rpx;
+  color: #c7c7c7;
+}
+.list-item textarea{
+  display: block;
+  height: 100rpx;
+  width: 75%;
+}
+.list-item image{
+  width: 14rpx;
+  height: 23rpx;
+}
+
+/* 底部按钮 */
+.bottomBtn{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 20rpx;
+}
+.delete,.save{
+  width: 340rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  border-radius: 10rpx;
+  font-weight: 600;
+}
+.delete{
+  background: #f5f5f5;
+  color: #090909;
+  margin-right: 20rpx;
+}
+.save{
+  background: #f44444;
+  color: #fff;
+}
+.save.add{
+  width: 700rpx;
+}

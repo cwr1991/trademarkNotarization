@@ -1,0 +1,41 @@
+<!--pages/address/editAddress/editaddress.wxml-->
+
+<view class="Box">
+  <view class="list-item">
+    <label>收件人</label>
+    <input type="text" wx:if="{{editInfo.isEdit=='true'}}" placeholder="" placeholder-class value="{{editInfo.username}}" bindinput="bindUsername"></input>
+    <input type="text" wx:else placeholder="请输入收件人" placeholder-class value="{{editInfo.username}}" bindinput="bindUsername"></input>
+
+  </view>
+  <view class="list-item">
+    <label>手机号</label>
+    <input type="text" wx:if="{{editInfo.isEdit=='true'}}" placeholder="" placeholder-class value="{{editInfo.tel}}" bindinput="bindTel"></input>
+    <input type="text" wx:else placeholder="请输入手机号" placeholder-class value="{{editInfo.tel}}" bindinput="bindTel"></input>
+  </view>
+  <view class="list-item" style="align-items:center">
+    <label>地区</label>
+    <picker mode="region" value="{{region[0]}} {{region[1]}} {{region[2]}}" bindchange="bindRegionChange">{{region[0]}} {{region[1]}} {{region[2]}}</picker>
+    <image src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/1@2x.png"></image>
+  </view>
+  <view class="list-item">
+    <label>详细地址</label>
+    <textarea wx:if="{{editInfo.isEdit=='true'}}" class="textarea" bindinput="bindAddress" placeholder="地区、街道、门牌号" placeholder-class value="{{editInfo.address}}"></textarea>
+    <textarea wx:else class="textarea" bindinput="bindAddress" placeholder="地区、街道、门牌号" placeholder-class value="{{editInfo.address}}"></textarea>
+  </view>
+  <view class="list-item" style="justify-content:space-between">
+    <label style="width:200rpx">设为默认地址</label>
+    <switch bindchange="switchChange" checked="{{editInfo.isDefault==1?true:false}}" />
+  </view>
+
+  <!-- 底部按钮判断 -->
+  <view class="bottomBtn">
+    <block wx:if="{{editInfo.isEdit=='true'}}">
+      <view class="delete" bindtap="deleteData">删除</view>
+      <view class="save" bindtap="editsaveData">保存</view>
+    </block>
+
+    <block wx:else>
+      <view class="save add" bindtap="addsaveData">保存</view> 
+    </block>
+  </view>
+</view>

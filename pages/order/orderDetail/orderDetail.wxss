@@ -1,0 +1,46 @@
+/* pages/order/orderDetail.wxss */
+
+page {
+  background: #f2f2f4;
+  padding-top: 20rpx;
+}
+
+.content {
+  margin-bottom: 20rpx;
+  background: #fff;
+  padding: 37rpx 30rpx;
+}
+
+.content .title {
+  color: #080808;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 19rpx;
+
+}
+
+.leftTit {
+  width: 240rpx;
+  font-size: 28rpx;
+  color: #656565;
+}
+
+.rightTit {
+  flex: 1;
+  text-align: left;
+  font-size: 28rpx;
+  color: #080808;
+}
+.item image{
+  width: 130rpx;
+  height: 130rpx;
+  margin-right: 15rpx;
+}
+.imgBox{
+  margin-top: 19rpx;
+}

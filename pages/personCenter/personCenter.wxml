@@ -1,0 +1,40 @@
+<!-- banner用户信息 -->
+<view class="banner">
+  <view class="userinfo">
+    <image src="/images/eleheader.png"></image>
+    <text>{{telnumber}}</text>
+    <!-- <text wx:elif="{{!isLogin}}" bindtap="tologin">登录/注册</text> -->
+  </view>
+</view>
+
+<!-- 公证订单 -->
+<view class="centerContent">
+  <view class="order">
+    <view class="order_title" bindtap="toOrder">
+      <image src="/images/gzorder.png"></image>
+      <text bindtap="test">公证订单</text>
+    </view>
+
+    <view class="order_itembox">
+      <view class="item" wx:for="{{orderItems}}" wx:for-index="idx" data-idx="{{idx}}">
+        <view class="count">{{item.count}}</view>
+        <!-- <view class="count" wx:else>0</view> -->
+        <view class="type">{{item.type}}</view>
+      </view>
+    </view>
+  </view>
+  
+</view>
+<!-- 地址，申请人，开票信息，退出登录 -->
+<view class="infoBox">
+  <view class="info">
+    <view class="infoItem" wx:for="{{infoItems}}" wx:for-index="idx" bindtap="toWork" data-idx="{{idx}}">
+      <image class="icon" src="{{item.icon}}"></image>
+      <text class="infoTitle">{{item.iconTitle}}<text wx:if="{{item.titleElse}}">{{item.titleElse}}</text></text>
+      <image class="arrow" src="/images/arrow-right.png"></image>
+    </view>
+    
+  </view>
+
+  <view class="quit">退出账号</view>
+</view>

@@ -1,0 +1,85 @@
+/* pages/address/address.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.wraper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.addressBox {
+  flex: 1;
+  overflow-y: scroll;
+  /* -top:210rpx;  */
+  padding-top: 210rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.address-item {
+  padding: 36rpx 22rpx;
+  border-bottom: 1px solid #ededed;
+}
+.address-item.active{
+  position: absolute;
+  top:0;left: 0;
+}
+
+.address-item image {
+  width: 31rpx;
+  height: 31rpx;
+  padding: 0 20rpx 20rpx;
+}
+
+.address-item .username {
+  font-size: 30rpx;
+  color: #080808;
+  font-weight: 600;
+  margin-right: 30rpx;
+}
+
+.address-item .tel {
+  font-size: 30rpx;
+  color: #080808;
+  font-weight: 600;
+  margin-right: 20rpx;
+}
+
+.address-item .default {
+  display: inline-block;
+  width: 74rpx;
+  height: 32rpx;
+  background: #f34544;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 32rpx;
+  font-size: 24rpx;
+  color: white;
+}
+
+.address-item .bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25rpx;
+}
+
+.address-item .bottom .address {
+  width: 620rpx;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 40rpx;
+}
+
+.button {
+  width: 700rpx;
+  left: 0;
+  right: 0;
+  margin: 30rpx auto;
+  font-size: 34rpx;
+  font-weight: 600;
+}
