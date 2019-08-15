@@ -13,12 +13,15 @@
   align-items: center;
   color: white;
 }
-.banner .userinfo image{
-  width: 110rpx;
-  height: 110rpx;
-  margin-right: 30rpx;
+.header{
+  display: flex;
 }
-
+open-data[type="userAvatarUrl"]{
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
 /* 中间模块 */
 .centerContent{
   position: relative;

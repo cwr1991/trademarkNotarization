@@ -1,9 +1,10 @@
 <!-- banner用户信息 -->
 <view class="banner">
   <view class="userinfo">
-    <image src="{{header}}"></image>
+  <view class="header">
+    <open-data type="userAvatarUrl" ></open-data>
+  </view>
     <text>{{telnumber}}</text>
-    <!-- <text wx:elif="{{!isLogin}}" bindtap="tologin">登录/注册</text> -->
   </view>
 </view>
 
@@ -23,7 +24,7 @@
       </view>
     </view>
   </view>
-  
+
 </view>
 <!-- 地址，申请人，开票信息，退出登录 -->
 <view class="infoBox">
@@ -33,7 +34,7 @@
       <text class="infoTitle">{{item.iconTitle}}<text wx:if="{{item.titleElse}}">{{item.titleElse}}</text></text>
       <image class="arrow" src="/images/arrow-right.png"></image>
     </view>
-    
+
   </view>
 
   <view class="quit" bindtap="quit">退出账号</view>
