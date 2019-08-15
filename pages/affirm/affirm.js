@@ -35,11 +35,8 @@ Page({
           var r = res.data.result.filter(function (x) {
             return x.check == 1;
           });
-          // that.setData({
-          //   addr: r[0].address
-          // })
           that.setData({
-            addr: ''
+            addr: r[0].address
           })
         }
       }
@@ -51,10 +48,9 @@ Page({
       })
   },
   bindtapBack:function(){
-    wx.navigateTo({
-      url: '/pages/applicantSelect/applicantSelect',
+    wx.navigateBack({
+      delta: 1
     })
-
   },
   sumbit:function(){
     var that = this;
@@ -76,9 +72,6 @@ Page({
             isshadowBox: true
           })
         }
-        that.setData({
-          isshadowBox: true
-        })
       }
     })
   
@@ -166,7 +159,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that =this;
+    wx.request({
+      url: app.baseUrl + '/gzynew/user-address',
+      data: {
+        openid: app.openid
+      },
+      success(res) {
+        if (res.data.result.length > 0) {
+          var r = res.data.result.filter(function (x) {
+            return x.check == 1;
+          });
+          that.setData({
+            addr: r[0].address
+          })
+        }
+      }
+    })
   },
 
   /**

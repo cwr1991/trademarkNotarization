@@ -24,7 +24,7 @@
   </view>
   <view class="list-item" style="justify-content:space-between">
     <label style="width:200rpx">设为默认地址</label>
-    <switch bindchange="switchChange" checked="{{editInfo.isDefault==1?true:false}}" />
+    <switch  bindchange="switchChange" checked="{{editInfo.isDefault==1?true:false}}" />
   </view>
 
   <!-- 底部按钮判断 -->

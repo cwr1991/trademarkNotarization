@@ -7,7 +7,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-    addressInfo: []
+    addressInfo: [],
+    isaffirm:false
+  },
+
+  selectitem:function(e){
+    if (this.data.isaffirm){
+      wx.request({
+        url: `${app.baseUrl}/gzynew/edit-address`,
+        data: {
+          openid: app.openid,
+          sort: e.currentTarget.dataset.idx,
+          sname: e.currentTarget.dataset.username,
+          stel: e.currentTarget.dataset.tel,
+          check: 1,
+          scity: e.currentTarget.dataset.scity.toString().replace(",", " ").replace(",", " "),
+          address: e.currentTarget.dataset.address,
+        },
+        success(res) {
+          console.log(res);
+          if(res.data.status==0){
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        },
+      })
+      // 修改默认地址成功之后走
+    
+    }
   },
 
   toEditAddress:function(e){
@@ -25,14 +53,31 @@ Page({
     })
   },
   toAddAddress:function(e){
-    wx.navigateTo({
-      url: './editAddress/editAddress?data=null'
+    this.setData({
+      addressInfo:[]
     })
+    if (this.data.isaffirm){
+     
+      wx.navigateTo({
+        url: './editAddress/editAddress?data=null&affirm=1&lengths=' + this.data.addressInfo.length
+      })
+    }else{
+      wx.navigateTo({
+        url: './editAddress/editAddress?data=null&lengths=' + this.data.addressInfo.length
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options);
+    if (options.affirm == 1) {
+      this.setData({
+        isaffirm: true
+      })
+    }
+
     var that=this;
     wx.request({
       url: `${app.baseUrl}/gzynew/user-address`,

@@ -8,6 +8,8 @@ Page({
    */
   data: {
     editInfo: {},
+    isaffirm:false,
+    islength:false,
     region: ["请选择省市区"]
   },
 
@@ -15,20 +17,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option) {
-    if (option.data!="null") {
-      console.log(option)
-
-      option.isDefault = parseInt(option.isDefault);
-      option.sort = parseInt(option.sort) + 1
-
-      var scity = option.scity;
-      var newscity = scity.split(" ");
+    if (option.lengths==0){
       this.setData({
-        editInfo: option,
-        region: newscity
+        islength: true
       })
     }
-    console.log(this.data)
+    if (option.affirm==1){
+        this.setData({
+          isaffirm:true
+        })
+    }else{
+      if (option.data != "null") {
+        console.log(option)
+
+        option.isDefault = parseInt(option.isDefault);
+        option.sort = parseInt(option.sort) + 1
+
+        var scity = option.scity;
+        var newscity = scity.split(" ");
+        this.setData({
+          editInfo: option,
+          region: newscity
+        })
+      }
+      console.log(this.data)
+    }
 
     // if传入的isEdit是true
     if (this.data.editInfo.isEdit) {
@@ -109,7 +122,13 @@ Page({
   },
   // 新增保存地址数据
   addsaveData: function(e) {
-    console.log("addbaocun", e)
+    var ischeck = this.data.editInfo.isDefault;
+    if (this.data.islength) {
+      ischeck = 1;
+      console.log(ischeck);
+    }
+    console.log("addbaocun", e);
+    var that = this;
     var sort = this.data.editInfo.sort
     wx.request({
       url: `${app.baseUrl}/gzynew/add-address`,
@@ -118,14 +137,21 @@ Page({
         sort: sort,
         sname: this.data.editInfo.username,
         stel: this.data.editInfo.tel,
-        check: this.data.editInfo.isDefault,
+        check: ischeck ,
         scity: this.data.region.toString().replace(",", " ").replace(",", " "),
         address: this.data.editInfo.address,
       },
       success(res) {
+        if (that.data.isaffirm){
+          wx.navigateBack({
+            delta: 1
+          })
+          return false;
+        }
         wx.navigateTo({
           url: '/pages/address/address'
         })
+        
       },
     })
   },

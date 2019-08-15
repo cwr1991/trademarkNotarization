@@ -61,7 +61,7 @@ Page({
             dataType: 'json',
             formData: {
               'user': 'test',
-              orderId: that.data.orderid,
+              orderId: that.data.order_id,
               evidName: evidName,
               evidType: evidType
             },
@@ -166,7 +166,7 @@ Page({
     }
 
     if (that.data.isradioActive == 0) {
-      var tm_type = 2;
+      var tm_type = 3;
       if (that.data.trademarkimgList.length == 0) {
         wx.showToast({
           icon: 'none',
@@ -263,7 +263,7 @@ Page({
           dataType: 'json',
           formData: {
             'user': 'test',
-            orderId: that.data.orderid,
+            orderId: that.data.order_id,
             evidName: '身份证正面',
             evidType: 4
           },

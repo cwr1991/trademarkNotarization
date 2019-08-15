@@ -24,16 +24,20 @@ page {
 .address-item {
   padding: 36rpx 22rpx;
   border-bottom: 1px solid #ededed;
+  position: relative;
 }
 .address-item.active{
   position: absolute;
-  top:0;left: 0;
+  top:0;left: 0;right: 0;
+  margin:  auto;
 }
 
 .address-item image {
   width: 31rpx;
   height: 31rpx;
-  padding: 0 20rpx 20rpx;
+  /* padding: 0 20rpx 20rpx; */
+  position: absolute;
+  bottom: 20rpx;right: 20rpx;
 }
 
 .address-item .username {

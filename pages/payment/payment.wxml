@@ -18,6 +18,16 @@
   </view>
 </view>
 
+<view class="butBottom" wx:if="{{!sharedata.operator}}">
+  <view class='share' >通知法人付钱
+  <button open-type="share" type="primary"></button>
+  </view>
+  <view class="backindex" bindtap="backindex">
+      返回首页
+  </view>
+</view>
+
+
 <view class="payment" bindtap="topayment">
     去支付
 </view>

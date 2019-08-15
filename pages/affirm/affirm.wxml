@@ -59,10 +59,10 @@
         <view class="section" wx:if="{{issite}}">
            <text>收件地址</text>
            <view wx:if="{{addr}}">
-              {{addr}}
+              <navigator url="/pages/address/address?affirm=1">{{addr}}</navigator>
            </view>
            <view wx:if="{{!addr}}" class="addr">
-             <navigator url="/page/navigate/navigate?title=navigate"></navigator>
+             <navigator url="/pages/address/editAddress/editAddress?affirm=1"></navigator>
            </view>
         </view>
      </view> 

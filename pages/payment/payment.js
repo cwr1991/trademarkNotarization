@@ -9,9 +9,9 @@ Page({
     orderid: '',
     order_id:'',
     data:{},
-    price:''
+    price:'',
+    sharedata:[]
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -55,6 +55,28 @@ Page({
       }
     })
 
+    wx.request({
+      url: app.baseUrl + '/gzynew/isoperator',
+      data: {
+        orderid: that.data.orderid,
+        openid: app.openid
+      },
+      success(res) {
+        console.log(res);
+        if(res.data.status==0){
+            that.setData({
+              sharedata: res.data.result
+            })
+        }else{
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg
+          })
+          return false;
+        }
+      }
+    })
+
   },
   topayment:function(){
     var that = this;
@@ -74,6 +96,12 @@ Page({
           },
           success(res) {
             if (res.data.result.pay_status==1){
+              if (that.data.sharedata.operator==0){
+                wx.navigateTo({
+                  url: '/pages/paymentresult/paymentresult?weburl=' + res.data.result.gz_url,
+                })
+                return false;
+              }
               wx.navigateTo({
                 url: '/pages/webview/webview?weburl=' + res.data.result.gz_url,
               })
@@ -88,6 +116,35 @@ Page({
         })
       }
     })
+  },
+
+  backindex:function(){
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
+  },
+
+  onShareAppMessage: function (ops) {
+    var that = this;
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(ops.target);
+
+    }
+    return {
+      title: that.data.sharedata.username + '发起了公证，请使用手机尾号' + that.data.sharedata.yun_mobile.substring(that.data.sharedata.yun_mobile.length - 4)+'登录操作',
+      path: 'pages/order/order',  // 路径，传递参数到指定页面。
+      imageUrl: '../../imgs/xx.png',
+      success: function (res) {
+        // 转发成功
+        console.log("转发成功:" + JSON.stringify(res));
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log("转发失败:" + JSON.stringify(res));
+      }
+    }
+
   },
 
   /**
@@ -132,10 +189,5 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
-  }
 })
