@@ -1,7 +1,9 @@
 // const util = require('../../utils/util.js')
+const app = getApp()
 
 Page({
   data: {
+    // canIUse: wx.canIUse('button.open-type.getUserInfo'),
     orderItems: [{
         type: "全部",
         count: 18
@@ -42,10 +44,31 @@ Page({
   },
 
   onLoad: function() {
-    this.setData({
-
+    let that=this
+    // console.log(app.globalData.userInfo)
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res.userInfo)
+              var avatarUrl = res.userInfo.avatarUrl
+              that.setData({
+                header: avatarUrl
+              })
+            }
+          })
+        }
+      }
+    })
+    that.setData({
+      telnumber: app.username 
     })
   },
+  // bindGetUserInfo(e) {
+  //   console.log(e.detail.userInfo)
+  // },
 
   // 跳转地址、常用申请人、开票信息
   toWork: function(event) {
@@ -81,18 +104,25 @@ Page({
         console.log("default");
     }
   },
-  
+
   // 跳转登录页
-  tologin: function () {
+  tologin: function() {
     wx.navigateTo({
       url: '/pages/login/login',
     })
   },
 
   // 跳转订单页
-  toOrder(){
+  toOrder() {
     wx.navigateTo({
       url: '/pages/order/order',
+    })
+  },
+
+  // 退出登录
+  quit: function(e) {
+    wx.navigateTo({
+      url: '/pages/login/login?isquit=1',
     })
   }
 })

@@ -1,4 +1,6 @@
 // pages/order/orderDetail.js
+const app = getApp()
+
 Page({
 
   /**
@@ -18,7 +20,7 @@ Page({
       url:'https://wwxs.86sb.com/gzynew/orderinfo',
       data:{
         orderid: options.orderId,
-        openid: 'oKjx85YYAvzlPvGFU9ao4gC9uX3c',
+        openid: app.openid,
         review:1
 
       },

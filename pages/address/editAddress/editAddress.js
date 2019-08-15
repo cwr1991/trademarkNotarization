@@ -1,4 +1,6 @@
 // pages/address/editAddress/editaddress.js
+const app = getApp()
+
 Page({
 
   /**
@@ -71,9 +73,9 @@ Page({
     var sort = this.data.editInfo.sort
     console.log(this.data.editInfo)
     wx.request({
-      url: 'https://wwxs.86sb.com/gzynew/delete-address',
+      url: `${app.baseUrl}/gzynew/delete-address`,
       data: {
-        openid: 'oKjx85YYAvzlPvGFU9ao4gC9uX3c',
+        openid: app.openid,
         sort: sort
       },
       success(res) {
@@ -88,9 +90,9 @@ Page({
     console.log("editbaocun", e)
     var sort = this.data.editInfo.sort
     wx.request({
-      url: 'https://wwxs.86sb.com/gzynew/edit-address',
+      url: `${app.baseUrl}/gzynew/edit-address`,
       data: {
-        openid: 'oKjx85YYAvzlPvGFU9ao4gC9uX3c',
+        openid: app.openid,
         sort: sort,
         sname: this.data.editInfo.username,
         stel: this.data.editInfo.tel,
@@ -110,9 +112,9 @@ Page({
     console.log("addbaocun", e)
     var sort = this.data.editInfo.sort
     wx.request({
-      url: 'https://wwxs.86sb.com/gzynew/add-address',
+      url: `${app.baseUrl}/gzynew/add-address`,
       data: {
-        openid: 'oKjx85YYAvzlPvGFU9ao4gC9uX3c',
+        openid: app.openid,
         sort: sort,
         sname: this.data.editInfo.username,
         stel: this.data.editInfo.tel,

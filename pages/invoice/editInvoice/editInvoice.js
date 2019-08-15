@@ -1,4 +1,6 @@
 // pages/invoice/editInvoice/editInvoice.js
+const app = getApp()
+
 Page({
 
   /**
@@ -56,9 +58,9 @@ Page({
     var id = this.data.editInfo.id
     console.log(this.data.editInfo)
     wx.request({
-      url: 'https://wwxs.86sb.com/gzynew/delete-invoice-info',
+      url: `${app.baseUrl}/gzynew/delete-invoice-info`,
       data: {
-        openid: 'oKjx85YYAvzlPvGFU9ao4gC9uX3c',
+        openid: app.openid,
         id: id
       },
       success(res) {
@@ -74,9 +76,9 @@ Page({
     console.log("editbaocun", e)
     var sort = this.data.editInfo.sort
     wx.request({
-      url: 'https://wwxs.86sb.com/gzynew/edit-invoice-info',
+      url: `${app.baseUrl}/gzynew/edit-invoice-info`,
       data: {
-        openid: 'oKjx85YYAvzlPvGFU9ao4gC9uX3c',
+        openid: app.openid,
         title: this.data.editInfo.company,
         taxpayerId: this.data.editInfo.num,
         types: this.data.editInfo.types,
@@ -93,8 +95,30 @@ Page({
       },
     })
   },
-
-  // 编辑信息改变发送到开票信息
+  // 新增开票信息
+  addsaveData: function (e) {
+    console.log("addbaocun", e)
+    var sort = this.data.editInfo.sort
+    wx.request({
+      url: `${app.baseUrl}/gzynew/add-invoice-info`,
+      data: {
+        openid: app.openid,
+        title: this.data.editInfo.company,
+        taxpayerId: this.data.editInfo.num,
+        types: 1,
+        company_address: this.data.editInfo.address,
+        company_bank: this.data.editInfo.bank,
+        company_count: this.data.editInfo.count,
+        is_default: this.data.editInfo.isDefault,
+      },
+      success(res) {
+        wx.navigateTo({
+          url: '/pages/invoice/invoice'
+        })
+      },
+    })
+  },
+  // 双向绑定
   bindTaitou(e) {
     console.log(e)
     var editInfo = this.data.editInfo
@@ -138,7 +162,7 @@ Page({
     if (e.detail.value) {
       editInfo.isDefault = 1
     } else {
-      editInfo.isDefault = 0
+      editInfo.isDefault = 2
     }
     this.setData({
       editInfo: editInfo

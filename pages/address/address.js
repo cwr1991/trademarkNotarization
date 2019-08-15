@@ -1,4 +1,6 @@
 // pages/address/address.js
+const app = getApp()
+
 Page({
 
   /**
@@ -33,9 +35,9 @@ Page({
   onLoad: function(options) {
     var that=this;
     wx.request({
-      url: 'https://wwxs.86sb.com/gzynew/user-address',
+      url: `${app.baseUrl}/gzynew/user-address`,
       data:{
-        openid:'oKjx85YYAvzlPvGFU9ao4gC9uX3c'
+        openid: app.openid
       },
       success(res){
         console.log(res);

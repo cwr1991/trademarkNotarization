@@ -1,7 +1,7 @@
 <!-- banner用户信息 -->
 <view class="banner">
   <view class="userinfo">
-    <image src="/images/eleheader.png"></image>
+    <image src="{{header}}"></image>
     <text>{{telnumber}}</text>
     <!-- <text wx:elif="{{!isLogin}}" bindtap="tologin">登录/注册</text> -->
   </view>
@@ -36,5 +36,7 @@
     
   </view>
 
-  <view class="quit">退出账号</view>
+  <view class="quit" bindtap="quit">退出账号</view>
 </view>
+
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>

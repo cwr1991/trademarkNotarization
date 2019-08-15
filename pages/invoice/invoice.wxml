@@ -1,6 +1,6 @@
 
 <!-- 无信息空页面 -->
-<view class="null" wx:if="{{!invoiceInfo}}">
+<view class="null" wx:if="{{!invoiceInfo[0]}}">
   <view class="centerBox">
     <image style="width:230rpx;height:283rpx;" src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/null@2x.png"></image>
     <view class="nulltips">暂无开票主体，请先添加</view>

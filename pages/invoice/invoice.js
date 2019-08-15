@@ -1,29 +1,31 @@
 // pages/kaipiao/kaipiao.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    invoiceInfo: [{
-      company: "上海尚标互联网科技有限公司0",
-      num: "913109086222535T",
-      address: "上海市浦东新区张江集电港1106室",
-      isDefault: 1
-    },
-    {
-      company: "上海尚标互联网科技有限公司1",
-      num: "913109086222535T",
-      address: "上海市浦东新区张江集电港1106室",
-      isDefault: 0
-    },
-    {
-      company: "上海尚标互联网科技有限公司2",
-      num: "913109086222535T",
-      address: "上海市浦东新区张江集电港1106室",
-      isDefault: 0
-    },
-    ]
+    // invoiceInfo: [{
+    //   company: "上海尚标互联网科技有限公司0",
+    //   num: "913109086222535T",
+    //   address: "上海市浦东新区张江集电港1106室",
+    //   isDefault: 1
+    // },
+    // {
+    //   company: "上海尚标互联网科技有限公司1",
+    //   num: "913109086222535T",
+    //   address: "上海市浦东新区张江集电港1106室",
+    //   isDefault: 0
+    // },
+    // {
+    //   company: "上海尚标互联网科技有限公司2",
+    //   num: "913109086222535T",
+    //   address: "上海市浦东新区张江集电港1106室",
+    //   isDefault: 0
+    // },
+    // ]
   },
   toEditInvoice: function (e) {
 
@@ -47,9 +49,9 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'https://wwxs.86sb.com/gzynew/get-invoice-info',
+      url: `${app.baseUrl}/gzynew/get-invoice-info`,
       data: {
-        openid: 'oKjx85YYAvzlPvGFU9ao4gC9uX3c'
+        openid: app.openid
       },
       success(res) {
         that.setData({
