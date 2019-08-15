@@ -61,7 +61,6 @@ Page({
         type: 0
       },
       success(res) {
-        console.log(res.data);
         if (res.data.status == 0) {
           wx.navigateTo({
             url: '/pages/applicantSelect/applicantSelect'
@@ -88,24 +87,12 @@ Page({
                 openid: res.data.result.openid
               });
               wx.request({
-                url: app.baseUrl + '/gzynew/is-vip',
+                url: app.baseUrl + '/gzynew/get-order-pay-charge',
                 data: {
                   openid: res.data.result.openid
                 },
                 success(res) {
-                  if(res.data.status==1){
-                    wx.request({
-                      url: app.baseUrl + '/gzynew/get-default-price',
-                      data: {
-                        clear: 1
-                      },
-                      success(res) {
-                          that.setData({
-                             price: res.data.result.price
-                           })
-                      }
-                    })
-                  }else{
+                  if(res.data.status==0){
                     that.setData({
                       price: res.data.result.price
                     })

@@ -15,6 +15,7 @@ Page({
     this.setData({
       weburl: options.weburl
     })
+    console.log(this.data.weburl);
   },
 
   /**
