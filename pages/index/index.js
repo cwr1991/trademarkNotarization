@@ -7,7 +7,8 @@ Page({
     isagreement:false,
     isprotocol:false,
     price:'',
-    nodes:''
+    nodes:'',
+    openid:''
   },
   rmAnnouncement:function(){
     this.setData({
@@ -50,9 +51,25 @@ Page({
       })
       return false;
     }
-    wx.navigateTo({
-      url: '/pages/applicantSelect/applicantSelect'
+    wx.request({
+      url: app.baseUrl + '/gzynew/operator',
+      method: 'post',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+        openid: app.openid,
+        operator: '',
+        type: 0
+      },
+      success(res) {
+        console.log(res.data);
+        if (res.data.status == 0) {
+          wx.navigateTo({
+            url: '/pages/applicantSelect/applicantSelect'
+          })
+        }
+      }
     })
+    
   },
   onLoad: function () {
     var that = this;
@@ -67,6 +84,9 @@ Page({
               code: res.code
             },
             success(res) {
+              that.setData({
+                openid: res.data.result.openid
+              });
               wx.request({
                 url: app.baseUrl + '/gzynew/is-vip',
                 data: {

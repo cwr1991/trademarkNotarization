@@ -7,7 +7,6 @@ Page({
    */
   data: {
     orderid:'',
-    order_id:'',
     gz_url:'',
     sharedata: []
   },
@@ -19,7 +18,6 @@ Page({
     var that = this;
     that.setData({
       orderid: options.orderid,
-      order_id: options.order_id
     })
     wx.request({
       url: app.baseUrl + '/gzynew/isoperator',

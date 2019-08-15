@@ -22,7 +22,8 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
         openid: app.openid,
-        operator: e.detail.value.name
+        operator: e.detail.value.name,
+        type:1
       },
       success(res) {
         if (res.data.status == 0) {

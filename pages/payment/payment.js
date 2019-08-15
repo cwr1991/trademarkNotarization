@@ -62,7 +62,6 @@ Page({
         openid: app.openid
       },
       success(res) {
-        console.log(res);
         if(res.data.status==0){
             that.setData({
               sharedata: res.data.result
@@ -96,9 +95,10 @@ Page({
           },
           success(res) {
             if (res.data.result.pay_status==1){
-              if (that.data.sharedata.operator==0){
+              console.log(that.data.sharedata);
+              if (that.data.sharedata.operator==1){
                 wx.navigateTo({
-                  url: '/pages/paymentresult/paymentresult?weburl=' + res.data.result.gz_url,
+                  url: '/pages/paymentresult/paymentresult?weburl=' + res.data.result.gz_url + '&orderid=' + that.data.orderid,
                 })
                 return false;
               }

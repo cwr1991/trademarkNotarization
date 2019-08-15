@@ -36,7 +36,7 @@ Page({
             return x.check == 1;
           });
           that.setData({
-            addr: r[0].address
+            addr: r[0].scity + r[0].address 
           })
         }
       }
@@ -171,7 +171,7 @@ Page({
             return x.check == 1;
           });
           that.setData({
-            addr: r[0].address
+            addr: r[0].scity + r[0].address 
           })
         }
       }

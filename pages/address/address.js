@@ -53,11 +53,7 @@ Page({
     })
   },
   toAddAddress:function(e){
-    this.setData({
-      addressInfo:[]
-    })
     if (this.data.isaffirm){
-     
       wx.navigateTo({
         url: './editAddress/editAddress?data=null&affirm=1&lengths=' + this.data.addressInfo.length
       })
@@ -108,7 +104,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    wx.request({
+      url: `${app.baseUrl}/gzynew/user-address`,
+      data: {
+        openid: app.openid
+      },
+      success(res) {
+        console.log(res);
+        if (res.data.result.length > 0) {
+          that.setData({
+            addressInfo: res.data.result
+          });
+        }
+      }
+    })
   },
 
   /**
