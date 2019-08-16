@@ -136,7 +136,10 @@
             </view>
         </block>
     </view>
-    <view class="submit_btn" bind:tap="saveFun">
-        保存
-    </view>
+    <block wx:if="{{!editId}}">
+        <view class="submit_btn"  bind:tap="saveFun" >
+            保存
+        </view>
+    </block>
+    
 </view>

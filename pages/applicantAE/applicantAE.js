@@ -22,6 +22,7 @@ Page({
           }
       ],
       type:'2',
+      editId:false,//判断新增还是编辑。编辑按钮隐藏
       personal:{
         username:"",
         mobile:"",
@@ -564,10 +565,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+     
       if(options.id){
         this.getEditList(options.id)
         wx.setNavigationBarTitle({
           title: '编辑申请人'
+        })
+        let editId = true
+        this.setData({
+          editId
         })
       }
       if(options.types == '1'){
