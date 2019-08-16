@@ -15,11 +15,11 @@
                     <block>
                         <view class="name" wx:if="{{item.sbtypes == '3'}}">
                             {{item.enterprise_name}}
-                            <text class="auditing " wx:if="{{!item.yun_uid}}">审核中</text>
+                            <text class="auditing " wx:if="{{item.yun_uid == 0 }}">审核中</text>
                         </view>
                     </block>
                     
-                    <navigator class="edit" url="/pages/applicantAE/applicantAE?id={{item.id}}&types={{item.sbtypes}}" hover-class="navigator-hover">编辑</navigator>
+                    <!-- <navigator class="edit" url="/pages/applicantAE/applicantAE?id={{item.id}}&types={{item.sbtypes}}" hover-class="navigator-hover">编辑</navigator> -->
                 </view>
             </block>
         </view>

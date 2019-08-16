@@ -15,14 +15,14 @@
                             </view>
                         </navigator>
                 </block>
-                <block wx:if="{{item.sbtypes != '1' && item.yun_uid }}">
+                <block wx:if="{{item.sbtypes != '1' && item.yun_uid != 0 }}">
                      <navigator   url="/pages/buyercompany/buyercompany?id={{item.id}}" open-type="navigate">
                         <view class="list" >
                             <view class="name">{{item.enterprise_name}}</view>
                         </view>
                     </navigator>
                 </block>
-                <view class="list" wx:if="{{item.sbtypes == '3'&&!item.yun_uid}}" >
+                <view class="list" wx:if="{{item.sbtypes == '3'&&item.yun_uid == 0 }}" >
                     <view class="name" >
                         {{item.enterprise_name}}
                         <text class="auditing " >审核中</text>

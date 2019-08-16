@@ -417,19 +417,21 @@ Page({
                   },
                   success(res) {
                     let result =JSON.parse(res.data) 
-                    console.log(result)
                     if(result.status == 0){
-                        forEnd.push(1)
-                        if(forEnd.length == hkFiles.length){
-                              wx.navigateBack({
-                                delta: 1
-                              })
-                        }
+                      forEnd.push(1)
+                      if(forEnd.length == hkFiles.length){
+                          wx.navigateBack({
+                            delta: 1
+                          })
+                      }
                     }else{
                       wx.showToast({
                         title:result.msg
                       })
                     }
+                  },
+                  complete(){
+                   
                   }
                 })
               }
@@ -452,7 +454,6 @@ Page({
         }
       })
     },
-
     saveFun(){
       let type = this.data.type
       if(type == '1'){
@@ -476,14 +477,14 @@ Page({
         }
         this.companyReq()
       }else{
-        // let validateRseult = this.validateH()
-        // if(validateRseult.code == "error"){
-        //   wx.showToast({
-        //     title:validateRseult.msg,
-        //     icon:'none'
-        //   })
-        //   return
-        // }
+        let validateRseult = this.validateH()
+        if(validateRseult.code == "error"){
+          wx.showToast({
+            title:validateRseult.msg,
+            icon:'none'
+          })
+          return
+        }
         this.hkReq()
       }
     },
@@ -535,7 +536,7 @@ Page({
                   offshoreCompanyNo:result.business_license_id, 	
                   offshoreCompanyDate:result.offshore_company_date
                 }
-                let hkFiles = result.business_license_img
+                let hkFiles = result.yun_pic.split(',');
                 _this.setData({
                   hk,
                   hkFiles
