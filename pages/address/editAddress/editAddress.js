@@ -8,8 +8,8 @@ Page({
    */
   data: {
     editInfo: {},
-    isaffirm:false,
-    islength:false,
+    isaffirm: false,
+    islength: false,
     region: ["请选择省市区"]
   },
 
@@ -17,16 +17,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option) {
-    if (option.lengths==0){
+    console.log(option)
+    if (option.lengths == 0) {
       this.setData({
         islength: true
       })
     }
-    if (option.affirm==1){
-        this.setData({
-          isaffirm:true
-        })
-    }else{
+    if (option.affirm == 1) {
+      this.setData({
+        isaffirm: true
+      })
+    } else {
       if (option.data != "null") {
         console.log(option)
 
@@ -92,36 +93,112 @@ Page({
         sort: sort
       },
       success(res) {
-        wx.navigateTo({
-          url: '/pages/address/address'
+        wx.navigateBack({
+          delta: 1
         })
       },
     })
   },
   // 编辑保存地址数据
   editsaveData: function(e) {
+    // 判断是值否为空
+    var sname= this.data.editInfo.username
+    var stel = this.data.editInfo.tel
+    var scity = this.data.region.toString().replace(",", " ").replace(",", " ")
+    var address = this.data.editInfo.address
+    if(!address){
+      wx.showToast({
+        title: '请输入详细地址',
+        icon: 'none',
+        duration: 2000
+      })
+      return; 
+    }
+    if (!sname) {
+      wx.showToast({
+        title: '请输入收件人',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    if (!stel) {
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    if (!scity) {
+      wx.showToast({
+        title: '请选择省市区',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
     console.log("editbaocun", e)
+
     var sort = this.data.editInfo.sort
     wx.request({
       url: `${app.baseUrl}/gzynew/edit-address`,
       data: {
         openid: app.openid,
         sort: sort,
-        sname: this.data.editInfo.username,
-        stel: this.data.editInfo.tel,
+        sname: sname,
+        stel: stel,
         check: this.data.editInfo.isDefault,
-        scity: this.data.region.toString().replace(",", " ").replace(",", " "),
-        address: this.data.editInfo.address,
+        scity: scity,
+        address: address,
       },
       success(res) {
-        wx.navigateTo({
-          url: '/pages/address/address'
+        wx.navigateBack({
+          delta:1
         })
       },
     })
   },
   // 新增保存地址数据
   addsaveData: function(e) {
+    // 判断值是否为空
+    var sname = this.data.editInfo.username
+    var stel = this.data.editInfo.tel
+    var scity = this.data.region.toString().replace(",", " ").replace(",", " ")
+    var address = this.data.editInfo.address
+    if (!address) {
+      wx.showToast({
+        title: '请输入详细地址',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    if (!sname) {
+      wx.showToast({
+        title: '请输入收件人',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    if (!stel) {
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    if (!scity) {
+      wx.showToast({
+        title: '请选择省市区',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+
     var ischeck = this.data.editInfo.isDefault;
     if (this.data.islength) {
       ischeck = 1;
@@ -135,23 +212,23 @@ Page({
       data: {
         openid: app.openid,
         sort: sort,
-        sname: this.data.editInfo.username,
-        stel: this.data.editInfo.tel,
-        check: ischeck ,
-        scity: this.data.region.toString().replace(",", " ").replace(",", " "),
-        address: this.data.editInfo.address,
+        sname: sname,
+        stel: stel,
+        check: ischeck,
+        scity: scity,
+        address: address,
       },
       success(res) {
-        if (that.data.isaffirm){
+        if (that.data.isaffirm) {
           wx.navigateBack({
             delta: 1
           })
           return false;
         }
-        wx.navigateTo({
-          url: '/pages/address/address'
+        wx.navigateBack({
+          delta:1
         })
-        
+
       },
     })
   },

@@ -186,7 +186,22 @@ Page({
     // this.setData({
     //   infolength:content.info.length
     // })
-    console.log(this.data)
+    let that=this;
+    wx.request({
+      url: `${app.baseUrl}/gzynew/queryorder`,
+      data:{
+        openid:'oKjx85c4G6NEhIWvliwkGh58u3HE'
+      },
+      success:function(res){
+        console.log(res.data.msg,res.data.result)
+        // let contentLength=res.data.result.nums;
+        that.setData({
+          content: res.data.result.datas,
+          contentLength: res.data.result.nums
+        })
+      }
+    })
+    console.log(that.data)
   },
 
   /**
@@ -239,12 +254,35 @@ Page({
   },
   // 点击tab
   currentTab(e) {
-    if (this.data.currentTab == e.currentTarget.dataset.idx) {
-      return;
+    let that=this;
+    let content;
+    // if (this.data.currentTab == e.currentTarget.dataset.idx) {
+    //   return;
+    // }
+    let idx=parseInt(e.currentTarget.dataset.idx)-1;
+    console.log(idx)
+    if(idx == -1){
+      idx='all';
     }
-    this.setData({
-      currentTab: e.currentTarget.dataset.idx
+    wx.request({
+      url:`${app.baseUrl}/gzynew/queryorder`,
+      data:{
+        openid:'oKjx85c4G6NEhIWvliwkGh58u3HE',
+        flowStatus:idx
+      },
+      success(res){
+        console.log('tab,',res)
+        content=res.data.result.datas
+        that.setData({
+          currentTab: e.currentTarget.dataset.idx,
+          content: content,
+          contentLength: res.data.result.nums
+          
+        })
+      }
     })
+    
+    console.log(this.data)
   },
 
   // 点击编辑按钮toggle

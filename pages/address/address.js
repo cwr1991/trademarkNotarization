@@ -17,7 +17,7 @@ Page({
         url: `${app.baseUrl}/gzynew/edit-address`,
         data: {
           openid: app.openid,
-          sort: e.currentTarget.dataset.idx,
+          sort: e.currentTarget.dataset.idx+1,
           sname: e.currentTarget.dataset.username,
           stel: e.currentTarget.dataset.tel,
           check: 1,
@@ -82,11 +82,11 @@ Page({
       },
       success(res){
         console.log(res);
-        if(res.data.result.length>0){
+        // if(res.data.result.length>0){
           that.setData({
             addressInfo:res.data.result
           });
-        }
+        // }
       }
     })
     // console.log(this.data)
@@ -112,11 +112,11 @@ Page({
       },
       success(res) {
         console.log(res);
-        if (res.data.result.length > 0) {
+        // if (res.data.result.length > 0) {
           that.setData({
             addressInfo: res.data.result
           });
-        }
+        // }
       }
     })
   },

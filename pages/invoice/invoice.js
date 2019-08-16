@@ -75,7 +75,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    wx.request({
+      url: `${app.baseUrl}/gzynew/get-invoice-info`,
+      data: {
+        openid: app.openid
+      },
+      success(res) {
+        that.setData({
+          invoiceInfo: res.data.result
+        })
+        console.log(that.data.invoiceInfo)
+      }
+    })
   },
 
   /**

@@ -104,8 +104,8 @@ Page({
 
   // 退出登录
   quit: function(e) {
-    wx.navigateTo({
-      url: '/pages/login/login?isquit=1',
+    wx.redirectTo({
+      url: '/pages/login/login?isquit=1'
     })
   }
 })
