@@ -224,7 +224,8 @@ radio .wx-radio-input.wx-radio-input-checked::before{
     padding-bottom: 40rpx;
 }
 .upload_license{
-    height: 180rpx;
+    /* height: 180rpx; */
+    overflow: hidden;
 }
 .upload_license .upload_license_img{
     height: 180rpx;
@@ -233,6 +234,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
     background: url('https://b.86sb.com.cn/wximg/buy07.png')no-repeat;
     background-position: center center;
     background-size: 180rpx;
+    margin:0 50rpx 50rpx 0 ;
 }
 .company_example{
     width:701rpx;

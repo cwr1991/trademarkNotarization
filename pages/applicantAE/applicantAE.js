@@ -41,14 +41,11 @@ Page({
         legalPersonMobile:"",//代表人手机号
         offshoreCompanyName:'', //香港企业名称
         offshoreCompanyNo:'', //香港企业注册编号	
-        offshoreCompanyDate:''
+        offshoreCompanyDate:'', //企业证明出具日期
       },
-      faceFile:[],
-      emblemFile:[],
-      hkFile:[]//香港图片附件
+      hkFiles:[]
     },
     radioChange(e){
-      console.log(e)
       let type = e.detail.value
       this.setData({
         type
@@ -121,54 +118,6 @@ Page({
         })
       }
     },
-    chooseFaceImage(e){
-      let _this = this
-      wx.chooseImage({
-        count: 1,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album', 'camera'],
-        success (res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths
-          let faceFile = tempFilePaths
-          _this.setData({
-            faceFile
-          })
-          // wx.uploadFile({
-          //   url: `${app.baseUrl}/gzynew/get-code-info`, //仅为示例，并非真实的接口地址
-          //   filePath: tempFilePaths[0],
-          //   name: 'pic',
-          //   header: {
-          //     "Content-Type": "multipart/form-data"//记得设置
-          //   },
-          //   formData: {
-          //     'type': 'face'
-          //   },
-          //   success (res){
-          //     // const data = res.data
-          //     //do something
-          //     console.log(res.data)
-          //   }
-          // })
-        }
-      })
-    },
-    chooseEmblemImage(e){
-      let _this = this
-      wx.chooseImage({
-        count: 1,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album', 'camera'],
-        success (res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths
-          let emblemFile = tempFilePaths
-          _this.setData({
-            emblemFile
-          })
-        }
-      })
-    },
     // 企业function
     chooseLicenseImage(){
       let _this = this
@@ -236,7 +185,6 @@ Page({
     // 公司名称
     companyNameFun(e){
       let company = this.data.company
-      console.log(company,"company")
       company.enterpriseName = e.detail.value
       this.setData({
         company
@@ -275,16 +223,15 @@ Page({
     chooseHkImage(){
       let _this = this
       wx.chooseImage({
-        count: 1,
+        count: 6,
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFilePaths = res.tempFilePaths
-          let hk = _this.data.hk
-          hk.pic = tempFilePaths[0]
+          let hkFiles =_this.data.hkFiles.concat(tempFilePaths) 
           _this.setData({
-            hk
+            hkFiles
           })
         }
       })
@@ -333,6 +280,7 @@ Page({
     },
     validateH(){
       let hk = this.data.hk
+      let hkFiles = this.data.hkFiles
       if(!hk.legalPersonName){
         return {code:'error',msg:"请输入代表人姓名"}
       }
@@ -351,7 +299,7 @@ Page({
       if(!hk.offshoreCompanyNo){
         return {code:'error',msg:"请输入公司注册编码"}
       }
-      if(!hk.pic){
+      if(hkFiles.length == 0){
         return {code:'error',msg:"请上传图片附件"}
       }
       return {code:'ok',msg:"success"}
@@ -377,7 +325,6 @@ Page({
         },
         data,
         success (res) {
-          console.log(res.data)
           if(res.data.status == '0' ){
             wx.navigateBack({
               delta: 1
@@ -441,6 +388,7 @@ Page({
     hkReq(){
       let hk = this.data.hk
       hk.openid = app.openid 
+      let _this = this
       wx.showLoading({
         title:'保存中'
       })
@@ -452,11 +400,39 @@ Page({
         },
         data:hk,
         success (res) {
-          console.log(res.data)
           if(res.data.status == '0' ){
-            // wx.navigateBack({
-            //   delta: 1
-            // })
+              let hkFiles = _this.data.hkFiles
+              let applyId = res.data.result.apply_id
+              let forEnd =  []
+              for(let i = 0; i < hkFiles.length;i++){
+                wx.uploadFile({
+                  url: app.baseUrl +'/gzynew/upload-img-xg', //仅为示例，非真实的接口地址
+                  filePath: hkFiles[i],
+                  name: 'pic',
+                  header: {
+                      "Content-Type": "multipart/form-data"//记得设置
+                  },
+                  formData: {
+                    applyId
+                  },
+                  success(res) {
+                    let result =JSON.parse(res.data) 
+                    console.log(result)
+                    if(result.status == 0){
+                        forEnd.push(1)
+                        if(forEnd.length == hkFiles.length){
+                              wx.navigateBack({
+                                delta: 1
+                              })
+                        }
+                    }else{
+                      wx.showToast({
+                        title:result.msg
+                      })
+                    }
+                  }
+                })
+              }
           }else{
             wx.showToast({
               title:res.data.msg,
@@ -471,10 +447,12 @@ Page({
           })
         },
         complete(){
+          console.log(1111)
           wx.hideLoading()
         }
       })
     },
+
     saveFun(){
       let type = this.data.type
       if(type == '1'){
@@ -498,17 +476,18 @@ Page({
         }
         this.companyReq()
       }else{
-        let validateRseult = this.validateH()
-        if(validateRseult.code == "error"){
-          wx.showToast({
-            title:validateRseult.msg,
-            icon:'none'
-          })
-          return
-        }
+        // let validateRseult = this.validateH()
+        // if(validateRseult.code == "error"){
+        //   wx.showToast({
+        //     title:validateRseult.msg,
+        //     icon:'none'
+        //   })
+        //   return
+        // }
         this.hkReq()
       }
     },
+    // 编辑fun
     getEditList(id){
       let _this = this
       let data = {
@@ -554,11 +533,12 @@ Page({
                   legalPersonMobile:result.phone,  
                   offshoreCompanyName:result.enterprise_name, 
                   offshoreCompanyNo:result.business_license_id, 	
-                  offshoreCompanyDate:result.offshore_company_date,
-                  pic:result.business_license_img
+                  offshoreCompanyDate:result.offshore_company_date
                 }
+                let hkFiles = result.business_license_img
                 _this.setData({
-                  hk
+                  hk,
+                  hkFiles
                 })
               }
           }else{
@@ -583,7 +563,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      console.log(options)
       if(options.id){
         this.getEditList(options.id)
         wx.setNavigationBarTitle({
@@ -609,7 +588,6 @@ Page({
           }
       ]
         let type = options.types
-        console.log(type)
         this.setData({
           type,
           applicantType

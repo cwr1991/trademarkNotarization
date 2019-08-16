@@ -14,7 +14,6 @@ Page({
     },
     // 搜索功能
     searchFun(e){
-      console.log(e.detail)
       let keyword = e.detail.value
       this.setData({
         keyword
@@ -52,7 +51,6 @@ Page({
     // 复选function
     checkboxChange(e){
       let checkArr = e.detail.value
-      console.log(checkArr)
       let list = this.data.list
       for(let i = 0 ; i < list.length;i++){
         let id = ""+list[i].id
@@ -89,7 +87,6 @@ Page({
             sendArr.push(element)
           }
         })
-        console.log(sendArr)
         let _this = this
         wx.showModal({
           title:'删除申请人',
@@ -107,7 +104,6 @@ Page({
         })
     },
     deleteReq(){
-      console.log(12313123)
     },
     // 获取数据fun
     getList(){
