@@ -5,19 +5,16 @@
 </view>
 <!-- 内容 -->
 <view class="content">
-  <view id="itemBox" >
+  <view id="itemBox">
     <!-- 已发证编辑 -->
-    <view>{{contentItem.id}}</view>
-
-
     <!-- <view wx:if="{{currentTab==3}}" class="edit"> -->
-    <view  class="edit">
-
+    <view class="edit">
       <view class="edit_left">共
         <text>{{contentLength}}</text>件商品</view>
-      <view class="edit_right" wx:if="{{!isClickEdit}}" bindtap="clickEdit">编辑</view>
-      <view class="edit_right" wx:elif="{{isClickEdit}}">完成</view>
+      <!-- <view class="edit_right" wx:if="{{!isClickEdit}}" bindtap="clickEdit">编辑</view>
+      <view class="edit_right" wx:elif="{{isClickEdit}}">完成</view> -->
     </view>
+
     <!-- 每条订单信息 -->
     <view class="editBox" wx:for="{{content}}" wx:key="*this" wx:for-item="contentItem" wx:for-index="infoIdx" data-infoIdx="{{infoIdx}}" data-checkd="{{contentItem.singleChecked}}">
       <!-- 单选checked -->
@@ -29,7 +26,11 @@
             <text>{{contentItem.add_at}}</text>
             <!-- <text>{{infoItem.times.time}}</text> -->
           </view>
-          <view style="font-size:24rpx;color:#F44444">{{contentItem.flow_name}}</view>
+          <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==1}}">已支付</view>
+          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">代付款</view>
+          <view style="font-size:24rpx;color:#F44444" wx:else>{{contentItem.flow_name}}</view>
+
+
         </view>
 
         <view class="second_row">
@@ -54,22 +55,26 @@
 
         <view class="third_row">订单编号：{{contentItem.order_id}}</view>
 
-        <!-- <view class="last_row">
-          <text wx:if="{{contentItem.type==0}}" wx:for="{{infoItem.btntype}}" wx:key="0" class="{{item=='查看详情'?'btn detail':'btn pay'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text>
-          <text wx:if="{{contentItem.type==3}}" wx:for="{{infoItem.btntype}}" wx:key="3" class="{{item=='索取发票'?'btn fapiao':'btn detail'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text>
-        </view> -->
+        <view class="last_row">
+          <!-- <text wx:if="{{contentItem.type==0}}" wx:for="{{infoItem.btntype}}" wx:key="0" class="{{item=='查看详情'?'btn detail':'btn pay'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text>
+          <text wx:if="{{contentItem.type==3}}" wx:for="{{infoItem.btntype}}" wx:key="3" class="{{item=='索取发票'?'btn fapiao':'btn detail'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text> -->
+          <text class="btn detail" bindtap="goto" data-orderid="{{contentItem.id}}" data-type="查看详情">查看详情</text>
+          <text class="btn pay" bindtap="goto" data-id="{{contentItem.id}}" data-orderid="{{contentItem.order_id}}" data-type="立即支付" wx:if="{{contentItem.pay_status!=1}}">立即支付</text>
+          <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==4&&contentItem.pay_status==1}}" bindtap="towebview">扫脸认证</text>
+          <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==1&&contentItem.pay_status==1}}" >已扫脸认证</text>
+        </view>
       </view>
     </view>
 
 
     <!-- 已发证底部全选 -->
-    <view class="bottom" wx:if="{{currentTab==3}}">
+    <!-- <view class="bottom" wx:if="{{currentTab==3}}">
       <view class="bot_left">
         <view class="{{!allChecked?'circle':'circle.checked'}}" bindtap="allChecked"></view>
         <text>全选</text>
       </view>
       <view class="bot_right">批量索取发票</view>
-    </view>
+    </view> -->
 
   </view>
 </view>

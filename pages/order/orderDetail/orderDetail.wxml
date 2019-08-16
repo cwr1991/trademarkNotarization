@@ -56,11 +56,11 @@
     <text class="leftTit">收货地址</text>
     <text class="rightTit">{{detail.zs_addr}}</text>
   </view>
-  <view class="item">
+  <view class="item" wx:if="{{detail.enterprise_name}}">
     <text class="leftTit">公司名称</text>
-    <text class="rightTit">{{detail.enterprise_name}}</text>
+    <text class="rightTit" >{{detail.enterprise_name}}</text>
   </view>
-  <view class="item">
+  <view class="item" wx:if="{{detail.business_license_id}}">
     <text class="leftTit">注册编码</text>
     <text class="rightTit">{{detail.business_license_id}}</text>
   </view>

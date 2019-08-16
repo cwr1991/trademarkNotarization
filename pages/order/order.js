@@ -11,171 +11,7 @@ Page({
     currentTab: 0,
     isClickEdit: false,
     allChecked: false,
-    content: [{
-        type: 0, //全部
-        info: [{
-            times: {
-              date: "2019-06-01",
-              time: "14:00:30"
-            },
-            status: "代付款",
-            SBname: "白兰地",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 196,
-            btntype: ['查看详情', '立即支付']
-
-          },
-          {
-            times: {
-              date: "2019-07-01",
-              time: "16:00:30"
-            },
-            status: "代付款",
-            SBname: "黑兰地",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 18512345678,
-            btntype: ['查看详情', '立即支付']
-          },
-          {
-            times: {
-              date: "2019-07-01",
-              time: "16:00:30"
-            },
-            status: "代付款",
-            SBname: "黑兰地",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 18512345678,
-            btntype: ['查看详情', '立即支付']
-          },
-          {
-            times: {
-              date: "2019-07-01",
-              time: "16:00:30"
-            },
-            status: "代付款",
-            SBname: "黑兰地",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 18512345678,
-            btntype: ['查看详情', '立即支付']
-          },
-        ]
-      },
-      {
-        type: 1, //未公证
-        info: [{
-          times: {
-            date: "2019-08-01",
-            time: "14:00:30"
-          },
-          status: "代付款",
-          SBname: "1",
-          SBperson: "陈伟",
-          SBnum: 18203141,
-          SBclass: 30,
-          orderNum: 18512345678,
-          btntype: ['查看详情', '立即支付']
-        }]
-      },
-      {
-        type: 2,
-        info: [{
-          times: {
-            date: "2019-09-01",
-            time: "14:00:30"
-          },
-          status: "代付款",
-          SBname: "1",
-          SBperson: "陈伟",
-          SBnum: 18203141,
-          SBclass: 30,
-          orderNum: 18512345678,
-          btntype: ['查看详情', '立即支付']
-        }]
-      },
-      {
-        type: 3,
-        info: [{
-            times: {
-              date: "2019-10-02",
-              time: "14:00:30"
-            },
-            status: "代付款",
-            SBname: "1",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 18512345678,
-            btntype: ['纸质证书', '索取发票', '查看详情'],
-            singleChecked: false
-          },
-          {
-            times: {
-              date: "2019-10-01",
-              time: "14:00:30"
-            },
-            status: "代付款",
-            SBname: "1",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 18512345678,
-            btntype: ['纸质证书', '索取发票', '查看详情'],
-            singleChecked: false
-          },
-          {
-            times: {
-              date: "2019-10-01",
-              time: "14:00:30"
-            },
-            status: "代付款",
-            SBname: "1",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 18512345678,
-            btntype: ['纸质证书', '索取发票', '查看详情'],
-            singleChecked: false
-          },
-          {
-            times: {
-              date: "2019-10-01",
-              time: "14:00:30"
-            },
-            status: "代付款",
-            SBname: "1",
-            SBperson: "陈伟",
-            SBnum: 18203141,
-            SBclass: 30,
-            orderNum: 18512345678,
-            btntype: ['纸质证书', '索取发票', '查看详情'],
-            singleChecked: false
-          }
-        ]
-      },
-      {
-        type: 4,
-        info: [{
-          times: {
-            date: "2019-11-01",
-            time: "14:00:30"
-          },
-          status: "代付款",
-          SBname: "1",
-          SBperson: "陈伟",
-          SBnum: 18203141,
-          SBclass: 30,
-          orderNum: 18512345678,
-          btntype: ['查看详情', '立即支付']
-        }]
-      }
+    content: [
     ]
   },
 
@@ -190,7 +26,7 @@ Page({
     wx.request({
       url: `${app.baseUrl}/gzynew/queryorder`,
       data:{
-        openid:'oKjx85c4G6NEhIWvliwkGh58u3HE'
+        openid:app.openid
       },
       success:function(res){
         console.log(res.data.msg,res.data.result)
@@ -204,6 +40,11 @@ Page({
     console.log(that.data)
   },
 
+  towebview:function(e){
+    wx.navigateTo({
+      url: '/pages/webview/webview?orderid=' + e.currentTarget.dataset.id
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -260,14 +101,13 @@ Page({
     //   return;
     // }
     let idx=parseInt(e.currentTarget.dataset.idx)-1;
-    console.log(idx)
     if(idx == -1){
       idx='all';
     }
     wx.request({
       url:`${app.baseUrl}/gzynew/queryorder`,
       data:{
-        openid:'oKjx85c4G6NEhIWvliwkGh58u3HE',
+        openid: app.openid,
         flowStatus:idx
       },
       success(res){
@@ -332,6 +172,11 @@ Page({
     if(e.currentTarget.dataset.type=='查看详情'){
       wx.navigateTo({
         url: './orderDetail/orderDetail?orderId='+e.currentTarget.dataset.orderid,
+      })
+    }
+    if (e.currentTarget.dataset.type == '立即支付') {
+      wx.navigateTo({
+        url: '../payment/payment?order_id=' + e.currentTarget.dataset.orderid + '&orderid=' + e.currentTarget.dataset.id,
       })
     }
   }

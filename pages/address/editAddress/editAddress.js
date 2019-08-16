@@ -276,35 +276,35 @@ Page({
   },
 
 
-  test: function(e) {
-    wx.chooseImage({
-      success(res) {
-        let tempFilePaths = res.tempFilePaths
-        for (var i = 0; i < tempFilePaths.length; i++) {
+  // test: function(e) {
+  //   wx.chooseImage({
+  //     success(res) {
+  //       let tempFilePaths = res.tempFilePaths
+  //       for (var i = 0; i < tempFilePaths.length; i++) {
 
-          console.log(res.tempFilePaths)
-          wx.uploadFile({
-            url: 'https://wwxs.86sb.com/gzynew/upload-img-gz', //仅为示例，非真实的接口地址
-            filePath: tempFilePaths[i],
-            name: 'pic1',
-            formData: {
-              orderId: 'SB146466316313',
-              evidName: '身份证',
-              evidType: 5
-            },
-            success(res) {
-              console.log(res)
+  //         console.log(res.tempFilePaths)
+  //         wx.uploadFile({
+  //           url: 'https://wwxs.86sb.com/gzynew/upload-img-gz', //仅为示例，非真实的接口地址
+  //           filePath: tempFilePaths[i],
+  //           name: 'pic1',
+  //           formData: {
+  //             orderId: 'SB146466316313',
+  //             evidName: '身份证',
+  //             evidType: 5
+  //           },
+  //           success(res) {
+  //             console.log(res)
 
-            },
-            fail: function(res) {
-              console.log(res.data)
-            }
-          })
-        }
+  //           },
+  //           fail: function(res) {
+  //             console.log(res.data)
+  //           }
+  //         })
+  //       }
 
-      }
-    })
-  },
+  //     }
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

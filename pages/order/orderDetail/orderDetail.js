@@ -17,7 +17,7 @@ Page({
     console.log(options.orderId)
     var that=this
     wx.request({
-      url:'https://wwxs.86sb.com/gzynew/orderinfo',
+      url:`${app.baseUrl}/gzynew/orderinfo`,
       data:{
         orderid: options.orderId,
         openid: app.openid,
@@ -25,8 +25,8 @@ Page({
 
       },
       success(res){
-        console.log(res.data.result.tm_data)
-        console.log(res.data.result.code_front)
+        console.log(res)
+        // console.log(res.data.result.code_front)
         res.data.result.tm_data = res.data.result.tm_data.split(',')
         res.data.result.code_front = res.data.result.code_front.split(',')
 

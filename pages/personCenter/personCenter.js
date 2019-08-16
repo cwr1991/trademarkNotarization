@@ -4,27 +4,7 @@ const app = getApp()
 Page({
   data: {
     // canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    orderItems: [{
-        type: "全部",
-        count: 18
-      },
-      {
-        type: "未公证",
-        count: 24
-      },
-      {
-        type: "受理中",
-        count: 1
-      },
-      {
-        type: "已发证",
-        count: 3
-      },
-      {
-        type: "已终止",
-        count: 4
-      }
-    ],
+    orderItems: [],
     infoItems: [{
         icon: "/images/address.png",
         iconTitle: "常用地址",
@@ -48,10 +28,23 @@ Page({
       telnumber: app.username 
     })
     console.log(that.data)
+
+      let order_count=[];
+      wx.request({
+        url: `${app.baseUrl}/gzynew/queryorder`,
+        data: {
+          openid: app.openid,
+        },
+        success: function (res) {
+          that.setData({
+            orderItems: res.data.result.nums[0]
+          })
+        }
+      })
+    
   },
-  // bindGetUserInfo(e) {
-  //   console.log(e.detail.userInfo)
-  // },
+
+
 
   // 跳转地址、常用申请人、开票信息
   toWork: function(event) {

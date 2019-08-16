@@ -144,6 +144,7 @@ page{
   border: 1px solid #FD601C;
   background: #ffede3;
 }
+
 .fapiao{
   color: #5995F3;
   border: 1px solid #5995F3;

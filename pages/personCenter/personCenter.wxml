@@ -17,10 +17,25 @@
     </view>
 
     <view class="order_itembox">
-      <view class="item" wx:for="{{orderItems}}" wx:for-index="idx" data-idx="{{idx}}">
-        <view class="count">{{item.count}}</view>
-        <!-- <view class="count" wx:else>0</view> -->
-        <view class="type">{{item.type}}</view>
+      <view class="item" >
+        <view class="count">{{orderItems.total}}</view>
+        <view class="type">全部</view>
+      </view>
+      <view class="item" >
+        <view class="count">{{orderItems.onenum}}</view>
+        <view class="type">未认证</view>
+      </view>
+      <view class="item" >
+        <view class="count">{{orderItems.twonum}}</view>
+        <view class="type">受理中</view>
+      </view>
+      <view class="item" >
+        <view class="count">{{orderItems.threenum}}</view>
+        <view class="type">已发证</view>
+      </view>
+      <view class="item" >
+        <view class="count">{{orderItems.fournum}}</view>
+        <view class="type">已终止</view>
       </view>
     </view>
   </view>
