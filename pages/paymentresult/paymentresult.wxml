@@ -7,7 +7,7 @@
        <button open-type="share" type="primary"></button>
     </view>
 
-    <view class="butBottom" wx:if="{{!sharedata.operator}}">
+    <view class="butBottom" wx:if="{{sharedata.operator}}">
       <view class='share' bindtap="continues">继续操作</view>
       <view class="backindex" bindtap="backindex"> 返回首页</view>
     </view>

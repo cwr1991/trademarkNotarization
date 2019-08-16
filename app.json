@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/webview/webview",
     "pages/paymentresult/paymentresult",
     "pages/payment/payment",
     "pages/personCenter/personCenter",
@@ -16,7 +17,6 @@
     "pages/applicantList/applicantList",
     "pages/applicantAE/applicantAE",
     "pages/applicantSelect/applicantSelect",
-    "pages/webview/webview",
     "pages/address/editAddress/editAddress",
     "pages/invoice/invoice",
     "pages/invoice/editInvoice/editInvoice",

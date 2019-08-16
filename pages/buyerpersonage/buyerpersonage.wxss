@@ -91,6 +91,9 @@
   font-size: 30rpx;
   color: #080808;
 }
+.innerbox .inner .section input.zhucehao{
+  width: 330rpx;
+}
 .innerbox .inner .section input.right{
     width: 450rpx;
     float: right;

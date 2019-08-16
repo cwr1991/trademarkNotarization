@@ -57,7 +57,7 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
         openid: app.openid,
-        operator: '',
+        operator: '111111111',
         type: 0
       },
       success(res) {

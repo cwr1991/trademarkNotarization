@@ -10,6 +10,7 @@
    <view class="item"><text>商标名称</text>{{data.sbname}} </view>
    <view class="item"><text>商标注册号</text>{{data.sbid}}</view>
    <view class="item"><text>商标类别</text>{{data.sbbigclassid}}  </view>
+      <view class="item"><text>商标证书</text></view>
    <view class="imglist">
       <view class="imgitem" wx:for="{{imglist}}" wx:key="{{index}}">
           <image src="{{item}}" mode="widthFix"></image>
@@ -58,11 +59,11 @@
         </view>
         <view class="section" wx:if="{{issite}}">
            <text>收件地址</text>
-           <view wx:if="{{addr}}">
+           <view wx:if="{{addr}}" class="addr">
               <navigator url="/pages/address/address?affirm=1">{{addr}}</navigator>
            </view>
            <view wx:if="{{!addr}}" class="addr">
-             <navigator url="/pages/address/editAddress/editAddress?affirm=1"></navigator>
+             <navigator url="/pages/address/editAddress/editAddress?affirm=1&&lengths=0"></navigator>
            </view>
         </view>
      </view> 

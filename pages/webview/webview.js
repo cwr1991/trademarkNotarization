@@ -1,4 +1,5 @@
 // pages/webview/webview.js
+const app = getApp();
 Page({
 
   /**
@@ -15,7 +16,20 @@ Page({
     this.setData({
       weburl: options.weburl
     })
-    console.log(this.data.weburl);
+    var that =  this;
+    wx.request({
+      url: app.baseUrl + '/gzynew/orderinfo',
+      data: {
+        orderid: options.orderid,
+        confirm:1,
+        openid: app.openid
+      },
+      success(res) {
+        that.setData({
+          weburl: res.data.result.url
+        })
+      }
+    })
   },
 
   /**

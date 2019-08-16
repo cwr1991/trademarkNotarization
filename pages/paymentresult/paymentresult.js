@@ -18,6 +18,7 @@ Page({
     var that = this;
     that.setData({
       orderid: options.orderid,
+      gz_url:options.weburl
     })
     wx.request({
       url: app.baseUrl + '/gzynew/isoperator',
@@ -68,7 +69,7 @@ Page({
   },
   continues: function () {
     wx.navigateTo({
-      url: '/pages/webview/webview?weburl=' + this.data.gz_url,
+      url: '/pages/webview/webview?orderid=' + this.data.orderid+'&weburl=' + this.data.gz_url,
     })
   }
   

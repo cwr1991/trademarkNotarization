@@ -11,7 +11,7 @@
 
     <view class="section">
       <view>商标注册号</view>
-      <input name="sbRegistration" placeholder-class="place-holder" value="{{registrationVal}}" bindinput="bindRegistrationVal"  placeholder="请输入注册号"/>
+      <input name="sbRegistration" class="zhucehao" placeholder-class="place-holder" value="{{registrationVal}}" bindinput="bindRegistrationVal"  placeholder="请输入注册号"/>
       <view class="but" bindtap="getTrademarkMsg">获取商标信息</view>
     </view>
     <view class="section">

@@ -28,7 +28,6 @@ Page({
         openid: app.openid
       },
       success(res) {
-        console.log(res);
         if (res.data.status==1){
           wx.showToast({
             icon: 'none',
@@ -43,14 +42,13 @@ Page({
     })
 
     wx.request({
-      url: app.baseUrl + '/gzynew/get-order-info',
+      url: app.baseUrl + '/gzynew/get-order-pay-charge',
       data: {
-        order_id: options.order_id,
-        field: 'pay_charge'
+        openid: app.openid
       },
       success(res) {
         that.setData({
-          price: res.data.result.pay_charge
+          price: res.data.result.price
         })
       }
     })
@@ -95,15 +93,14 @@ Page({
           },
           success(res) {
             if (res.data.result.pay_status==1){
-              console.log(that.data.sharedata);
               if (that.data.sharedata.operator==1){
                 wx.navigateTo({
-                  url: '/pages/paymentresult/paymentresult?weburl=' + res.data.result.gz_url + '&orderid=' + that.data.orderid,
+                  url: '/pages/paymentresult/paymentresult?orderid=' + that.data.orderid+'&weburl=' + res.data.result.gz_url,
                 })
                 return false;
               }
               wx.navigateTo({
-                url: '/pages/webview/webview?weburl=' + res.data.result.gz_url,
+                url: '/pages/webview/webview?orderid=' + that.data.orderid +'&weburl=' + res.data.result.gz_url,
               })
             }
           }
