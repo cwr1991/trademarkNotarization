@@ -22,7 +22,7 @@ Page({
           }
       ],
       type:'2',
-      editId:false,//判断新增还是编辑。编辑按钮隐藏
+      editType:false,//判断是否是编辑状态，false,不在编辑状态
       personal:{
         username:"",
         mobile:"",
@@ -47,6 +47,10 @@ Page({
       hkFiles:[]
     },
     radioChange(e){
+      let editType = this.data.editType
+      if(editType){
+        return
+      }
       let type = e.detail.value
       this.setData({
         type
@@ -121,6 +125,10 @@ Page({
     },
     // 企业function
     chooseLicenseImage(){
+      let editType = this.data.editType
+      if(editType){
+        return
+      }
       let _this = this
       wx.chooseImage({
         count: 1,
@@ -565,84 +573,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-     
       if(options.id){
         this.getEditList(options.id)
         wx.setNavigationBarTitle({
-          title: '编辑申请人'
+          title: '申请人详情'
         })
-        let editId = true
-        this.setData({
-          editId
-        })
-      }
-      if(options.types == '1'){
-        let applicantType = this.data.applicantType
-        applicantType = [
-          {
-            name: '企业',
-            value: '2' 
-           
-          },
-          {
-            name: '香港',
-            value: '3',
-          },
-          {
-            name: '个人',
-            value: '1',
-            checked: 'true'
-          }
-      ]
+        let editType = true
         let type = options.types
         this.setData({
-          type,
-          applicantType
-        })
-      }else if(options.types == '2'){
-        let applicantType = this.data.applicantType
-        applicantType = [
-          {
-            name: '企业',
-            value: '2' ,
-            checked: 'true'
-           
-          },
-          {
-            name: '香港',
-            value: '3',
-          },
-          {
-            name: '个人',
-            value: '1',
-          }
-      ]
-        let type = options.types
-        this.setData({
-          type,
-          applicantType
-        })
-      }else if (options.types == '3'){
-        let applicantType = this.data.applicantType
-        applicantType = [
-          {
-            name: '企业',
-            value: '2'         
-          },
-          {
-            name: '香港',
-            value: '3',
-            checked: 'true'
-          },
-          {
-            name: '个人',
-            value: '1'
-          }
-      ]
-        let type = options.types
-        this.setData({
-          type,
-          applicantType
+          editType,
+          type
         })
       }
     },
