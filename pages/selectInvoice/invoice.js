@@ -9,29 +9,6 @@ Page({
   data: {
     
   },
-  navBack(e){
-    console.log(e)
-    let editData = e.currentTarget.dataset;
-    wx.request({
-      url: `${app.baseUrl}/gzynew/edit-invoice-info`,
-      data: {
-        openid: app.openid,
-        title: editData.company,
-        taxpayerId: editData.num,
-        types: editData.types,
-        company_address: editData.address,
-        company_bank: editData.bank,
-        company_count: editData.count,
-        is_default: 1,
-        id: editData.id
-      },
-      success(res) {
-        wx.navigateBack({
-          delta: 1
-        })
-      },
-    })
-  },
   toEditInvoice: function (e) {
 
     wx.navigateTo({
@@ -66,9 +43,6 @@ Page({
       }
     })
 
-    that.setData({
-      source:options.source
-    })
     
   },
 

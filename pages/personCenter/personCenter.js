@@ -52,7 +52,7 @@ Page({
     switch (event.currentTarget.dataset.idx) {
       case 0:
         wx.navigateTo({
-          url: '/pages/address/address',
+          url: '/pages/address/address?source=personcenter',
           success: function(res) {
             // 通过eventChannel向被打开页面传送数据
           }
@@ -70,7 +70,7 @@ Page({
 
       case 2:
         wx.navigateTo({
-          url: '/pages/invoice/invoice',
+          url: '/pages/invoice/invoice?source=personcenter',
           success: function(res) {
             // 通过eventChannel向被打开页面传送数据
           }

@@ -8,7 +8,7 @@
       <text class="default" wx:if="{{item.check==1}}">默认</text>
       <view class="bottom">
         <view class="address">{{item.scity}} {{item.address}}</view>
-        <image src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/edit@2x.png" data-scity="{{item.scity}}" data-address="{{item.address}}" data-tel="{{item.stel}}" data-username="{{item.sname}}" data-isdefault="{{item.check}}" bindtap="toEditAddress" data-idx="{{index}}"/>
+        <image wx:if="{{source}}" src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/edit@2x.png" data-scity="{{item.scity}}" data-address="{{item.address}}" data-tel="{{item.stel}}" data-username="{{item.sname}}" data-isdefault="{{item.check}}" bindtap="toEditAddress" data-idx="{{index}}"/>
       </view>
     </view>
   </view>

@@ -1,0 +1,27 @@
+
+<!-- 无信息空页面 -->
+<view class="null" wx:if="{{!invoiceInfo[0]}}">
+  <view class="centerBox">
+    <image style="width:230rpx;height:283rpx;" src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/null@2x.png"></image>
+    <view class="nulltips">暂无开票主体，请先添加</view>
+  </view>
+  <button style="position:absolute;bottom:0;left:0;right:0;margin:0 auto 30rpx" type="warn" class="button" hover-class="none" bindtap="toAddInvoice">+添加开票主体</button>
+</view>
+
+<!-- 有信息列表页 -->
+<view class="wraper" wx:else>
+  <view class="invoiceBox">
+    <view class="invoice-item" wx:for="{{invoiceInfo}}" wx:key="username" wx:for-index="idx">
+      <text class="company">{{item.title}}</text>
+      <text class="default" wx:if="{{item.is_default==1}}">默认</text>
+      <view class="bottom">
+        <view class="num">纳税识别号：{{item.taxpayerId}}</view>
+        <!-- <image src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/edit@2x.png" data-company="{{item.title}}" data-num="{{item.taxpayerId}}" data-address="{{item.company_address}}"  data-bank="{{item.company_bank}}" data-count="{{item.company_count}}" data-types="{{item.types}}" data-isdefault="{{item.is_default}}" data-id="{{item.id}}" bindtap="toEditInvoice" /> -->
+      </view>
+      <view class="bottom" style="margin-top:0;">
+        <view class="address">地址：{{item.company_address}}</view>
+      </view>
+    </view>
+  </view>
+  <button class="button" type="warn" hover-class="none" bindtap="toAddInvoice">+添加开票主体</button>
+</view>

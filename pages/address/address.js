@@ -90,6 +90,9 @@ Page({
       }
     })
     // console.log(this.data)
+    that.setData({
+      source: options.source
+    })
     
   },
 

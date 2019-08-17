@@ -1,11 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/personCenter/personCenter",
     "pages/webview/webview",
     "pages/order/order",
     "pages/paymentresult/paymentresult",
     "pages/payment/payment",
-    "pages/personCenter/personCenter",
     "pages/address/address",
     "pages/login/login",
     "pages/buyercompany/buyercompany",

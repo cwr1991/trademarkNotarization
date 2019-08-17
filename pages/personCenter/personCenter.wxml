@@ -4,7 +4,7 @@
   <view class="header">
     <open-data type="userAvatarUrl" ></open-data>
   </view>
-    <text>{{telnumber}}</text>
+    <text style="margin-left:20rpx">{{telnumber}}</text>
   </view>
 </view>
 

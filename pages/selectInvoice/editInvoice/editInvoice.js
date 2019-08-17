@@ -203,7 +203,7 @@ Page({
         company_address: company_address,
         company_bank: company_bank,
         company_count: company_count,
-        is_default: this.data.editInfo.isDefault ? this.data.editInfo.isDefault:'2',
+        is_default: this.data.editInfo.isDefault,
       },
       success(res) {
         wx.navigateBack({

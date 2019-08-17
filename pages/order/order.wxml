@@ -4,21 +4,21 @@
   </text>
 </view>
 <!-- 内容 -->
-<view class="content">
+<view class="content" >
   <view id="itemBox">
     <!-- 已发证编辑 -->
     <!-- <view wx:if="{{currentTab==3}}" class="edit"> -->
     <view class="edit">
       <view class="edit_left">共
         <text>{{contentLength}}</text>件商品</view>
-      <!-- <view class="edit_right" wx:if="{{!isClickEdit}}" bindtap="clickEdit">编辑</view>
-      <view class="edit_right" wx:elif="{{isClickEdit}}">完成</view> -->
+      <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 }}" bindtap="clickEdit">编辑</view>
+      <view class="edit_right" wx:elif="{{isClickEdit &&currentTab==3 }}"bindtap="clickEdit">完成</view>
     </view>
 
     <!-- 每条订单信息 -->
-    <view class="editBox" wx:for="{{content}}" wx:key="*this" wx:for-item="contentItem" wx:for-index="infoIdx" data-infoIdx="{{infoIdx}}" data-checkd="{{contentItem.singleChecked}}">
+    <view class="editBox {{isClickEdit && infoIdx==content.length-1?'last':''}}" wx:for="{{content}}" wx:key="*this" wx:for-item="contentItem" wx:for-index="infoIdx" data-infoIdx="{{infoIdx}}" data-checkd="{{contentItem.checked}}">
       <!-- 单选checked -->
-      <!-- <view wx:if="{{currentTab==3 && isClickEdit}}" class="{{!infoItem.singleChecked ? 'circle mar': 'circle mar checked'}}" bindtap="singleChecked" data-checked="{{infoItem.singleChecked}}" data-index="{{infoIdx}}"></view> -->
+      <view wx:if="{{currentTab==3 && isClickEdit}}" class="{{!contentItem.checked?'circle mar':'circle mar checked'}}" bindtap="singleChecked" data-checked="{{contentItem.checked}}" data-index="{{infoIdx}}"></view>
       <!-- 订单item -->
       <view class="{{infoIdx >= contentItem.info.length-1? 'infoItem last': 'infoItem'}}">
         <view class="first_row">
@@ -27,7 +27,7 @@
             <!-- <text>{{infoItem.times.time}}</text> -->
           </view>
           <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==1}}">已支付</view>
-          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">代付款</view>
+          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">待付款</view>
           <view style="font-size:24rpx;color:#F44444" wx:else>{{contentItem.flow_name}}</view>
 
 
@@ -61,20 +61,68 @@
           <text class="btn detail" bindtap="goto" data-orderid="{{contentItem.id}}" data-type="查看详情">查看详情</text>
           <text class="btn pay" bindtap="goto" data-id="{{contentItem.id}}" data-orderid="{{contentItem.order_id}}" data-type="立即支付" wx:if="{{contentItem.pay_status!=1}}">立即支付</text>
           <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==4&&contentItem.pay_status==1}}" bindtap="towebview">扫脸认证</text>
-          <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==1&&contentItem.pay_status==1}}" >已扫脸认证</text>
+          <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==1 && contentItem.pay_status==1}}">已扫脸认证</text>
+          <text wx:if="{{contentItem.flow_status==2 &&contentItem.fapiao_status==0 && contentItem.pay_status==1}}" class="btn fapiao" data-id="{{contentItem.id}}" bindtap="fapiao">索取发票</text>
+          <text wx:elif="{{ contentItem.flow_status==2 && contentItem.fapiao_status==1 && contentItem.pay_status==1}}" class="btn fapiao" data-id="{{contentItem.id}}">已索取发票</text>
+
+          <text wx:if="{{contentItem.is_zhengshu!=1 &&contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn gz" data-id="{{contentItem.id}}" bindtap="gongzhengshu">索取公证书</text>
+          <text wx:elif="{{contentItem.is_zhengshu==1 && contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn gz" data-id="{{contentItem.id}}">已索取证书</text>
         </view>
       </view>
     </view>
 
 
     <!-- 已发证底部全选 -->
-    <!-- <view class="bottom" wx:if="{{currentTab==3}}">
+    <view class="bottom" wx:if="{{currentTab==3&&isClickEdit}}">
       <view class="bot_left">
         <view class="{{!allChecked?'circle':'circle.checked'}}" bindtap="allChecked"></view>
         <text>全选</text>
       </view>
-      <view class="bot_right">批量索取发票</view>
-    </view> -->
+      <view class="bot_right" bindtap="allfapiao" data-id="001">批量索取发票</view>
+    </view>
 
+  </view>
+</view>
+
+
+
+<!-- 索取发票弹框 -->
+<view wx:if="{{fapiao_alert}}" class="cover_black">
+  <view class="white_alert">
+    <image src="/images/indexicon01.png" style="width:40rpx;height:40rpx;position: absolute;right: 20rpx;top: 20rpx;" bindtap="closefapiao"></image>
+    <view class="tit">接收信息</view>
+    <view class="email">
+      <text>电子邮箱</text>
+      <input type="text" placeholder="请输入电子邮箱地址" style="width:300rpx;" value="{{email}}" bindinput="bindemail"></input>
+    </view>
+    <view class="address">
+      <text>选择开票主体</text>
+      <view class="select_address" bindtap="toSelectInvoice">
+        <text>{{fapiao_title}}</text>
+        <image src="/images/lefticon.png" style="width:14rpx;height:25rpx;margin-left:20rpx;"></image>
+      </view>
+    </view>
+    <view class="btn_sure" bindtap="fapiao_sure">确定</view>
+  </view>
+</view>
+
+<!-- 纸质公证书弹框 -->
+
+<view class="cover_black" wx:if="{{gz_alert}}">
+  <view class="white_alert">
+    <image src="/images/indexicon01.png" style="width:40rpx;height:40rpx;position: absolute;right: 20rpx;top: 20rpx;" bindtap="closegz"></image>
+    <view class="tit">接收信息</view>
+    <view class="email">
+      <text>电子邮箱</text>
+      <input type="text" placeholder="请输入电子邮箱地址" style="width:300rpx;" value="{{email}}" bindinput="bindemail"></input>
+    </view>
+    <view class="address">
+      <text>收件地址</text>
+      <view class="select_address" bindtap="toSelectAddress">
+        <text>{{gz_address}}</text>
+        <image src="/images/lefticon.png" style="width:14rpx;height:25rpx;margin-left:20rpx;"></image>
+      </view>
+    </view>
+    <view class="btn_sure" bindtap="gz_sure">确定</view>
   </view>
 </view>
