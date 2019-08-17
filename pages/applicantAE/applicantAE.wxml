@@ -1,13 +1,18 @@
 <view class="applicant_AE">
     <view class="section">
-        <view class="list">
+        <view class="list {{editType ? 'list_box' : ''}}">
             <view class="list_label">申请人类型</view>
-            <view class="radio_group">
-                <radio-group class="radio-group" bindchange="radioChange">
+            <view class="radio_group" wx:if="{{!editType}}">
+                <radio-group class="radio-group"  bindchange="radioChange">
                     <label class="radio" wx:for="{{applicantType}}" wx:key="{{item.name}}">
                         <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
                     </label>
                 </radio-group>
+            </view>
+            <view wx:if="{{editType}}" class="list_input">
+                {{type == 1 ? "个人" : ''}}
+                {{type == 2 ? "公司" : ''}}
+                {{type == 3 ? "香港" : ''}}
             </view>
         </view>
         <!-- 个人模块 -->
@@ -15,19 +20,19 @@
             <view class="list list_box">
                 <view class="list_label">姓名</view>
                 <view class="list_input">
-                    <input placeholder="请输入姓名" value="{{personal.username}}" bindinput="inputName"  type="text"/>
+                    <input placeholder="请输入姓名" disabled="{{editType}}" value="{{personal.username}}" bindinput="inputName"  type="text"/>
                 </view>
             </view>
             <view class="list list_box">
                 <view class="list_label">身份证号</view>
                 <view class="list_input">
-                    <input placeholder="请输入代表人身份证号" value="{{personal.yun_idCode}}" bindinput="inputIdcard" type="idcard" />
+                    <input placeholder="请输入代表人身份证号" disabled="{{editType}}" value="{{personal.yun_idCode}}" bindinput="inputIdcard" type="idcard" />
                 </view>
             </view>
             <view class="list list_box list_p_box">
                 <view class="list_label">注册人手机号码</view>
                 <view class="list_input">
-                    <input placeholder="请输入手机号码" value="{{personal.mobile}}" bindinput="inputPhone" type="number" />
+                    <input placeholder="请输入手机号码" disabled="{{editType}}" value="{{personal.mobile}}" bindinput="inputPhone" type="number" />
                 </view>
             </view>
         </block>
@@ -36,32 +41,32 @@
             <view class="list list_box">
                 <view class="list_label">法人姓名</view>
                 <view class="list_input">
-                    <input placeholder="请输入法人姓名" value="{{company.legalPersonName}}" bindinput="inputName"  type="text"/>
+                    <input placeholder="请输入法人姓名" disabled="{{editType}}" value="{{company.legalPersonName}}" bindinput="inputName"  type="text"/>
                 </view>
             </view>
             <view class="list list_box">
                 <view class="list_label">法人身份证号</view>
                 <view class="list_input">
-                    <input placeholder="请输入法人身份证号" value="{{company.legalPersonCardNo}}" bindinput="inputIdcard" type="idcard" />
+                    <input placeholder="请输入法人身份证号" disabled="{{editType}}" value="{{company.legalPersonCardNo}}" bindinput="inputIdcard" type="idcard" />
                 </view>
             </view>
             <view class="list list_box list_border">
                 <view class="list_label">法人手机号码</view>
                 <view class="list_input">
-                    <input placeholder="请输入法人手机号码" value="{{company.legalPersonMobile}}" bindinput="inputPhone" type="number" />
+                    <input placeholder="请输入法人手机号码" disabled="{{editType}}" value="{{company.legalPersonMobile}}" bindinput="inputPhone" type="number" />
                 </view>
             </view>
             <view class="split_box"></view>
             <view class="list list_box company_list">
                 <view class="list_label">公司名称</view>
                 <view class="list_input">
-                    <input placeholder="请输入公司名称" value="{{company.enterpriseName}}" bindinput="companyNameFun" type="text" />
+                    <input placeholder="请输入公司名称" disabled="{{editType}}" value="{{company.enterpriseName}}" bindinput="companyNameFun" type="text" />
                 </view>
             </view>
             <view class="list list_box company_list">
                 <view class="list_label">社会统一信用代码</view>
                 <view class="list_input">
-                    <input placeholder="请输入社会统一信用代码" value="{{company.businessLicenseId}}" bindinput="companyCodeFun" type="text" />
+                    <input placeholder="请输入社会统一信用代码" disabled="{{editType}}" value="{{company.businessLicenseId}}" bindinput="companyCodeFun" type="text" />
                 </view>
             </view>
             <view class="idcard_tip company_tip">
@@ -69,7 +74,7 @@
                 <text class="idcard_tips">（附件上传后部分资料自动识别）  </text>
             </view>
             <view class="upload_license">
-                <view class="upload_face upload_box upload_license_img" bind:tap="chooseLicenseImage">
+                <view class="upload_face upload_box upload_license_img"  bind:tap="chooseLicenseImage">
                     <image src="{{company.business_license_img}}"  wx:if="{{company.business_license_img}}" />
                 </view>
             </view>
@@ -82,38 +87,38 @@
             <view class="list list_box hk_list">
                 <view class="list_label">代表人姓名</view>
                 <view class="list_input">
-                    <input placeholder="请输入代表人姓名" value="{{hk.legalPersonName}}" bindinput="inputName"  type="text"/>
+                    <input placeholder="请输入代表人姓名" disabled="{{editType}}" value="{{hk.legalPersonName}}" bindinput="inputName"  type="text"/>
                 </view>
             </view>
             <view class="list list_box hk_list">
                 <view class="list_label">代表人身份证号 </view>
                 <view class="list_input">
-                    <input placeholder="请输入代表人身份证号 " value="{{hk.legalPersonCardNo}}" bindinput="inputIdcard" type="idcard" />
+                    <input placeholder="请输入代表人身份证号 " disabled="{{editType}}" value="{{hk.legalPersonCardNo}}" bindinput="inputIdcard" type="idcard" />
                 </view>
             </view>
             <view class="list list_box  hk_list">
                 <view class="list_label">董事手机号码</view>
                 <view class="list_input">
-                    <input placeholder="请输入董事手机号码" value="{{hk.legalPersonMobile}}" bindinput="inputPhone" type="number" />
+                    <input placeholder="请输入董事手机号码"  disabled="{{editType}}" value="{{hk.legalPersonMobile}}" bindinput="inputPhone" type="number" />
                 </view>
             </view>
             <view class="split_box "></view>
             <view class="list list_box hk_list">
                 <view class="list_label">公司名称</view>
                 <view class="list_input">
-                    <input placeholder="请输入公司名称" value="{{hk.offshoreCompanyName}}" bindinput="hkNameFun" type="text" />
+                    <input placeholder="请输入公司名称" disabled="{{editType}}" value="{{hk.offshoreCompanyName}}" bindinput="hkNameFun" type="text" />
                 </view>
             </view>
             <view class="list list_box hk_list ">
                 <view class="list_label">公司注册编码</view>
                 <view class="list_input">
-                    <input placeholder="请输入公司注册编码" value="{{hk.offshoreCompanyNo}}" bindinput="hkCodeFun" type="text" />
+                    <input placeholder="请输入公司注册编码" disabled="{{editType}}" value="{{hk.offshoreCompanyNo}}" bindinput="hkCodeFun" type="text" />
                 </view>
             </view>
  
             <view class=" list">
                 <view class="section__title list_label">企业证明资料出具日期</view>
-                <picker mode="date" value="{{hk.offshoreCompanyDate}}"  bindchange="bindDateChange">
+                <picker mode="date" disabled="{{editType}}" value="{{hk.offshoreCompanyDate}}"  bindchange="bindDateChange">
                     <view class="picker">
                     {{hk.offshoreCompanyDate ? hk.offshoreCompanyDate : "请选择日期" }}
                     <image class="link_ico" src="../../images/applicant12.png" />
@@ -127,7 +132,7 @@
                 <view class="upload_face upload_box upload_license_img" wx:for="{{hkFiles}}"  wx:key="{{index}}" wx:if="{{hkFiles.length > 0}}">
                     <image src="{{item}}" />
                 </view>
-                <view class="upload_face upload_box upload_license_img" bind:tap="chooseHkImage">
+                <view wx:if="{{!editType}}" class="upload_face upload_box upload_license_img" bind:tap="chooseHkImage">
                     
                 </view>
             </view>
@@ -136,7 +141,7 @@
             </view>
         </block>
     </view>
-    <block wx:if="{{!editId}}">
+    <block wx:if="{{!editType}}">
         <view class="submit_btn"  bind:tap="saveFun" >
             保存
         </view>
