@@ -265,7 +265,7 @@ Page({
             'user': 'test',
             orderId: that.data.order_id,
             evidName: '身份证正面',
-            evidType: 4
+            evidType: 7
           },
           success(res) {
             if (JSON.parse(res.data).status != 0) {
@@ -311,7 +311,7 @@ Page({
             'user': 'test',
             orderId: that.data.orderid,
             evidName: '身份证反面',
-            evidType: 5
+            evidType: 7
           },
           success(res) {
             if (JSON.parse(res.data).status != 0) {
