@@ -87,3 +87,15 @@ page {
   font-size: 34rpx;
   font-weight: 600;
 }
+
+/* 空状态 */
+.null{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.nulltips{
+  font-size: 26rpx;
+  color: #a0a0a0;
+}

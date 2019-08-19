@@ -6,9 +6,14 @@
 <!-- 内容 -->
 <view class="content" >
   <view id="itemBox">
+    <!-- 数据为空状态 -->
+    <view class="null" wx:if="{{contentLength==0}}">
+      <image src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/null@2x.png" style="width:126px;height:156px;"></image>
+      <view class="nulltips">订单信息为空</view>
+    </view>
     <!-- 已发证编辑 -->
     <!-- <view wx:if="{{currentTab==3}}" class="edit"> -->
-    <view class="edit">
+    <view class="edit" wx:if="{{contentLength!=0}}">
       <view class="edit_left">共
         <text>{{contentLength}}</text>件商品</view>
       <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 && contentLength!=0}}" bindtap="clickEdit">编辑</view>

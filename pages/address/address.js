@@ -93,7 +93,7 @@ Page({
     that.setData({
       source: options.source
     })
-    
+    console.log(this.data)
   },
 
   /**

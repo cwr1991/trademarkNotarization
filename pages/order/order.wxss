@@ -320,3 +320,17 @@ page {
   border-radius: 5px;
   margin-top: 60rpx;
 }
+
+
+/* 空状态 */
+.null{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40%
+}
+.nulltips{
+  font-size: 26rpx;
+  color: #a0a0a0;
+}
