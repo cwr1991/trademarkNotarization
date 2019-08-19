@@ -11,7 +11,7 @@
     <view class="edit">
       <view class="edit_left">共
         <text>{{contentLength}}</text>件商品</view>
-      <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 }}" bindtap="clickEdit">编辑</view>
+      <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 && contentLength!=0}}" bindtap="clickEdit">编辑</view>
       <view class="edit_right" wx:elif="{{isClickEdit &&currentTab==3 }}"bindtap="clickEdit">完成</view>
     </view>
 

@@ -41,15 +41,21 @@ Page({
         flowStatus:status
       },
       success: function(res) {
-        // let contentLength=res.data.result.nums;
+
         let content = res.data.result.datas
-        content.forEach((element) => {
-          element.checked = false
-        })
+        if(content!=0){
+          content.forEach((element) => {
+            element.checked = false
+          })
+        }
+        var length = res.data.result.datas.length
+        if (length == undefined) {
+          length = 0
+        }
 
         that.setData({
           content,
-          contentLength: res.data.result.datas.length,
+          contentLength: length,
           currentTab
         })
       }
@@ -101,7 +107,7 @@ Page({
       },
       success(res) {
         content = res.data.result.datas
-        var length = res.data.result.datas.length
+        var length = content.length
         if (length == undefined) {
           length = 0
         }
@@ -194,15 +200,15 @@ Page({
       },
       success(res) {
         //fapiao_title抬头展示用
-        let fapiao_title = res.data.result[0].title
-        // fapiao_id 发票主体id
-        let fapiao_id = res.data.result[0].id
-
-        that.setData({
-          fapiao_title: fapiao_title,
-          fapiao_id: fapiao_id,
-        })
-
+        if(res.data.msg!="fail"){
+          let fapiao_title = res.data.result[0].title
+          // fapiao_id 发票主体id
+          let fapiao_id = res.data.result[0].id
+          that.setData({
+            fapiao_title: fapiao_title,
+            fapiao_id: fapiao_id,
+          })
+        }
       }
     })
   },
