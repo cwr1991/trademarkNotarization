@@ -68,8 +68,11 @@ Page({
             title: res.data.msg
           })
         }else{
-          that.setData({
-            isshadowBox: true
+          // that.setData({
+          //   isshadowBox: true
+          // })
+          wx.navigateTo({
+            url: '/pages/payment/payment?orderid=' + that.data.orderid + '&order_id=' + that.data.order_id,
           })
         }
       }
