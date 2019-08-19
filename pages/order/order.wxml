@@ -61,12 +61,12 @@
           <text class="btn detail" bindtap="goto" data-orderid="{{contentItem.id}}" data-type="查看详情">查看详情</text>
           <text class="btn pay" bindtap="goto" data-id="{{contentItem.id}}" data-orderid="{{contentItem.order_id}}" data-type="立即支付" wx:if="{{contentItem.pay_status!=1}}">立即支付</text>
           <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==4&&contentItem.pay_status==1}}" bindtap="towebview">扫脸认证</text>
-          <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==1 && contentItem.pay_status==1}}">已扫脸认证</text>
+          <text class="btn hasrenzhen" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==1 && contentItem.pay_status==1}}">已扫脸认证</text>
           <text wx:if="{{contentItem.flow_status==2 &&contentItem.fapiao_status==0 && contentItem.pay_status==1}}" class="btn fapiao" data-id="{{contentItem.id}}" bindtap="fapiao">索取发票</text>
-          <text wx:elif="{{ contentItem.flow_status==2 && contentItem.fapiao_status==1 && contentItem.pay_status==1}}" class="btn fapiao" data-id="{{contentItem.id}}">已索取发票</text>
+          <text wx:elif="{{ contentItem.flow_status==2 && contentItem.fapiao_status==1 && contentItem.pay_status==1}}" class="btn hasfapiao" data-id="{{contentItem.id}}">已开票</text>
 
           <text wx:if="{{contentItem.is_zhengshu!=1 &&contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn gz" data-id="{{contentItem.id}}" bindtap="gongzhengshu">索取公证书</text>
-          <text wx:elif="{{contentItem.is_zhengshu==1 && contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn gz" data-id="{{contentItem.id}}">已索取证书</text>
+          <text wx:elif="{{contentItem.is_zhengshu==1 && contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn hasgz" data-id="{{contentItem.id}}">已索取证书</text>
         </view>
       </view>
     </view>

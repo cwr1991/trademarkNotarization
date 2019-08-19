@@ -17,23 +17,23 @@
     </view>
 
     <view class="order_itembox">
-      <view class="item" >
+      <view class="item" data-id="-1" bindtap="toOrder">
         <view class="count">{{orderItems.total}}</view>
         <view class="type">全部</view>
       </view>
-      <view class="item" >
+      <view class="item" data-id="0" bindtap="toOrder">
         <view class="count">{{orderItems.onenum}}</view>
         <view class="type">未认证</view>
       </view>
-      <view class="item" >
+      <view class="item" data-id="1" bindtap="toOrder">
         <view class="count">{{orderItems.twonum}}</view>
         <view class="type">受理中</view>
       </view>
-      <view class="item" >
+      <view class="item" data-id="2" bindtap="toOrder">
         <view class="count">{{orderItems.threenum}}</view>
         <view class="type">已发证</view>
       </view>
-      <view class="item" >
+      <view class="item" data-id="3" bindtap="toOrder">
         <view class="count">{{orderItems.fournum}}</view>
         <view class="type">已终止</view>
       </view>

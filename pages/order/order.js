@@ -25,11 +25,20 @@ Page({
     // this.setData({
     //   infolength:content.info.length
     // })
+    console.log(options);
+    var status,currentTab
+    if (options.status){
+      status = options.status
+      currentTab = parseInt(status)+1
+    }else{
+      currentTab=0
+    }
     let that = this;
     wx.request({
       url: `${app.baseUrl}/gzynew/queryorder`,
       data: {
-        openid: app.openid
+        openid: app.openid,
+        flowStatus:status
       },
       success: function(res) {
         // let contentLength=res.data.result.nums;
@@ -37,10 +46,11 @@ Page({
         content.forEach((element) => {
           element.checked = false
         })
-        console.log(content)
+
         that.setData({
           content,
-          contentLength: res.data.result.datas.length
+          contentLength: res.data.result.datas.length,
+          currentTab
         })
       }
     })
@@ -59,7 +69,6 @@ Page({
           var r = res.data.result.filter(function (x) {
             return x.check == 1;
           });
-          console.log(r);
           that.setData({
             gz_address: r[0].scity + r[0].address
           })

@@ -89,10 +89,21 @@ Page({
   },
 
   // 跳转订单页
-  toOrder() {
-    wx.navigateTo({
-      url: '/pages/order/order',
-    })
+  toOrder(e) {
+    console.log(e.currentTarget.dataset.id)
+    let id;
+    if (e.currentTarget.dataset.id){
+      id = e.currentTarget.dataset.id
+      wx.navigateTo({
+        url: '/pages/order/order?status=' + id,
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '/pages/order/order',
+      })
+    }
+    
   },
 
   // 退出登录
