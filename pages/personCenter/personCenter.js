@@ -23,25 +23,39 @@ Page({
   },
 
   onLoad: function() {
-    let that=this
-    that.setData({
-      telnumber: app.username 
-    })
-    console.log(that.data)
-
-      let order_count=[];
-      wx.request({
-        url: `${app.baseUrl}/gzynew/queryorder`,
-        data: {
-          openid: app.openid,
-        },
-        success: function (res) {
-          that.setData({
-            orderItems: res.data.result.nums[0]
+    var that = this;
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          that.code = res.code;
+          wx.request({
+            url: app.baseUrl + '/gzynew/openid',
+            data: {
+              code: res.code
+            },
+            success(res) {
+              that.setData({
+                openid: res.data.result.openid,
+                telnumber:res.data.result.username
+              });
+              let order_count = [];
+              wx.request({
+                url: `${app.baseUrl}/gzynew/queryorder`,
+                data: {
+                  openid: that.data.openid,
+                },
+                success: function (res) {
+                  that.setData({
+                    orderItems: res.data.result.nums[0]
+                  })
+                }
+              })
+            }
           })
         }
-      })
-    
+      }
+    })
   },
 
 

@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/personCenter/personCenter",
+   
     "pages/index/index",
+    "pages/personCenter/personCenter",
     "pages/webview/webview",
     "pages/order/order",
     "pages/paymentresult/paymentresult",
