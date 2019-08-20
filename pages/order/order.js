@@ -96,9 +96,7 @@ Page({
     //   return;
     // }
     let idx = parseInt(e.currentTarget.dataset.idx) - 1;
-    if (idx == -1) {
-      idx = 'all';
-    }
+
     wx.request({
       url: `${app.baseUrl}/gzynew/queryorder`,
       data: {

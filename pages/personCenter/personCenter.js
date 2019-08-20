@@ -114,7 +114,7 @@ Page({
     }
     else{
       wx.navigateTo({
-        url: '/pages/order/order',
+        url: '/pages/order/order?status=-1',
       })
     }
     
