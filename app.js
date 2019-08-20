@@ -26,9 +26,9 @@ App({
                 })
               }else{
                 that.username = res.data.result.username;
-                wx.switchTab({
-                  url: '/pages/index/index',
-                })
+                // wx.switchTab({
+                //   url: '/pages/index/index',
+                // })
               }
             }
           })

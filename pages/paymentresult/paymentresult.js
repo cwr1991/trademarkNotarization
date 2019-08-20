@@ -49,7 +49,7 @@ Page({
     }
     return {
       title: that.data.sharedata.username + '发起了公证，请使用手机尾号' + that.data.sharedata.yun_mobile.substring(that.data.sharedata.yun_mobile.length - 4) + '登录操作',
-      path: 'pages/order/order',  // 路径，传递参数到指定页面。
+      path: 'pages/personCenter/personCenter',  // 路径，传递参数到指定页面。
       imageUrl: '../../imgs/xx.png',
       success: function (res) {
         // 转发成功
