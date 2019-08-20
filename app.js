@@ -21,13 +21,13 @@ App({
             success(res){
               that.openid = res.data.result.openid;
               if (res.data.status==1){
-                wx.navigateTo({
+                wx.reLaunch({
                   url: '/pages/login/login',
                 })
               }else{
                 that.username = res.data.result.username;
                 wx.switchTab({
-                  url: '/pages/login/login',
+                  url: '/pages/index/index',
                 })
               }
             }
