@@ -52,10 +52,6 @@ Page({
         }
       }
     })
-
-
-
-
   },
 
   bindCodeInput(e){

@@ -2,7 +2,7 @@
     <view class="search">
         <view class="search_input">
             <image class="search_ico" src="../../images/applicant_search.png" />
-            <input confirm-type="search" bindconfirm="searchFun" placeholder="搜索常用申请人" auto-focus/>
+            <input confirm-type="search" bindconfirm="searchFun" placeholder="搜索常用申请人" />
         </view>
     </view>
     <block wx:if="{{list.length > 0}}">
