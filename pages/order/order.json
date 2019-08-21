@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "公证订单"
+  "navigationBarTitleText": "公证订单",
+  "disableScroll":true
 }
