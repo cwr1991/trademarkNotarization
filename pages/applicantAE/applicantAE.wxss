@@ -224,9 +224,11 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .company_tip{
     padding-bottom: 40rpx;
 }
-.upload_license{
-    /* height: 180rpx; */
-    overflow: hidden;
+.upload_license::after{
+    content: '';
+    clear: both;
+    display: block;
+    visibility: hidden;
 }
 .upload_license .upload_license_img{
     height: 180rpx;
@@ -236,6 +238,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
     background-position: center center;
     background-size: 180rpx;
     margin:0 50rpx 50rpx 0 ;
+    position: relative;
 }
 .company_example{
     width:701rpx;
@@ -270,4 +273,14 @@ radio .wx-radio-input.wx-radio-input-checked::before{
     width:14rpx;
     height: 23rpx;
     margin-left: 23rpx;
+}
+.close{
+    width: 36rpx;
+    height: 36rpx;
+    position: absolute;
+    top:-18rpx;right: -18rpx;
+    z-index: 88;
+}
+.close image{
+    width: 100%;
 }

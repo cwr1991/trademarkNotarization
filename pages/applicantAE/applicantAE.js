@@ -230,18 +230,35 @@ Page({
     chooseHkImage(){
       let _this = this
       wx.chooseImage({
-        count: 6,
+        count: 9,
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
           const tempFilePaths = res.tempFilePaths
-          let hkFiles =_this.data.hkFiles.concat(tempFilePaths) 
+          let hkFiles =_this.data.hkFiles
+          if(hkFiles.length + tempFilePaths.length > 9 ){
+            wx.showToast({
+              title:"最多上传九张图片",
+              icon:'none'
+            })
+            return 
+          }
+          hkFiles = hkFiles.concat(tempFilePaths) 
           _this.setData({
             hkFiles
           })
         }
       })
+    },
+    rmHkImage:function(e){
+      let index = e.currentTarget.id
+      let hkFiles = this.data.hkFiles;
+      hkFiles.splice(index,1)
+      this.setData({
+        hkFiles
+      });
+      console.log(hkFiles)
     },
     // 验证fun
     validateP(){
