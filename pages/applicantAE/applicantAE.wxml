@@ -23,6 +23,7 @@
                     <input placeholder="请输入姓名" disabled="{{editType}}" value="{{personal.username}}" bindinput="inputName"  type="text"/>
                 </view>
             </view>
+            
             <view class="list list_box">
                 <view class="list_label">身份证号</view>
                 <view class="list_input">

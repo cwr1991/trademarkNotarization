@@ -39,6 +39,7 @@ Page({
         },
         data,
         success (res) {
+          wx.hideLoading()
           if(res.data.status == '0'){
             _this.setData({
               list:res.data.result
@@ -49,9 +50,6 @@ Page({
               icon:"none"
             })
           }
-        },
-        complete(){
-          wx.hideLoading()
         }
       })
     },

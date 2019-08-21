@@ -168,6 +168,7 @@ Page({
                     pic : result.imgUrl.pic
                 },
                 success(res) {
+                  wx.hideLoading()
                   if (res.data.status == 0) {
                     let company = _this.data.company
                     company.legalPersonName = res.data.result.person
@@ -181,9 +182,6 @@ Page({
                       icon:"none"
                     })
                   }
-                },
-                complete(){
-                  wx.hideLoading()
                 }
               })
             }
@@ -334,6 +332,7 @@ Page({
         },
         data,
         success (res) {
+          wx.hideLoading()
           if(res.data.status == '0' ){
             wx.navigateBack({
               delta: 1
@@ -350,9 +349,6 @@ Page({
             title:err.message,
             icon:"none"
           })
-        },
-        complete(){
-          wx.hideLoading()
         }
       })
     },
@@ -371,6 +367,7 @@ Page({
         },
         data:company,
         success (res) {
+          wx.hideLoading()
           if(res.data.status == '0' ){
             wx.navigateBack({
               delta: 1
@@ -378,7 +375,7 @@ Page({
           }else{
             wx.showToast({
               title:res.data.msg,
-              icon:"none"
+              icon:"none",
             })
           }
         },
@@ -387,9 +384,6 @@ Page({
             title:err.message,
             icon:"none"
           })
-        },
-        complete(){
-          wx.hideLoading()
         }
       })
     },
@@ -409,6 +403,7 @@ Page({
         },
         data:hk,
         success (res) {
+          wx.hideLoading()
           if(res.data.status == '0' ){
               let hkFiles = _this.data.hkFiles
               let applyId = res.data.result.apply_id
@@ -438,9 +433,6 @@ Page({
                         title:result.msg
                       })
                     }
-                  },
-                  complete(){
-                   
                   }
                 })
               }
@@ -456,10 +448,6 @@ Page({
             title:"系统错误",
             icon:"none"
           })
-        },
-        complete(){
-          console.log(1111)
-          wx.hideLoading()
         }
       })
     },
@@ -563,9 +551,6 @@ Page({
             title:"系统错误",
             icon:"none"
           })
-        },
-        complete(){
-          // wx.hideLoading()
         }
       })
     },
