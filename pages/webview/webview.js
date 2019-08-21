@@ -13,9 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      weburl: options.weburl
-    })
     var that =  this;
     wx.request({
       url: app.baseUrl + '/gzynew/orderinfo',
