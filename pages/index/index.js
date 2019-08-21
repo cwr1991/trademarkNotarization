@@ -83,13 +83,15 @@ Page({
               code: res.code
             },
             success(res) {
+              console.log(res);
               that.setData({
                 openid: res.data.result.openid
               });
               wx.request({
                 url: app.baseUrl + '/gzynew/get-order-pay-charge',
                 data: {
-                  openid: res.data.result.openid
+                  openid: res.data.result.openid,
+                  phone: res.data.result.username
                 },
                 success(res) {
                   if(res.data.status==0){

@@ -68,12 +68,12 @@ Page({
             title: res.data.msg
           })
         }else{
-          // that.setData({
-          //   isshadowBox: true
-          // })
-          wx.navigateTo({
-            url: '/pages/payment/payment?orderid=' + that.data.orderid + '&order_id=' + that.data.order_id,
+          that.setData({
+            isshadowBox: true
           })
+          // wx.navigateTo({
+          //   url: '/pages/payment/payment?orderid=' + that.data.orderid + '&order_id=' + that.data.order_id,
+          // })
         }
       }
     })
@@ -81,13 +81,13 @@ Page({
   },
   bindnext:function(){
     var that = this;
-    if (that.data.mail==''){
-      wx.showToast({
-        icon: 'none',
-        title: '请输入邮箱'
-      })
-      return false;
-    }
+    // if (that.data.mail==''){
+    //   wx.showToast({
+    //     icon: 'none',
+    //     title: '请输入邮箱'
+    //   })
+    //   return false;
+    // }
     if (that.data.issite){
       var is_zhengshu = 1;
       if (that.data.addr==''){

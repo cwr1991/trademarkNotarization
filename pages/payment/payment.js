@@ -21,37 +21,9 @@ Page({
       orderid: options.orderid,
       order_id: options.order_id
     })
-    wx.request({
-      url: app.baseUrl + '/gzynew/get-pay-data',
-      data: {
-        order_id: options.order_id,
-        openid: app.openid
-      },
-      success(res) {
-        if (res.data.status==1){
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg
-          })
-          return false;
-        }
-        that.setData({
-            data:res.data.res
-        })
-      }
-    })
 
-    wx.request({
-      url: app.baseUrl + '/gzynew/get-order-pay-charge',
-      data: {
-        openid: app.openid
-      },
-      success(res) {
-        that.setData({
-          price: res.data.result.price
-        })
-      }
-    })
+
+
 
     wx.request({
       url: app.baseUrl + '/gzynew/isoperator',
@@ -64,6 +36,45 @@ Page({
             that.setData({
               sharedata: res.data.result
             })
+          var phone;
+          if (res.data.result.operator == 1) {
+            var phone = res.data.result.yun_mobile;
+          } else {
+            phone = app.username
+          }
+          wx.request({
+            url: app.baseUrl + '/gzynew/get-order-pay-charge',
+            data: {
+              openid: app.openid,
+              phone: phone
+            },
+            success(res) {
+              that.setData({
+                price: res.data.result.price
+              })
+            }
+          })
+
+          wx.request({
+            url: app.baseUrl + '/gzynew/get-pay-data',
+            data: {
+              order_id: options.order_id,
+              openid: app.openid,
+              phone: phone
+            },
+            success(res) {
+              if (res.data.status == 1) {
+                wx.showToast({
+                  icon: 'none',
+                  title: res.data.msg
+                })
+                return false;
+              }
+              that.setData({
+                data: res.data.res
+              })
+            }
+          })
         }else{
           wx.showToast({
             icon: 'none',
