@@ -25,7 +25,7 @@ Page({
     // this.setData({
     //   infolength:content.info.length
     // })
-    console.log(options);
+
     var status,currentTab
     if (options.status){
       status = options.status
@@ -60,7 +60,7 @@ Page({
         })
       }
     })
-    console.log(this.data)
+
   },
   onShow(){
     this.getTicket();
@@ -162,7 +162,7 @@ Page({
 
   //不同按钮跳转
   goto: function(e) {
-    // console.log(e)
+
     if (e.currentTarget.dataset.type == '查看详情') {
       wx.navigateTo({
         url: './orderDetail/orderDetail?orderId=' + e.currentTarget.dataset.orderid,
@@ -221,12 +221,12 @@ Page({
     })
   },
   bindemail(e) {
-    console.log(e)
+
     var email = e.detail.value
     this.setData({
       email: email
     })
-    console.log(this.data)
+
   },
   // 索取发票
   fapiao_sure(id) {
@@ -239,7 +239,7 @@ Page({
         email: that.data.email
       },
       success(res) {
-        console.log(res)
+
         that.setData({
           fapiao_alert: false
         })
@@ -263,7 +263,7 @@ Page({
             content.forEach((element) => {
               element.checked = false
             })
-            console.log(content)
+
             that.setData({
               content,
               contentLength: res.data.result.datas.length,
@@ -324,7 +324,7 @@ Page({
           var r = res.data.result.filter(function (x) {
             return x.check == 1;
           });
-          console.log(r);
+
           that.setData({
             gz_address: r[0].scity + r[0].address
           })
@@ -344,12 +344,12 @@ Page({
     })
   },
   bindemail(e) {
-    console.log(e)
+
     var email = e.detail.value
     this.setData({
       email: email
     })
-    console.log(this.data)
+
   },
   // 索取发票
   gz_sure(id) {
@@ -365,7 +365,7 @@ Page({
         type:1
       },
       success(res) {
-        console.log(res)
+
         that.setData({
           gz_alert: false
         })
@@ -389,7 +389,7 @@ Page({
             content.forEach((element) => {
               element.checked = false
             })
-            console.log(content)
+
             that.setData({
               content,
               contentLength: res.data.result.datas.length,

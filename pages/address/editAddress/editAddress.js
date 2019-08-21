@@ -17,7 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option) {
-    console.log(option)
     if (option.lengths == 0) {
       this.setData({
         islength: true
@@ -29,7 +28,6 @@ Page({
       })
     } else {
       if (option.data != "null") {
-        console.log(option)
 
         option.isDefault = parseInt(option.isDefault);
         option.sort = parseInt(option.sort) + 1
@@ -41,7 +39,6 @@ Page({
           region: newscity
         })
       }
-      console.log(this.data)
     }
 
     // if传入的isEdit是true
@@ -60,7 +57,6 @@ Page({
     this.setData({
       region: e.detail.value
     })
-    console.log(this.data.region)
   },
 
 
@@ -85,7 +81,6 @@ Page({
   },
   deletefun: function() {
     var sort = this.data.editInfo.sort
-    console.log(this.data.editInfo)
     wx.request({
       url: `${app.baseUrl}/gzynew/delete-address`,
       data: {
@@ -138,7 +133,6 @@ Page({
       })
       return;
     }
-    console.log("editbaocun", e)
 
     var sort = this.data.editInfo.sort
     wx.request({
@@ -202,9 +196,7 @@ Page({
     var ischeck = this.data.editInfo.isDefault;
     if (this.data.islength) {
       ischeck = 1;
-      console.log(ischeck);
     }
-    console.log("addbaocun", e);
     var that = this;
     var sort = this.data.editInfo.sort
     wx.request({
@@ -235,13 +227,11 @@ Page({
 
   // 编辑信息改变发送到地址列表页
   bindUsername(e) {
-    console.log(e)
     var editInfo = this.data.editInfo
     editInfo.username = e.detail.value
     this.setData({
       editInfo: editInfo
     })
-    console.log(this.data)
   },
   bindTel(e) {
     var editInfo = this.data.editInfo

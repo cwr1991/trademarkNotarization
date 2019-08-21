@@ -14,7 +14,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.orderId)
     var that=this
     wx.request({
       url:`${app.baseUrl}/gzynew/orderinfo`,
@@ -25,15 +24,12 @@ Page({
 
       },
       success(res){
-        console.log(res)
-        // console.log(res.data.result.code_front)
         res.data.result.tm_data = res.data.result.tm_data.split(',')
         res.data.result.code_front = res.data.result.code_front.split(',')
 
         that.setData({
           detail:res.data.result
         })
-        console.log(that.data.detail)
       } 
     })
     

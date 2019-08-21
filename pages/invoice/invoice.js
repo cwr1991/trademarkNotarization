@@ -10,7 +10,6 @@ Page({
     
   },
   navBack(e){
-    console.log(e)
     let editData = e.currentTarget.dataset;
     wx.request({
       url: `${app.baseUrl}/gzynew/edit-invoice-info`,
@@ -41,7 +40,6 @@ Page({
         '&id=' + e.currentTarget.dataset.id + '&types=' + e.currentTarget.dataset.types +
         '&isDefault=' + e.currentTarget.dataset.isdefault + '&isEdit=true'
     })
-    console.log(e)
   },
   toAddInvoice: function (e) {
     wx.navigateTo({
@@ -62,7 +60,6 @@ Page({
         that.setData({
           invoiceInfo: res.data.result
         })
-        console.log(that.data.invoiceInfo)
       }
     })
 
@@ -93,7 +90,6 @@ Page({
         that.setData({
           invoiceInfo: res.data.result
         })
-        console.log(that.data.invoiceInfo)
       }
     })
   },

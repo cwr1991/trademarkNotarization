@@ -14,13 +14,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option) {
-    console.log(option)
     if (option.data != "null") {
       option.isDefault = parseInt(option.isDefault)
       this.setData({
         editInfo: option
       })
-      console.log(this.data.editInfo)
     }
 
 
@@ -56,7 +54,6 @@ Page({
   },
   deletefun: function() {
     var id = this.data.editInfo.id
-    console.log(this.data.editInfo)
     wx.request({
       url: `${app.baseUrl}/gzynew/delete-invoice-info`,
       data: {
@@ -120,7 +117,6 @@ Page({
       return;
     }
 
-    console.log("editbaocun", e)
     var sort = this.data.editInfo.sort
     wx.request({
       url: `${app.baseUrl}/gzynew/edit-invoice-info`,
@@ -191,7 +187,6 @@ Page({
       return;
     }
 
-    console.log("addbaocun", e)
     var sort = this.data.editInfo.sort
     wx.request({
       url: `${app.baseUrl}/gzynew/add-invoice-info`,
@@ -214,13 +209,11 @@ Page({
   },
   // 双向绑定
   bindTaitou(e) {
-    console.log(e)
     var editInfo = this.data.editInfo
     editInfo.company = e.detail.value
     this.setData({
       editInfo: editInfo
     })
-    console.log(this.data.editInfo)
   },
   bindNum(e) {
     var editInfo = this.data.editInfo

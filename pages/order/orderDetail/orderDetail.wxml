@@ -42,19 +42,19 @@
   <view class="title">申请人信息</view>
   <view class="item">
     <text class="leftTit">法定代表人姓名</text>
-    <text class="rightTit">{{detail.username}}</text>
+    <text class="rightTit" wx:if="{{detail.username}}">{{detail.username}}</text>
   </view>
   <view class="item">
     <text class="leftTit">法定代表人电话</text>
-    <text class="rightTit">{{detail.phone}}</text>
+    <text class="rightTit" wx:if="{{detail.phone}}">{{detail.phone}}</text>
   </view>
   <view class="item">
     <text class="leftTit">申请人身份证号</text>
-    <text class="rightTit">{{detail.yun_idCode}}</text>
+    <text class="rightTit" wx:if="{{detail.yun_idCode}}">{{detail.yun_idCode}}</text>
   </view>
   <view class="item">
     <text class="leftTit">收货地址</text>
-    <text class="rightTit">{{detail.zs_addr}}</text>
+    <text class="rightTit" wx:if="{{detail.zs_addr}}">{{detail.zs_addr}}</text>
   </view>
   <view class="item" wx:if="{{detail.enterprise_name}}">
     <text class="leftTit">公司名称</text>

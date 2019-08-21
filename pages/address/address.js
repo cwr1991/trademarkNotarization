@@ -25,7 +25,6 @@ Page({
           address: e.currentTarget.dataset.address,
         },
         success(res) {
-          console.log(res);
           if(res.data.status==0){
             wx.navigateBack({
               delta: 1
@@ -67,7 +66,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
     if (options.affirm == 1) {
       this.setData({
         isaffirm: true
@@ -81,7 +79,6 @@ Page({
         openid: app.openid
       },
       success(res){
-        console.log(res);
         // if(res.data.result.length>0){
           that.setData({
             addressInfo:res.data.result
@@ -89,11 +86,9 @@ Page({
         // }
       }
     })
-    // console.log(this.data)
     that.setData({
       source: options.source
     })
-    console.log(this.data)
   },
 
   /**
@@ -114,7 +109,6 @@ Page({
         openid: app.openid
       },
       success(res) {
-        console.log(res);
         // if (res.data.result.length > 0) {
           that.setData({
             addressInfo: res.data.result
