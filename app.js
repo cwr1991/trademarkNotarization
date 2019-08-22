@@ -26,9 +26,9 @@ App({
                 })
               }else{
                 that.username = res.data.result.username;
-                // wx.switchTab({
-                //   url: '/pages/index/index',
-                // })
+                wx.switchTab({
+                  url: '/pages/index/index',
+                })
               }
             }
           })
@@ -62,6 +62,6 @@ App({
     userInfo: null
   },
   openid:'',
-  baseUrl:'https://wwxs.86sb.com',
+  baseUrl:'https://www.86sb.com',
   username:''
 })

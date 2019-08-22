@@ -26,6 +26,6 @@
 
 <view class="weixinbut">
   <image src="../../images/loginicon01.png" mode="widthFix"></image>
-  微信登陆
+  微信登录
   <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
 </view>
