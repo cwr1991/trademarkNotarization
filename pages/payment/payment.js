@@ -21,10 +21,6 @@ Page({
       orderid: options.orderid,
       order_id: options.order_id
     })
-
-
-
-
     wx.request({
       url: app.baseUrl + '/gzynew/isoperator',
       data: {
@@ -36,11 +32,9 @@ Page({
             that.setData({
               sharedata: res.data.result
             })
-          var phone;
+          var phone = app.usermob;
           if (res.data.result.operator == 1) {
-            var phone = res.data.result.yun_mobile;
-          } else {
-            phone = app.username
+            phone = res.data.result.yun_mobile;
           }
           wx.request({
             url: app.baseUrl + '/gzynew/get-order-pay-charge',

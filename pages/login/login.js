@@ -79,6 +79,9 @@ Page({
   },
 
   getCode(){
+    if (this.data.codeNameVal !='获取验证码'){
+        return false;
+    }
     if (this.data.phoneval==''){
       wx.showToast({
         icon: 'none',
