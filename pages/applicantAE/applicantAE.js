@@ -173,6 +173,7 @@ Page({
                     let company = _this.data.company
                     company.legalPersonName = res.data.result.person
                     company.enterpriseName = res.data.result.name
+                    company.businessLicenseId = res.data.result.reg_num
                       _this.setData({
                         company
                       })
