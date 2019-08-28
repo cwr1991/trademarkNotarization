@@ -20,7 +20,9 @@
     "pages/address/editAddress/editAddress",
     "pages/invoice/invoice",
     "pages/invoice/editInvoice/editInvoice",
-    "pages/order/orderDetail/orderDetail"
+    "pages/order/orderDetail/orderDetail",
+    "pages/trademarkList/trademarkList",
+    "pages/trademarkType/trademarkType"
   ],
   "window": {
     "backgroundTextStyle": "light",

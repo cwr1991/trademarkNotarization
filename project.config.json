@@ -48,33 +48,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 1,
 			"list": [
 				{
-					"id": -1,
-					"name": "申请列表",
-					"pathName": "pages/applicantList/applicantList",
+					"id": 0,
+					"name": "商标列表",
+					"pathName": "pages/trademarkList/trademarkList",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "添加申请人",
-					"pathName": "pages/applicantAE/applicantAE",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "选择申请人",
-					"pathName": "pages/applicantSelect/applicantSelect",
-					"query": "openid= oKjx85fKXjZHMP2l3qyLfhryqFSM",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "web",
-					"pathName": "pages/webview/webview",
+					"name": "商标类别",
+					"pathName": "pages/trademarkType/trademarkType",
 					"scene": null
 				}
 			]

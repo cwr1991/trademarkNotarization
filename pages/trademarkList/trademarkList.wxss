@@ -1,0 +1,361 @@
+page{
+  height: 100%;
+}
+.trademark{
+font-family: PingFangSC-Regular;
+background:#F2F2F4;
+height: 100%;
+}
+.clearfix::after{
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: "";
+}
+.search_box{
+    height: 120rpx;
+    background: #F44444;
+    padding:20rpx 30rpx;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+.trademark_type{
+    width:180rpx;
+    height: 80rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    white-space: nowrap;
+    padding-left: 26rpx;
+    box-sizing: border-box;
+    color: #F44444;
+    border-top-left-radius: 10rpx;
+    border-bottom-left-radius: 10rpx;
+}
+.trademark_type .text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width:115rpx;
+}
+.trademark_type image{
+    width: 24rpx;
+    height: 14rpx;
+}
+.search_input{
+    flex: 1;
+    height: 80rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+.input-placeholder{
+    font-size: 28rpx;
+    color: #999999;
+}
+.search_input input{
+    width:100%;
+    height: 45rpx;
+    font-size: 28rpx;
+    color:#181818;
+    padding-left: 45rpx;
+    border-left: 1px solid #ededed;
+}
+.btn_search{
+    background: #FEAA2B;
+    width:126rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #FFFFFF;
+    text-align: center;
+    border-top-right-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+}
+/* 热门类别&项目 */
+.hot_section{
+    background: #fff;
+    padding:26rpx 0 6px 0;
+}
+.hot_header{
+    padding-left: 40rpx;
+    font-size: 26rpx;
+    color: #181818;
+    display: flex;
+    align-items: center;
+}
+.hot_header image{
+    width:31rpx;
+    height: 28rpx;
+    margin-right: 26rpx;
+}
+.hot_items{
+    background: #fff;
+    padding:12rpx 0rpx 0 40rpx;
+}
+.hot_items::after{
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: "";
+}
+.hot_item{
+    float: left;
+    border: 1px solid #E3E3E3;
+    border-radius: 2px;
+    border-radius: 2px;
+    background: #F1F1F1;
+    height: 44rpx;
+    line-height: 44rpx;
+    text-align: center;
+    font-size: 24rpx;
+    padding:0 5rpx;
+    color: #666666;
+    box-sizing: border-box;
+    margin-right: 16rpx;
+    margin-bottom: 20rpx;
+}
+.hot_items .active{
+    background: #F44444;
+    border: 1px solid #F44444;
+    color:#fff;
+}
+/* 当前选择 */
+.current_select{
+    height: 60rpx;
+    background: #F2F2F4;
+    font-size: 24rpx;
+    color: #999999;
+    text-align: center;
+    line-height: 60rpx;
+}
+/* 商标列表 */
+.list_content{
+    background: #F2F2F4;
+    padding-bottom: 40rpx;
+}
+.list_header{
+    display: flex;
+    background: #fff;
+    align-items: center;
+    height: 80rpx;
+}
+.picker_list{
+    flex: 1;
+    padding-left: 45rpx;
+}
+.picker_item{
+    font-size: 24rpx;
+    color: #999999;
+    display: flex;
+    align-items: center;
+}
+.picker_item image{
+    width:10rpx;
+    height: 6rpx;
+    margin-left: 8rpx;
+}
+.picker_list .active{
+    color: #F44444;
+}
+.list_box{
+    padding:34rpx 40rpx;
+}
+.list_item{
+    background: #FFFFFF;
+    border-radius: 8rpx;
+    border-radius: 8rpx;
+    float: left;
+    width:322rpx;
+    height: 374rpx;
+    padding:7rpx 25rpx 25rpx;
+    box-sizing: border-box;
+    margin-bottom: 30rpx;
+}
+.list_item image{
+    height: 196rpx;
+    width: 100%
+}
+.list_item_title{
+    font-size: 28rpx;
+    color: #333333;
+    margin-top: 18rpx;
+}
+.list_item_des{
+    font-size: 24rpx;
+    color: #999999;
+    margin-top: 6rpx;
+    margin-bottom: 10rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.list_item_price{ 
+    font-size: 28rpx;
+    color: #F44444;
+}
+.list_item:nth-child(2n){
+    float:right;
+}
+.list_consult{
+    height: 255rpx;
+    background: url('https://b.86sb.com.cn/wximg/trademark05.jpg')no-repeat;
+    display: flex;
+    background-size:100%;
+    padding:0 38rpx;
+    padding-top: 150rpx;
+    box-sizing: border-box;
+}
+.list_consult input{
+    flex:1;
+    background: #FFFFFF;
+    height: 72rpx;
+    padding-left: 32rpx;
+    font-size: 24rpx;
+    color:#181818;
+}
+.list_consult .input-placeholder{
+    font-size: 24rpx;
+    color: #999999;
+}
+.submit_phone{
+    width:150rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    font-size: 26rpx;
+    text-align: center;
+    color: #FFFFFF;
+    margin-left: 20rpx;
+    background: url('https://b.86sb.com.cn/wximg/trademark06.png')no-repeat;
+    background-size:100%;
+}
+/* 加载 */
+.weui-loadmore {
+	width:65%;
+	margin:1.5em auto;
+	line-height:1.6em;
+	font-size:14px;
+	text-align:center
+}
+.weui-loadmore__tips {
+	display:inline-block;
+	vertical-align:middle
+}
+.weui-loadmore_line {
+	border-top:1px solid #e5e5e5;
+	margin-top:2.4em
+}
+.weui-loadmore__tips_in-line {
+	position:relative;
+	top:-.9em;
+	padding:0 .55em;
+	background-color:#F2F2F4;
+	color:#999
+}
+.weui-loadmore__tips_in-dot {
+	position:relative;
+	padding:0 .16em;
+	width:4px;
+	height:1.6em
+}
+.weui-loadmore__tips_in-dot:before {
+	content:" ";
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-1px;
+	margin-left:-2px;
+	width:4px;
+	height:4px;
+	border-radius:50%;
+	background-color:#e5e5e5
+}
+
+
+.weui-loading {
+	margin:0 5px;
+	width:20px;
+	height:20px;
+	display:inline-block;
+	vertical-align:middle;
+	-webkit-animation:a 1s steps(12) infinite;
+	animation:a 1s steps(12) infinite;
+	background:transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+	background-size:100%;
+}
+.weui-loading.weui-loading_transparent {
+	background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Cpath fill='none' d='M0 0h100v100H0z'/%3E%3Crect xmlns='http://www.w3.org/2000/svg' width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.56)' rx='5' ry='5' transform='translate(0 -30)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.5)' rx='5' ry='5' transform='rotate(30 105.98 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.43)' rx='5' ry='5' transform='rotate(60 75.98 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.38)' rx='5' ry='5' transform='rotate(90 65 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.32)' rx='5' ry='5' transform='rotate(120 58.66 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.28)' rx='5' ry='5' transform='rotate(150 54.02 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.25)' rx='5' ry='5' transform='rotate(180 50 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.2)' rx='5' ry='5' transform='rotate(-150 45.98 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.17)' rx='5' ry='5' transform='rotate(-120 41.34 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.14)' rx='5' ry='5' transform='rotate(-90 35 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.1)' rx='5' ry='5' transform='rotate(-60 24.02 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='rgba(255,255,255,.03)' rx='5' ry='5' transform='rotate(-30 -5.98 65)'/%3E%3C/svg%3E")
+}
+@-webkit-keyframes a {
+	0% {
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg)
+    }
+    to {
+        -webkit-transform:rotate(1turn);
+        transform:rotate(1turn)
+    }
+}
+@keyframes a {
+	0% {
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg)
+    }
+    to {
+        -webkit-transform:rotate(1turn);
+        transform:rotate(1turn)
+    }
+}
+/* 列表为空 */
+/* 空状态 */
+.empty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 56rpx;
+}
+.empty_img{
+    width: 230rpx;
+    height: 283rpx;
+}
+.empty_img image{
+    width:100%;
+    height: 100%;
+}
+.empty_text{
+    font-size: 25rpx;
+    color: #999999;
+    width:436rpx;
+    text-align: center;
+}
+.empty input{
+    background: #FFFFFF;
+    border-radius: 8rpx;
+    border-radius: 8rpx;
+    width:540rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    font-size: 28rpx;
+    color:#181818;
+    padding-left: 28rpx;
+    margin-top: 48rpx;
+    box-sizing: border-box;
+}
+.empty .input-placeholder{
+    font-size: 28rpx;
+    color: #666666;
+}
+.helperBtn{
+    margin-top: 40rpx;
+    background: #F44444;
+    border-radius: 8rpx;
+    width:540rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    font-size: 28rpx;
+    color: #FFFFFF;
+    text-align: center;
+}

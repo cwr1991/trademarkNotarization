@@ -1,0 +1,10 @@
+<view class="trademarkType">
+    <view class="typeContent">
+        <block wx:for="{{typeArr}}" wx:key="{{item.id}}">
+                <view class="item {{item.checked ? 'active' : ''}}" data-check="{{item.checked}}" data-idx="{{index}}" bind:tap="chooseType" >
+                    {{item.name}}
+                    <image wx:if="{{item.checked}}" src="../../images/trademark05.png"></image>
+                </view>
+        </block>
+    </view>
+</view>

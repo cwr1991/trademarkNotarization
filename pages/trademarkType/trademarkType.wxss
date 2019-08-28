@@ -1,0 +1,41 @@
+.trademarkType{
+height: 100%;
+background: #fff;
+}
+.typeContent{
+    padding:45rpx;
+}
+.clearfix::after{
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: "";
+}
+.item{
+    float: left;
+    background: #F3F3F3;
+    border-radius: 5rpx;
+    border-radius: 5rpx;
+    width:320rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding:0 25rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    color: #333333;
+    margin-bottom: 20rpx;
+}
+.item:nth-child(2n){
+    float: right;
+}
+.typeContent .active{
+    background: rgb(253,244,244);
+    font-size: 28rpx;
+    color: #F44444;
+}
+.typeContent image{
+    width:25rpx;
+    height: 20rpx;
+    float: right;
+    margin-top: 30rpx;
+}

@@ -10,30 +10,30 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if(res.code){
-          var that = this;
-          that.code = res.code;
-          wx.request({
-            url: that.baseUrl+'/gzynew/openid',
-            data:{
-              code:res.code
-            },
-            success(res){
-              that.openid = res.data.result.openid;
-              if (res.data.status==1){
-                wx.reLaunch({
-                  url: '/pages/login/login',
-                })
-              }else{
-                that.username = res.data.result.username;
-                that.usermob = res.data.result.usermob;
-                wx.switchTab({
-                  url: '/pages/index/index',
-                })
-              }
-            }
-          })
-        }
+        // if(res.code){
+        //   var that = this;
+        //   that.code = res.code;
+        //   wx.request({
+        //     url: that.baseUrl+'/gzynew/openid',
+        //     data:{
+        //       code:res.code
+        //     },
+        //     success(res){
+        //       that.openid = res.data.result.openid;
+        //       if (res.data.status==1){
+        //         wx.reLaunch({
+        //           url: '/pages/login/login',
+        //         })
+        //       }else{
+        //         that.username = res.data.result.username;
+        //         that.usermob = res.data.result.usermob;
+        //         wx.switchTab({
+        //           url: '/pages/index/index',
+        //         })
+        //       }
+        //     }
+        //   })
+        // }
       }
     })
 
