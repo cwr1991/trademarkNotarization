@@ -25,6 +25,9 @@ Page({
     }
     var iv = e.detail.iv;
     var encryptedData = e.detail.encryptedData;
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: app.baseUrl + '/gzynew/getmobile',
       data: {
@@ -41,8 +44,10 @@ Page({
               mobile: res.data.phoneNumber
             },
             success(res) {
-              console.log(res);
               if(res.data.status==0){
+                app.username = res.data.result.username;
+                app.usermob = res.data.result.usermob;
+                app.openid = res.data.result.openid;
                 wx.switchTab({
                   url: '/pages/index/index',
                 })
@@ -99,7 +104,6 @@ Page({
       return false;
     }
     var that = this;
-
     wx.request({
       url: app.baseUrl +'/gzynew/sendsms',
       data: {
@@ -107,6 +111,7 @@ Page({
       },
       success(res) {
         if(res.data.status==0){
+        
           var aa = 60;
           var interval = setInterval(function () {
             aa--;
@@ -116,10 +121,17 @@ Page({
             if (aa == 0) {
               clearInterval(interval);
               that.setData({
-                codeNameVal: '获取验证码',
+                codeNameVal: '获取验证码'
               })
             }
           }, 1000)
+        }else{
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+            duration: 2000
+          })
+          return false;
         }
       }
     })
@@ -159,6 +171,9 @@ Page({
         code: e.detail.value.code
       },
       success(res) {
+        app.username = res.data.result.username;
+        app.usermob = res.data.result.usermob;
+        app.openid = res.data.result.openid;
         if(res.data.status==0){
           wx.switchTab({
             url: '/pages/index/index',

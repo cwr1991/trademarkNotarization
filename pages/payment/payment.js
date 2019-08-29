@@ -40,7 +40,8 @@ Page({
             url: app.baseUrl + '/gzynew/get-order-pay-charge',
             data: {
               openid: app.openid,
-              phone: phone
+              phone: phone,
+              order_id: options.order_id
             },
             success(res) {
               that.setData({
@@ -54,7 +55,7 @@ Page({
             data: {
               order_id: options.order_id,
               openid: app.openid,
-              phone: phone
+              phone: phone,
             },
             success(res) {
               if (res.data.status == 1) {

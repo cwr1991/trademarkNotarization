@@ -54,6 +54,9 @@
   float: right;
   margin-top: 8rpx;
 }
+.getcode.active{
+  background: #f44444;
+}
 .but{
   margin-top: 160rpx;
   background: #e5a09a;

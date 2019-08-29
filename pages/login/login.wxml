@@ -11,7 +11,7 @@
               <image src="../../images/loginicon02.png" mode="widthFix"></image>
           </view>
         </view>
-        <view class="getcode" bindtap="getCode">{{codeNameVal}}</view>
+        <view class="getcode {{codeNameVal=='获取验证码'?'active':''}}" bindtap="getCode">{{codeNameVal}}</view>
     </view>
 
     <view class="but {{isbut?'active':''}}">登录
