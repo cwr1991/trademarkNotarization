@@ -9,7 +9,7 @@
            </view>
            <view class="title">
               <view>
-                商标转让公证（测试111）
+                商标转让公证
                  <image src="../../images/support.png" mode="widthFix"></image>
               </view>
               <text>公证费：{{price}}/件</text>
