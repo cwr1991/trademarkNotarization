@@ -3,7 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    // canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    imgUrl: "https://tmstore.oss-cn-hangzhou.aliyuncs.com/vxxcx/sbjy",
     orderItems: [],
     infoItems: [{
         icon: "/images/address.png",
@@ -19,46 +19,10 @@ Page({
         iconTitle: "开票信息"
       }
     ],
-    telnumber: 15112345678
+    // telnumber: 15112345678
   },
 
   onLoad: function() {
-    var that = this;
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          that.code = res.code;
-          wx.request({
-            url: app.baseUrl + '/gzynew/openid',
-            data: {
-              code: res.code
-            },
-            success(res) {
-              that.setData({
-                openid: res.data.result.openid,
-                telnumber:res.data.result.username
-              });
-              let order_count = [];
-              wx.request({
-                url: `${app.baseUrl}/gzynew/queryorder`,
-                data: {
-                  openid: that.data.openid,
-                },
-                success: function (res) {
-                  that.setData({
-                    orderItems: res.data.result.nums[0]
-                  })
-                }
-              })
-            }
-          })
-        }
-      }
-    })
-  },
-
-  onShow:function(){
     var that = this;
     wx.login({
       success: res => {
@@ -81,7 +45,43 @@ Page({
                 data: {
                   openid: that.data.openid,
                 },
-                success: function (res) {
+                success: function(res) {
+                  that.setData({
+                    orderItems: res.data.result.nums[0]
+                  })
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
+  onShow: function() {
+    var that = this;
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          that.code = res.code;
+          wx.request({
+            url: app.baseUrl + '/gzynew/openid',
+            data: {
+              code: res.code
+            },
+            success(res) {
+              that.setData({
+                openid: res.data.result.openid,
+                telnumber: res.data.result.username
+              });
+              let order_count = [];
+              wx.request({
+                url: `${app.baseUrl}/gzynew/queryorder`,
+                data: {
+                  openid: that.data.openid,
+                },
+                success: function(res) {
                   that.setData({
                     orderItems: res.data.result.nums[0]
                   })
@@ -135,27 +135,65 @@ Page({
     })
   },
 
-  // 跳转订单页
-  toOrder(e) {
-    let id;
-    if (e.currentTarget.dataset.id){
-      id = e.currentTarget.dataset.id
-      wx.navigateTo({
-        url: '/pages/order/order?status=' + id,
-      })
-    }
-    else{
-      wx.navigateTo({
-        url: '/pages/order/order?status=-1',
-      })
-    }
-    
-  },
+  // 跳转在线公证订单页
+  togzOrder(e) {
+    wx.navigateTo({
+      url: '/pages/order/order?status=-1',
+    })
 
+  },
+  tojyOrder() {
+    wx.navigateTo({
+      url: '/pages/buyerorder/buyerorder?status=-1',
+    })
+  },
   // 退出登录
   quit: function(e) {
     wx.redirectTo({
       url: '/pages/login/login?isquit=1'
     })
+  },
+
+  // 支付测试
+  pay() {
+    // var openid = "oKjx85YYAvzlPvGFU9ao4gC9uX3c"
+    var order_id = "SBJY201908281802518285719948"
+    wx.request({
+      url: 'https://wwxs.86sb.com/gzytrading/get-pay-data',
+      data: {
+        openid: app.openid,
+        order_id: order_id,
+        type: 2
+      },
+      success: res => {
+        this.setData({
+          payment: res.data.result
+        })
+        wx.requestPayment({
+          timeStamp: this.data.payment.timestamp.toString(),
+          nonceStr: this.data.payment.nonceStr,
+          package: this.data.payment.package,
+          signType: this.data.payment.signType,
+          paySign: this.data.payment.paySign,
+          success(res) {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              title: res.errMsg
+            })
+          },
+          fail(res) {
+            wx.showToast({
+              icon: 'none',
+              title: res.errMsg
+            })
+          }
+        })
+      }
+    })
+    console.log(this.data)
+    
   }
+
+
 })

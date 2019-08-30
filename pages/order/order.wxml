@@ -4,7 +4,7 @@
   </text>
 </view>
 <!-- 内容 -->
-<view class="content" >
+<view class="content">
   <view id="itemBox">
     <!-- 数据为空状态 -->
     <view class="null" wx:if="{{contentLength==0}}">
@@ -17,7 +17,7 @@
       <view class="edit_left">共
         <text>{{contentLength}}</text>件商品</view>
       <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 && contentLength!=0}}" bindtap="clickEdit">编辑</view>
-      <view class="edit_right" wx:elif="{{isClickEdit &&currentTab==3 }}"bindtap="clickEdit">完成</view>
+      <view class="edit_right" wx:elif="{{isClickEdit &&currentTab==3 }}" bindtap="clickEdit">完成</view>
     </view>
 
     <!-- 每条订单信息 -->
@@ -31,9 +31,13 @@
             <text>{{contentItem.add_at}}</text>
             <!-- <text>{{infoItem.times.time}}</text> -->
           </view>
-          <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==1}}">已支付</view>
-          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">待付款</view>
-          <view style="font-size:24rpx;color:#F44444" wx:else>{{contentItem.flow_name}}</view>
+
+          <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.flow_status==3}}">已终止</view>
+          <view wx:else>
+            <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==1}}">已支付</view>
+            <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">待付款</view>
+          </view>
+          
 
 
         </view>

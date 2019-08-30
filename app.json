@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/personCenter/personCenter",
     "pages/index/index",
     "pages/login/login",
-    "pages/personCenter/personCenter",
     "pages/webview/webview",
     "pages/order/order",
     "pages/paymentresult/paymentresult",
@@ -20,7 +20,9 @@
     "pages/address/editAddress/editAddress",
     "pages/invoice/invoice",
     "pages/invoice/editInvoice/editInvoice",
-    "pages/order/orderDetail/orderDetail"
+    "pages/order/orderDetail/orderDetail",
+    "pages/collection/collection",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,5 +48,6 @@
       }
     ]
   },
+  "component": true,
   "sitemapLocation": "sitemap23.json"
 }
