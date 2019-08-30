@@ -118,7 +118,7 @@ Page({
     handleHotT(e){
         let index = e.currentTarget.dataset.idx
         let hotTypes =  this.data.hotTypes
-        let typeArr =  [hotTypes[index].type]
+        let typeArr =  [hotTypes[index]]
         this.setData({
             typeArr
         })

@@ -22,7 +22,8 @@
     "pages/invoice/editInvoice/editInvoice",
     "pages/order/orderDetail/orderDetail",
     "pages/trademarkList/trademarkList",
-    "pages/trademarkType/trademarkType"
+    "pages/trademarkType/trademarkType",
+    "pages/trademarkDetail/trademarkDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

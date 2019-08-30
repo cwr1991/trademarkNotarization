@@ -1,0 +1,86 @@
+<view class="trademarkDetail">
+    <view class='positionR'>
+          <view class="header"></view>
+          <view class="trademark_img">
+              <image></image>
+          </view>
+    </view>
+    <view class="section">
+        <view class="section_item">
+            <view class="name fw">慧斓</view>
+            <view class="price fw">¥1800</view>
+        </view>
+        <view class="section_item">
+            <view class="type name">20类  日化妆用品</view>
+            <view class="preprice price">预付款¥540</view>
+        </view>
+    </view>
+    <view class="table">
+        <view class="section_item">
+            <view class="code">R20001540458m</view>
+            <view class="time">2029-9-10至2029-9-10</view>
+        </view>
+        <view class="section_item">
+            <view class="code_c">编号</view>
+            <view class="usetime">使用时间</view>
+        </view>
+    </view>
+    <view class="scope">
+        群组及范围
+    </view>
+    <view class='scope_table'>
+      <view class='group'>类似群组</view>
+      <view class="group_detail">
+        0301，0302.0303，0304，0305，0306
+      </view>
+      <view class='group use_scope'>核定使用范围</view>
+      <view class="scope_text">
+        家具，存储和孕畜用非金属容器，家具，存储和孕畜用非金属容器，家具，存储和孕畜用非金属容器，家具，存储和孕畜用非金属容器，家具，存储和孕畜用非金属容器
+      </view>
+    </view>
+    <view class='bottom'>
+      <view class='bottom_title {{index==1 ? "active" : ""}}' data-index="1" bind:tap="changeItem">
+          商标详情
+          <text wx:if="{{index==1}}" class="active_line"></text>
+        </view>
+      <view class='bottom_title {{index == 2 ? "active" : ""}}' data-index="2" bind:tap="changeItem">
+        交易流程
+        <text wx:if="{{index==2}}" class="active_line"></text>
+      </view>
+      <view class='bottom_title {{index==3 ? "active" : ""}}' data-index="3" bind:tap="changeItem">
+            过户资料
+            <text wx:if="{{index==3}}" class="active_line"></text>
+      </view>
+    </view>
+    <view class='splitline'></view>
+    <view class='trademark_d'>
+        <view class='trademark_ditem'>
+            <text class='label'>商标名称:</text>
+            <text class='val'>慧岚欣芷</text>
+        </view>
+        <view class='trademark_ditem'>
+            <text class='label'>商标类别:</text>
+            <text class='val'>慧岚欣芷</text>
+        </view>
+        <view class='trademark_ditem'>
+            <text class='label'>申请日期:</text>
+            <text class='val'>慧岚欣芷</text>
+        </view>
+        <view class='trademark_ditem'>
+            <text class='label'>初审公告日期:</text>
+            <text class='val'>慧岚欣芷</text>
+        </view>
+        <view class='trademark_ditem'>
+            <text class='label'>初审公告期号:</text>
+            <text class='val'>慧岚欣芷</text>
+        </view>
+        <view class='trademark_ditem'>
+            <text class='label'>注册公告日期:</text>
+            <text class='val'>慧岚欣芷</text>
+        </view>
+        <view class='trademark_ditem'>
+            <text class='label'>注册公告期号:</text>
+            <text class='val'>慧岚欣芷</text>
+        </view>
+    </view>
+</view>
