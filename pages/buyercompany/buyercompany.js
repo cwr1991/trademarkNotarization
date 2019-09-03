@@ -111,8 +111,8 @@ Page({
             formData: {
               'user': 'test',
               orderId: that.data.order_id,
-              evidName: '营业执照',
-              evidType: 6
+              evidName: '受让人身份证明材料',
+              evidType: 7
             },
             success(res) {
               if (JSON.parse(res.data).status != 0) {
