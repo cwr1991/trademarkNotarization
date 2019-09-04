@@ -63,7 +63,9 @@ App({
     userInfo: null
   },
   openid:'',
-  baseUrl:'https://www.86sb.com',
+  // baseUrl:'https://www.86sb.com',
+  baseUrl:'https://wwxs.86sb.com',
+  newbaseUrl:'https://api.86sb.com.cn',
   username:'',
   usermob:''
 })

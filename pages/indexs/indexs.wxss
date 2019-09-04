@@ -47,7 +47,7 @@
   overflow-x: scroll;
 }
 .classList{
-  width: 150%;
+  width: 225%;
   padding-bottom: 20rpx;
   padding-top: 30rpx;
 }
