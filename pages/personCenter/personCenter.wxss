@@ -1,6 +1,6 @@
+/* banner */
 
-/* banner */ 
-.banner{
+.banner {
   height: 266rpx;
   background: url(https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/person_bg.png) no-repeat center;
   background-size: 100% 100%;
@@ -8,122 +8,154 @@
   align-items: center;
   padding-left: 40rpx;
 }
-.banner .userinfo{
+
+.banner .userinfo {
   display: flex;
   align-items: center;
   color: white;
 }
-.header{
+
+.header {
   display: flex;
 }
-open-data[type="userAvatarUrl"]{
-    width: 110rpx;
-    height: 110rpx;
-    border-radius: 50%;
-    overflow: hidden;
-}
-/* 中间模块 */
-.centerContent{
-  position: relative;
-  top: 0;left: 0;
-  padding: 0 20rpx;
-  height: 230rpx;
 
+open-data[type="userAvatarUrl"] {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  overflow: hidden;
 }
-.order{
+
+/* 中间模块 */
+
+.centerContent {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0 20rpx;
+  height: 210rpx;
+}
+
+.order {
   padding: 38rpx 0;
   width: 709rpx;
   background: white;
   box-sizing: border-box;
   border-radius: 10rpx;
   border: 1px solid #ddddde;
-  box-shadow: 0px 0.5px 2px #C9C9C9;
+  box-shadow: 0px 0.5px 2px #c9c9c9;
   position: absolute;
   top: -40rpx;
 }
-.order_title{
+
+.order_title {
   /* width: 100%; */
-  padding:0 28rpx 20rpx;
-  border-bottom:1px solid #ddddde;
+  padding: 0 28rpx 20rpx;
+  border-bottom: 1px dashed #ddddde;
   display: flex;
   align-items: center;
 }
-.order_title image{
+
+.order_title image {
   width: 44rpx;
   height: 44rpx;
   margin-right: 10rpx;
 }
-.order_title text{
+
+.order_title text {
   font-weight: 400;
+  font-size: 28rpx;
+  color: #666;
 }
-.order_itembox{
+
+.order_itembox {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 30rpx;
 }
-.order_itembox .item{
+
+.order_itembox .item {
   text-align: center;
 }
-.order_itembox .item .count{
+
+.order_itembox .item .count {
   color: #080808;
   font-size: 30rpx;
   font-weight: 600;
-  margin-bottom: 10rpx
+  margin-bottom: 10rpx;
 }
-.order_itembox .item .type{
+
+.order_itembox .item .type {
   color: #999;
   font-size: 24rpx;
 }
 
+.order_itembox .orders {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.order_itembox .orders image {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 25rpx;
+}
 
 /* 地址，申请人，开票信息，退出登录 */
-.infoBox{
+
+.infoBox {
   padding: 0 20rpx;
 }
-.info,.quit{
-  
+
+.info, .quit {
   border-radius: 10rpx;
   border: 1px solid #ddddde;
-  box-shadow: 0px 0.5px 2px #C9C9C9;
+  box-shadow: 0px 1px 2px #E0E0E0;
 }
-.infoItem{
+
+.infoItem {
   display: flex;
   align-items: center;
   width: 689rpx;
   padding-left: 20rpx;
   height: 119rpx;
-  border-bottom: 1px solid #ddddde
+  border-bottom: 1px solid #ddddde;
 }
-.infoItem .icon{
+
+.infoItem .icon {
   width: 44rpx;
   height: 44rpx;
 }
-.infoItem .arrow{
+
+.infoItem .arrow {
   width: 19rpx;
   height: 27rpx;
 }
-.infoItem .infoTitle{
+
+.infoItem .infoTitle {
   width: 590rpx;
   margin-left: 20rpx;
   color: #080808;
   font-size: 30rpx;
   font-weight: 600;
-  
 }
 
-.infoItem .infoTitle text{
+.infoItem .infoTitle text {
   color: #999;
   margin-left: 15rpx;
-  font-weight:normal; 
+  font-weight: normal;
 }
-.quit{
+
+.quit {
   width: 709rpx;
   height: 88rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20rpx;
+  margin: 20rpx 0;
   color: #080808;
   font-size: 30rpx;
 }

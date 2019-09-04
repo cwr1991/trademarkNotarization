@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/indexs/indexs",
+    "pages/personCenter/personCenter",
     "pages/index/index",
     "pages/login/login",
-    "pages/personCenter/personCenter",
     "pages/webview/webview",
     "pages/order/order",
     "pages/paymentresult/paymentresult",
@@ -25,7 +25,9 @@
     "pages/trademarkList/trademarkList",
     "pages/trademarkType/trademarkType",
     "pages/trademarkDetail/trademarkDetail",
-    "pages/trademarkConfirm/trademarkConfirm"
+    "pages/trademarkConfirm/trademarkConfirm",
+    "pages/collection/collection",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -63,5 +65,6 @@
       }
     ]
   },
+  "component": true,
   "sitemapLocation": "sitemap23.json"
 }
