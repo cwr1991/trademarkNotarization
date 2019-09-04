@@ -7,11 +7,10 @@
                         馋益佰
                         <text class="price">¥1800</text>
                 </view>
-                <view class="section_item clearfix">
+                <view class="section_item section_fc clearfix">
                         20类 日化用品
-                        <text class="price">预付款¥540</text>
+                        <text class="prepare ">预付款¥540</text>
                 </view>
         </view>
-        
     </view>
 </view>

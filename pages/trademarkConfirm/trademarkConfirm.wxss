@@ -25,7 +25,7 @@
 }
 .section_box{
     flex:1;
-
+    padding-top: 35rpx;
 }
 .image{
     width:154rpx;
@@ -37,10 +37,22 @@
     color: #181818;
     height: 40rpx;
     line-height: 40rpx;
+    padding-left: 50rpx;
+    margin-bottom: 18rpx;
+}
+.section_fc{
+  font-size: 24rpx;
+  color: #666666;
+}
+.prepare{
+  float: right;
+  text-align: left;
+  width:160rpx;
 }
 .section_item .price{
-    font-size: 28rpx;
+font-size: 28rpx;
 color: #F44444;
 float: right;
+width:160rpx;
 }
 
