@@ -161,11 +161,10 @@ height: 100%;
     color: #F44444;
 }
 .list_box{
-    padding:34rpx 40rpx;
+    padding:34rpx 40rpx 40rpx;
 }
 .list_item{
     background: #FFFFFF;
-    border-radius: 8rpx;
     border-radius: 8rpx;
     float: left;
     width:322rpx;
@@ -182,6 +181,9 @@ height: 100%;
     font-size: 28rpx;
     color: #333333;
     margin-top: 18rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
 }
 .list_item_des{
     font-size: 24rpx;
@@ -206,7 +208,7 @@ height: 100%;
     background-size:100%;
     padding:0 38rpx;
     padding-top: 150rpx;
-    box-sizing: border-box;
+    padding-bottom:50rpx;
 }
 .list_consult input{
     flex:1;
@@ -358,4 +360,15 @@ height: 100%;
     font-size: 28rpx;
     color: #FFFFFF;
     text-align: center;
+}
+.backTop{
+    position: fixed;
+    width:92rpx;
+    height: 92rpx;
+    bottom:100rpx;
+    right: 30rpx;
+}
+.backTop image{
+    width:100%;
+    height: 100%;
 }

@@ -1,32 +1,11 @@
+let brandType = require("../../utils/brandTypeList.js");
 Page({
     data:{
         typeArr:[]
     },
     onLoad(e){
-        console.log(e,"opt")
         let typeIdArr = e.typeIds.split(',');
-        let typeArr = [
-            {
-                type:"1",
-                id:1,
-                name:"1-类涂料油漆1"
-            },
-            {
-                type:"11",
-                id:11,
-                name:"11-类涂料油漆11"
-            },
-            {
-                type:"12",
-                id:12,
-                name:"12-类涂料油漆12"
-            },
-            {
-                type:"13",
-                id:13,
-                name:"13-类涂料油漆13"
-            },
-        ]
+        let typeArr = brandType
         typeArr.forEach((element)=>{
             let id = '' + element.id
             if(typeIdArr.includes(id)){
@@ -35,7 +14,6 @@ Page({
                 element.checked = false
             }
         })
-        
         this.setData({
             typeArr
         })
@@ -44,6 +22,22 @@ Page({
         let index = e.currentTarget.dataset.idx
         let check = e.currentTarget.dataset.check
         let typeArr = this.data.typeArr
+        let typeArray = typeArr.filter((element)=>{
+            if(element.checked){
+                return element
+            }
+        })
+        let allExit = typeArray.some((item)=>{
+            return item.id == 0
+        })
+        if(allExit&&index!=0){
+            wx.showToast({
+                title:"选中全部类别,不能选择其他类别",
+                icon:'none'
+            })
+
+            return
+        }
         typeArr[index].checked = !check
         this.setData({
             typeArr

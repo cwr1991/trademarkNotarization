@@ -1,5 +1,5 @@
 {
     "usingComponents": {},
     "navigationBarTitleText":"买商标",
-    "onReachBottomDistance" : 30
+    "onReachBottomDistance" : 10
   }
