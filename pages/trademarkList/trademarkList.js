@@ -176,92 +176,139 @@ Page({
                 price:"1888"
             },
         ]
-        let hotProduct = this.data.hotProduct
-        hotProduct = [
-            {
-                name:"0201防腐剂1",
-                id:1
-            },
-            {
-                name:"0201防腐剂12",
-                id:12
-            },
-            {
-                name:"0201防腐剂13",
-                id:13
-            },
-            {
-                name:"0201防腐剂14",
-                id:14
-            },
-            {
-                name:"0201防腐剂15",
-                id:15
-            },
-            {
-                name:"0201防腐剂16",
-                id:16
-            },
-            {
-                name:"0201防腐剂17",
-                id:17
-            },
-            {
-                name:"0201防腐剂18",
-                id:18
-            },
-        ]
-        hotProduct.forEach(element => {
-            element.checked = false
-        });
-        let hotTypes = this.data.hotTypes
-            hotTypes = [ 
+            let hotProduct = this.data.hotProduct
+            hotProduct = [
                 {
-                    name:'服装项目',
-                    id:'1',
-                    type:"第1类"
+                    name:"0201防腐剂1",
+                    id:1
                 },
                 {
-                    name:'服装项目2',
-                    id:'12',
-                    type:"第12类"
+                    name:"0201防腐剂12",
+                    id:12
                 },
                 {
-                    name:'服装项目3',
-                    id:'13',
-                    type:"第13类"
+                    name:"0201防腐剂13",
+                    id:13
                 },
                 {
-                    name:'服装项目4',
-                    id:'14',
-                    type:"第14类"
+                    name:"0201防腐剂14",
+                    id:14
                 },
                 {
-                    name:'服装项目5',
-                    id:'15',
-                    type:"第15类"
+                    name:"0201防腐剂15",
+                    id:15
                 },
                 {
-                    name:'服装项目6',
-                    id:'16',
-                    type:"第16类"
+                    name:"0201防腐剂16",
+                    id:16
                 },
                 {
-                    name:'服装项目7',
-                    id:'17',
-                    type:"第17类"
+                    name:"0201防腐剂17",
+                    id:17
                 },
                 {
-                    name:'服装项目8',
-                    id:'18',
-                    type:"第18类"
-                }
+                    name:"0201防腐剂18",
+                    id:18
+                },
             ]
-        this.setData({
-            list,
-            hotProduct,
-            hotTypes
-        })
+            hotProduct.forEach(element => {
+                element.checked = false
+            });
+            let hotTypes = this.data.hotTypes
+                hotTypes = [ 
+                    {
+                        name:'服装项目',
+                        id:'1',
+                        type:"第1类"
+                    },
+                    {
+                        name:'服装项目2',
+                        id:'12',
+                        type:"第12类"
+                    },
+                    {
+                        name:'服装项目3',
+                        id:'13',
+                        type:"第13类"
+                    },
+                    {
+                        name:'服装项目4',
+                        id:'14',
+                        type:"第14类"
+                    },
+                    {
+                        name:'服装项目5',
+                        id:'15',
+                        type:"第15类"
+                    },
+                    {
+                        name:'服装项目6',
+                        id:'16',
+                        type:"第16类"
+                    },
+                    {
+                        name:'服装项目7',
+                        id:'17',
+                        type:"第17类"
+                    },
+                    {
+                        name:'服装项目8',
+                        id:'18',
+                        type:"第18类"
+                    }
+                ]
+            this.setData({
+                list,
+                hotProduct,
+                hotTypes
+            })
+            retrun
+            //
+            wx.showLoading({
+                title:'加载中',
+                mask:true
+            })
+            wx.request({
+                url:reqUrl ,
+                success:result=>{
+                  let res = result.data.data
+                  this.setData({
+                      merchantList : res.merchants
+                  })
+                  wx.hideLoading()
+                  if(res.data.length == 0 && page == 1){
+                    list = res.data
+                    this.setData({
+                        loadEnd:false,
+                        empty:true,
+                        init:true,
+                        list
+                    })
+                    return
+                  }
+                  if(res.data.length == 0 ){
+                    this.setData({
+                        loadEnd:false,
+                        empty:true
+                    })
+                    return
+                  }
+                  if(res.data.length < 20 && page ==1){
+                    list = [...list,...res.data]
+                    this.setData({
+                        loadEnd:false,
+                        empty:true,
+                        list
+                    })
+                  }else{
+                    list = [...list,...res.data]
+                    this.setData({
+                      list,
+                      loadEnd:false
+                    })
+                  }
+                }
+            })
     },
     // 加载更多
     onReachBottom: function() {

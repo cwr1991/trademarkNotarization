@@ -1,0 +1,45 @@
+.title{
+    font-size: 30rpx;
+    color: #333333;
+    padding-left: 40rpx;
+    padding-top: 40rpx;
+    box-sizing: border-box;
+}
+.clearfix::after{
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: "";
+  }
+.section{
+    background: #FFFFFF;
+    box-shadow: 0 2rpx 26rpx 0 #DDDDDD;
+    border-radius: 5rpx;
+    width:690rpx;
+    height: 210rpx;
+    margin: auto;
+    margin-top: 18rpx;
+    padding:28rpx;
+    box-sizing: border-box;
+    display: flex;
+}
+.section_box{
+    flex:1;
+
+}
+.image{
+    width:154rpx;
+    height: 154rpx;
+    background: #f3f3f3;
+}
+.section_item{
+    font-size: 28rpx;
+    color: #181818;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+.section_item .price{
+    font-size: 28rpx;
+color: #F44444;
+float: right;
+}

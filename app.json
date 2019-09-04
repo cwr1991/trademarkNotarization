@@ -23,7 +23,8 @@
     "pages/order/orderDetail/orderDetail",
     "pages/trademarkList/trademarkList",
     "pages/trademarkType/trademarkType",
-    "pages/trademarkDetail/trademarkDetail"
+    "pages/trademarkDetail/trademarkDetail",
+    "pages/trademarkConfirm/trademarkConfirm"
   ],
   "window": {
     "backgroundTextStyle": "light",

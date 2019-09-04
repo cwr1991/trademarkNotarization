@@ -53,7 +53,7 @@
       </view>
     </view>
     <view class='splitline'></view>
-    <view class='trademark_d'>
+    <view class='trademark_d' wx:if="{{index==1}}">
         <view class='trademark_ditem'>
             <text class='label'>商标名称:</text>
             <text class='val'>慧岚欣芷</text>
@@ -83,4 +83,57 @@
             <text class='val'>慧岚欣芷</text>
         </view>
     </view>
+    <view class='trademark_d2' wx:if="{{index==2}}">
+        <image src="../../images/trademark07.png"></image>
+    </view>
+    <view class='trademark_d3' wx:if="{{index==3}}">
+        <image src="../../images/trademark06.png"></image>
+    </view>
+    <!-- 底部模块 -->
+    <view class="bottom_module">
+        <view class="bottom_left">
+            <view class="collect" bind:tap="collectFun">
+                <image src="../../images/trademark08.png"></image>
+                收藏
+            </view>
+            <view class="collect" bind:tap="consultFun">
+                <image src="../../images/trademark09.png"></image>
+                咨询
+            </view>
+        </view>
+        <view class="bottom_right" bind:tap="purchase">
+            立即购买
+        </view>
+    </view>
+    <!-- 咨询模块 -->
+    <view class="consult_box" wx:if="{{consult_show}}">
+        <view class="consult_list clearfix">
+            <view class="consult_item">
+               商标名称:<text>商标名称</text>
+            </view>
+            <view class="consult_item">
+                注册号:
+                <text>商标名称</text>
+            </view>
+        </view>
+        <view class="consult_list clearfix">
+            <view class="consult_item">
+                商标类别:<text>商标名称</text>
+            </view>
+            <view class="consult_item">
+                商标价格:
+                <text>¥1876</text>
+            </view>
+        </view>
+        <view>
+            <input type="number" bindinput="consultPhoneFun" placeholder="输入您的联系电话" auto-focus class="consult_input"/>
+        </view>
+        <view class="consult_tip">
+            我们会第一时间与您联系，请您保持电话畅通
+        </view>
+        <view class="submit_btn" bind:tap="submitFun">
+            确定提交
+        </view>
+    </view>
+    <view class="mask" bind:tap="closeMask" wx:if="{{consult_show}}"></view>
 </view>

@@ -2,6 +2,12 @@
     background: #fff;
     padding-bottom: 130rpx;
 }
+.clearfix::after{
+  visibility: hidden;
+  display: block;
+  clear: both;
+  content: "";
+}
 .positionR{
   position: relative;
 }
@@ -182,4 +188,133 @@ margin-bottom: 18rpx;
 }
 .trademark_ditem .val{
   margin-left: 10rpx;
+}
+.trademark_d2{
+    width:725rpx;
+    height: 520rpx;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 33rpx;
+}
+.trademark_d2 image{
+  width:100%;
+  height: 100%;
+}
+.trademark_d3{
+  width:725rpx;
+  height: 632rpx;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 33rpx;
+}
+.trademark_d3 image{
+  width:100%;
+  height: 100%;
+}
+/* 底部模块 */
+.bottom_module{
+  position: fixed;
+  bottom:0;
+  width:100%;
+  height: 100rpx;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  display: flex;
+  box-shadow: 0 0 14px 0 rgba(241,241,241,0.50);
+}
+.bottom_module .bottom_right{
+  width:426rpx;
+  height: 100%;
+  background: #F44444;
+  line-height: 100rpx;
+  color:#fff;
+  font-size: 32rpx;
+  text-align: center;
+}
+.bottom_module  .bottom_left{
+  flex:1;
+  display: flex;
+}
+.collect{
+  flex:1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #333333;
+  padding-top: 15rpx;
+}
+.collect image{
+  width:46rpx;
+  height: 46rpx;
+  display: block;
+  margin: auto;
+}
+/*咨询模块 */
+.consult_box{
+  width:100%;
+  background: #fff;
+  height: 480rpx;
+  box-sizing: border-box;
+  padding:50rpx;
+  position: fixed;
+  top: 50%;
+  font-size: 24rpx;
+  color: #666666;
+  margin-top:-240rpx;
+  z-index: 33;
+}
+.consult_box text{
+  font-size: 28rpx;
+  color: #0C0C0C;
+  margin-left: 10rpx;
+}
+.consult_list{
+
+margin-bottom:18rpx;
+}
+
+.consult_item{
+  float: left;
+}
+.consult_item:nth-child(2n){
+  margin-left: 200rpx;
+}
+.consult_input{
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  height: 80rpx;
+  line-height: 80rpx;
+  color:#181818;
+  font-size: 24rpx;
+  padding-left: 26rpx;
+  margin-top: 38rpx;
+}
+.consult_list .input-placeholder{
+  font-size: 24rpx;
+color: #666666;
+}
+.consult_tip{
+  font-size: 24rpx;
+  color: #F44444;
+  margin-top: 18rpx;
+  margin-bottom: 24rpx;
+}
+.submit_btn{
+  background: #F44444;
+  border-radius: 5rpx;
+  border-radius: 5rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color:#fff;
+  font-size: 24rpx;
+
+}
+.mask{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 22;
 }

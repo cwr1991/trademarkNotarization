@@ -83,10 +83,12 @@
         <block wx:if="{{list.length > 0 }}">
                 <view class="list_box clearfix">
                     <view class="list_item " wx:for="{{list}}" wx:key="{{item.id}}">
-                        <image src="../../images/trademark01.png"></image>
-                        <view class="list_item_title">{{item.name}}</view>
-                        <view class="list_item_des">{{item.description}}</view>
-                        <view class="list_item_price">¥{{item.price}}</view>
+                        <navigator url="/pages/trademarkDetail/trademarkDetail?id={{item.id}}"  open-type="navigate">
+                            <image src="../../images/trademark01.png"></image>
+                            <view class="list_item_title">{{item.name}}</view>
+                            <view class="list_item_des">{{item.description}}</view>
+                            <view class="list_item_price">¥{{item.price}}</view>
+                        </navigator>
                     </view>
                 </view>
                 <view class="list_consult">
