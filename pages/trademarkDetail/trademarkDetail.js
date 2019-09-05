@@ -1,8 +1,14 @@
+const app = getApp()
+
 Page({
     data:{
         index:1,
         consult_show:false,
-        phone:''  
+        phone:''  ,
+        id:"",
+        list:{},
+        group:'',
+        grouds:''
     },
     changeItem(e){
         let index = e.currentTarget.dataset.index
@@ -58,7 +64,46 @@ Page({
         return
       }
     },
+    getData(){
+        let list = this.data.list
+        let url  = app.newbaseUrl 
+        // let openid = app.openid || 'oKjx85fKXjZHMP2l3qyLfhryqFSM'
+        let id = this.data.id
+        let that = this
+        wx.request({
+            url: url + `/product/detail?id=${id}`,
+            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            success: function(result){
+                let res = result.data
+                console.log(res)
+                if(res.errorCode == 200){
+                    let group = res.data.group.join(',')
+                    let goods = res.data.goods.join(',')
+                    that.setData({
+                        list:res.data,
+                        group,
+                        goods
+                    })
+                }else{
+                    wx.showToast({
+                        title:res.message,
+                        icon:'none'
+                    })
+                }
+            },
+            fail: function() {
+                // fail
+            },
+            complete: function() {
+                // complete
+            }
+        })
+    },
     onLoad(option){
         let id = option.id
+        this.setData({
+            id
+        })
+        this.getData()
     }
 })
