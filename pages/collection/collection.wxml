@@ -1,0 +1,27 @@
+<!--pages/collection/collection.wxml-->
+
+<mp-slideview ext-class="myslideview" buttons="{{slideButtons}}" data-pid="{{item.pid}}" bindbuttontap="slideButtonTap" wx:for="{{content}}" wx:key="*this" wx:if="{{item || item.pid}}">
+  <mp-cell value="" footer="" ext-class="extra">
+    <view class="collect_sb">
+      <image src="{{item.sbpic}}"></image>
+      <view class="sb_info">
+        <view class="sbname">{{item.sbname}}</view>
+        <view class="classname">
+          <text style="margin-right:10rpx">第{{item.sbbigclassid}}类</text>
+          <text>{{item.sbbigclassname}}</text>
+        </view>
+        <view class="price" style="margin-bottom:0">￥{{item.price}}</view>
+      </view>
+    </view>
+  </mp-cell>
+</mp-slideview>
+
+
+
+<!-- 无信息空页面 -->
+<view class="null" wx:if="{{content.length==0}}">
+  <view class="centerBox">
+    <image style="width:230rpx;height:283rpx;" src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/null@2x.png"></image>
+    <view class="nulltips">暂无收藏商标</view>
+  </view>
+</view>
