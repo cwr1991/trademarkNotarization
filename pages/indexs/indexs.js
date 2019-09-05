@@ -58,34 +58,84 @@ Page({
         classname: '广告销售'
       }
     ],
+    keyword:'',
     phone:'',
+    multiArray:[],
+    city:[],
+    multiIndex:[0,0]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.request({
-    //   url: app.baseUrl + '/gzytrading/calltel',
-    //   data: {
-    //     nums: that.data.phone,
-    //     title: '商标交易小程序首页'
-    //   },
-    //   success(res) {
-    //     if (res.data.status == 0) {
-    //       wx.showToast({
-    //         icon: 'none',
-    //         title: res.data.msg,
-    //         duration: 2000
-    //       })
-    //     }
-    //   }
-    // })
+    var that = this;
+    wx.request({
+      url: app.newbaseUrl + '/product/domain',
+      success(res) {
+        that.setData({
+          multiArray: [[...res.data.data], [...res.data.data[0].children]],
+          city: res.data.data
+        })
+      }
+    })
+
+  },
+  bindMultiPickerColumnChange: function (e){
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    switch (e.detail.column) {
+      case 0:
+        data.multiArray[1] = this.data.city[e.detail.value].children;
+        break;
+    }
+    this.setData({
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    })
+  },
+  bindMultiPickerChange:function(e){
+    wx.request({
+      url: app.newbaseUrl + '/product/domainIntCls',
+      data:{
+        id: this.data.multiArray[1][e.detail.value[1]].id
+      },
+      success(res) {
+        console.log(res.data.data.join());
+      }
+    })
 
   },
   bindKeyInput:function(e){
     this.setData({
       phone: e.detail.value
+    })
+  },
+  bindKeyintelligent:function(e){
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  tapintelligent:function(){
+    if (this.data.keyword == '') {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入搜索的内容',
+        duration: 2000
+      })
+      return false;
+    }
+    wx.request({
+      url: app.newbaseUrl + '/product/search',
+      data:{
+        keyword: this.data.keyword
+      },
+      success(res) {
+        console.log(res.data.data.join());
+      }
     })
   },
   tapsavephone:function(){
