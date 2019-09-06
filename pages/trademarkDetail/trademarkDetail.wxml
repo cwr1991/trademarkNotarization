@@ -11,18 +11,18 @@
             <view class="price fw">¥{{list.reserve_price}}</view>
         </view>
         <view class="section_item">
-            <view class="type name">{{list.trademark_type}}</view>
-            <view class="preprice price">预付款¥540对接</view>
+            <view class="type name">{{list.trademark_type}}类 {{list.trademark_type_name}}</view>
+            <view class="preprice price">预付款¥{{list.reserve_price * 0.3}}</view>
         </view>
     </view>
     <view class="table">
         <view class="section_item">
             <view class="code">{{list.trademark_number}}</view>
-            <view class="time">{{list.useright_date_begin}}至{{list.useright_date_end}}</view>
+            <view class="time" wx:if="{{list.useright_date_begin}}">{{list.useright_date_begin}}至{{list.useright_date_end}}</view>
         </view>
         <view class="section_item">
             <view class="code_c">编号</view>
-            <view class="usetime">使用时间</view>
+            <view class="usetime"  wx:if="{{list.useright_date_begin}}">使用时间</view>
         </view>
     </view>
     <view class="scope">
@@ -93,17 +93,20 @@
     <view class="bottom_module">
         <view class="bottom_left">
             <view class="collect" bind:tap="collectFun">
-                <image src="../../images/trademark08.png"></image>
-                收藏
+                <image wx:if="{{collected}}" src="../../images/trademark08.png"></image>
+                <image wx:else src="../../images/trademark11.png"></image>
+                {{collected ? "已收藏" : "未收藏"}}
             </view>
             <view class="collect" bind:tap="consultFun">
                 <image src="../../images/trademark09.png"></image>
                 咨询
             </view>
         </view>
-        <view class="bottom_right" bind:tap="purchase">
-            立即购买
-        </view>
+        <navigator url="/pages/trademarkConfirm/trademarkConfirm?id={{item.id}}"  open-type="navigate">
+            <view class="bottom_right" >
+                立即购买
+            </view>
+        </navigator>
     </view>
     <!-- 咨询模块 -->
     <view class="consult_box" wx:if="{{consult_show}}">
@@ -118,7 +121,7 @@
         </view>
         <view class="consult_list clearfix">
             <view class="consult_item">
-                商标类别:<text>{{list.trademark_type}}</text>
+                商标类别:<text>{{list.trademark_type}}类 {{list.trademark_type_name}}</text>
             </view>
             <view class="consult_item">
                 商标价格:

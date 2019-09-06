@@ -1,5 +1,5 @@
 Page({
     data:{
-        
+        checked:false
     }
 })

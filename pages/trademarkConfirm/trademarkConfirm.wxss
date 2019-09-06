@@ -55,4 +55,80 @@ color: #F44444;
 float: right;
 width:160rpx;
 }
+.pay_info{
+  border-top: 20rpx solid #f4f4f4;
+  border-bottom: 20rpx solid #f4f4f4;
+  margin-top: 67rpx;
+  padding:40rpx 50rpx 50rpx 40rpx;
+}
+.pay_info .title,.relate_info .title{
+  padding: 0;
+}
+.pay_item{
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.pay_item .label{
+  float: left;
+}
+.pay_item .val{
+  float: right;
+}
+.pay_item .price{
+  font-size: 34rpx;
+  color: #F44444;
+}
+.pay_item .price_sym{
+  font-size: 22rpx;
+  color:#F44444;
+  line-height: 46rpx;
+  position: relative;
+  top: 1rpx;
+}
+.relate_info{
+  padding:40rpx 50rpx 50rpx 40rpx;
+}
+.relate_info .pay_item .label_sym{
+  color: #F44444;
+  position: relative;
+  top: -3rpx;
+}
+.relate_info .val{
+  width:260rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.relate_info .input-placeholder{
+  font-size: 28rpx;
+  color: #999999;
+}
+.agreement{
+  padding-left: 33rpx;
+}
+.radio-group text{
+  font-size: 24rpx;
+  color: #181818;
+  padding-left:30rpx;
+}
+.radio-group .fc{
+  padding:0;
+  color: #F44444;
+}
+radio .wx-radio-input{
+  border-radius: 17rpx;
+  height: 34rpx;
+  width: 34rpx;
+  box-sizing: border-box; 
 
+}
+ 
+ 
+ 
+/* radio选中时样式 */
+ 
+radio .wx-radio-input.wx-radio-input-checked{
+  background-color: #e02e24;
+  border: 1rpx solid #e02e24;
+  box-sizing: border-box; 
+}

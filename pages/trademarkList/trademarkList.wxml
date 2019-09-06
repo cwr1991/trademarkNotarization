@@ -90,13 +90,13 @@
                         <navigator url="/pages/trademarkDetail/trademarkDetail?id={{item.id}}"  open-type="navigate">
                             <image src="{{item.images}}" lazy-load="true"></image>
                             <view class="list_item_title">{{item.trademark_name}}</view>
-                            <view class="list_item_des">{{item.trademark_type}}{{item.trademark_type_name}}</view>
+                            <view class="list_item_des">{{item.trademark_type}}类 {{item.trademark_type_name}}</view>
                             <view class="list_item_price">¥{{item.reserve_price}}</view>
                         </navigator>
                     </view>
-                    <view class="list_consult">
-                        <input type="number" bindinput="phoneFun" placeholder="请输入您的联系电话" />
-                        <view class="submit_phone" bind:tap="subPhone">提交</view>
+                    <view class="list_consult ">
+                       <input type="number" value="{{phoneVal}}" bindinput="phoneFun" placeholder="请输入您的联系电话" />
+                        <view class="submit_phone" bind:tap="subPhone">提交</view> 
                     </view>
                 </view>
         </block>
@@ -118,7 +118,7 @@
                 <image src="../../images/applicant_empty.png" />
             </view>
             <view class="empty_text">没有找到您心仪的商标？不要急哦，好多好商标没有展示出来，马上联系客服顾问获取！</view>
-            <input type="number" bindinput="phoneFun" placeholder="请输入您的联系电话" />
+            <input type="number" bindinput="phoneFun" value="{{phoneVal}}" placeholder="请输入您的联系电话" />
             <view class="helperBtn" bind:tap="subPhone">让客服帮您找找</view>
         </view>
     </view>

@@ -109,6 +109,7 @@ Page({
         if(!(/^1[3456789]\d{9}$/.test(phone))){ 
         return {code:'error',msg:"手机号格式错误"}
         } 
+        return {code:'success'}
     },
     phoneFun(e){
         let phoneVal = e.detail.value 
@@ -125,6 +126,32 @@ Page({
            })
            return
        }
+       let url = app.baseUrl
+       let phoneVal = this.data.phoneVal
+       wx.showLoading({
+           title:"提交中",
+           icon:'none'
+       })
+       wx.request({
+           url:url + '/gzytrading/calltel',
+           data: {
+                nums:phoneVal
+           },
+           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+           // header: {}, // 设置请求的 header
+           success: function(res){
+               // success
+               let result = res.data
+               console.log(result)
+               wx.showToast({
+                   title:result.msg,
+                   icon:"none"
+               })
+           },
+           fail: function() {
+               // fail
+           }
+       })
     },
     // 热门项目fun
     handleHotP(e){
