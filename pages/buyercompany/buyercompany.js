@@ -284,8 +284,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     var that = this;
+    that.setData({
+      user_phone_id: options.id,
+    })
     wx.request({
       url: app.baseUrl+'/gzynew/ordercreate',
       data: {
@@ -295,7 +297,6 @@ Page({
       success(res) {
         that.setData({
           orderid: res.data.result.orderid,
-          user_phone_id:options.id,
           order_id: res.data.result.order_id
         })
       }

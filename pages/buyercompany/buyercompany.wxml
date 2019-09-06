@@ -1,6 +1,6 @@
 <!--pages/buyercompany/buyercompany.wxml-->
 <view class="nav">
-  <view>买方为公司 </view>
+  <view>买方为公司</view>
   <navigator url="/pages/buyerpersonage/buyerpersonage?id={{user_phone_id}}"><view>买方为个人</view></navigator>
 </view>
 
