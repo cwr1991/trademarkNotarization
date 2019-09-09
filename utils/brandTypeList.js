@@ -1,9 +1,5 @@
  const brandTypeList=[
     {
-        id:'0',
-        name:"全部"
-    },
-    {
         id:'1',
         name:"第01类 化学原料"
     },

@@ -129,7 +129,10 @@ Page({
                 }
             },
             fail: function() {
-                // fail
+                wx.showToast({
+                    title:'网络错误',
+                    icon:'none'
+                })
             },
             complete: function() {
                 // complete

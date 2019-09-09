@@ -78,7 +78,7 @@
 .table .section_item .code{
     font-size: 28rpx;
     color: #181818;
-    width:280rpx;
+    width:270rpx;
 }
 .table .section_item .time {
     flex: 1;
@@ -88,7 +88,7 @@
 .table .section_item .code_c {
     font-size: 24rpx;
     color: #999999;
-    width:280rpx;
+    width:270rpx;
 }
 .table .section_item .usetime {
     font-size: 24rpx;

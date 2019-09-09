@@ -105,30 +105,67 @@ width:160rpx;
 }
 .agreement{
   padding-left: 33rpx;
+  box-shadow: 0 0 14px 0 rgba(241,241,241,0.50);
+  border-top: 1px solid #ededed;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  height: 50rpx;
 }
-.radio-group text{
-  font-size: 24rpx;
-  color: #181818;
-  padding-left:30rpx;
-}
-.radio-group .fc{
-  padding:0;
-  color: #F44444;
-}
-radio .wx-radio-input{
-  border-radius: 17rpx;
-  height: 34rpx;
-  width: 34rpx;
-  box-sizing: border-box; 
+.agreement .radio_radius{
+  border: 1px solid #979797;
+  box-sizing: border-box;
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 33rpx;
+  border-radius: 50%;
 
 }
- 
- 
- 
-/* radio选中时样式 */
- 
-radio .wx-radio-input.wx-radio-input-checked{
-  background-color: #e02e24;
-  border: 1rpx solid #e02e24;
-  box-sizing: border-box; 
+.agreement text{
+  font-size: 24rpx;
+color: #181818;
+}
+.agreement .fc{
+  color:#F44444
+}
+.agreement .radio_checked{
+  border:1px solid red;
+}
+.radio_icon{
+  width:36rpx;
+  height: 36rpx;
+  margin-right: 33rpx;
+}
+/* 底部付款 */
+.pay{
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+}
+.pay_left{
+  flex:1;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #181818;
+  padding-left: 40rpx;
+}
+.pay_left .fc{
+  font-size: 34rpx;
+  color:#f44444;
+}
+.pay_left .fc_sym{
+  font-size: 28rpx;
+  color:#f44444;
+  margin-left: 20rpx;
+}
+.pay_btn{
+  height: 100rpx;
+  width:282rpx;
+  color:#fff;
+  text-align: center;
+  line-height: 100rpx;
+  background: #F44444;
+  font-size: 32rpx;
 }

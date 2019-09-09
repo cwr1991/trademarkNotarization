@@ -102,7 +102,7 @@
                 咨询
             </view>
         </view>
-        <navigator url="/pages/trademarkConfirm/trademarkConfirm?id={{item.id}}"  open-type="navigate">
+        <navigator url="/pages/trademarkConfirm/trademarkConfirm?id={{list.id}}"  open-type="navigate">
             <view class="bottom_right" >
                 立即购买
             </view>

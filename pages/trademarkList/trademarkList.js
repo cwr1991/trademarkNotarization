@@ -176,6 +176,7 @@ Page({
             typeArr
         })
     },
+    // 对data进行组装
     dataFun(){
         let page = this.data.page 
         let typeArr = this.data.typeArr

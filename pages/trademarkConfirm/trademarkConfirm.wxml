@@ -1,15 +1,15 @@
 <view class="trademark_confirm">
     <view class="title">商标信息</view>
     <view class="section">
-        <image src="" class="image" />
+        <image src="{{list.images}}" class="image" />
         <view class="section_box">
                 <view class="section_item clearfix">
-                        馋益佰
-                        <text class="price">¥1800</text>
+                        {{list.trademark_name}}
+                        <text class="price">¥{{list.reserve_price}}</text>
                 </view>
                 <view class="section_item section_fc clearfix">
-                        20类 日化用品
-                        <text class="prepare ">预付款¥540</text>
+                        {{list.trademark_type}}类 {{list.trademark_type_name}}
+                        <text class="prepare ">预付款¥{{list.reserve_price * 0.3}}</text>
                 </view>
         </view>
     </view>
@@ -17,15 +17,15 @@
         <view class="title">付款信息</view>
         <view class="pay_item clearfix">
             <text class="lable">订单金额：</text>
-            <text class="val">¥1800</text>
+            <text class="val">¥{{list.reserve_price}}</text>
         </view>
         <view class="pay_item clearfix">
             <text class="lable">预付款金额：</text>
-            <text class="val">¥1800</text>
+            <text class="val">¥{{list.reserve_price*0.3}}</text>
         </view>
         <view class="pay_item clearfix">
             <text class="lable">尾款金额：</text>
-            <text class="val price">1800</text>
+            <text class="val price">{{list.reserve_price - list.reserve_price*0.3}}</text>
             <text class="val price_sym">¥</text>
         </view>
     </view>
@@ -34,19 +34,26 @@
         <view class="pay_item clearfix">
                 <text class="label">联系人</text>
                 <text class="label label_sym">*:</text>
-                <input class="val" type="text" placeholder="填写联系人姓名"/>
+                <input class="val" bindinput="userFun" type="text" placeholder="填写联系人姓名"/>
         </view>
         <view class="pay_item clearfix">
                 <text class="label">手机号</text>
                 <text class="label label_sym">*:</text>
-                <input class="val" type="text" placeholder="填写联系人手机号"/>
+                <input class="val"  bindinput="phoneFun" type="text" placeholder="填写联系人手机号"/>
         </view>
     </view>
     <view class="agreement">
-        <radio-group class="radio-group" bindchange="radioChange">
-                <radio class="radio"  checked="{{checked}}">
-                        <text>我已阅读<text class="fc">《尚标服务协议》</text>且同意合同内容</text>
-                </radio>
-        </radio-group>
+        <!-- <text class="radio_radius {{selected ? 'radio_checked' : ''}}" bind:tap="selectAgree"></text> -->
+        <text wx:if="{{!selected}}" class="radio_radius " bind:tap="selectAgree"></text>
+        <image wx:else class="radio_icon" src="../../images/trademark13.png" bind:tap="selectAgree"></image>
+        <text>我已阅读<text class="fc">《尚标服务协议》</text>且同意合同内容</text>
+    </view>
+    <view class="pay">
+        <view class="pay_left">
+            <text>应付金额:</text>
+            <text class="fc_sym">¥</text>
+            <text class="fc">{{list.reserve_price*0.3}}</text>
+        </view>
+        <view class="pay_btn" bind:tap="payFun">立即付款</view>
     </view>
 </view>
