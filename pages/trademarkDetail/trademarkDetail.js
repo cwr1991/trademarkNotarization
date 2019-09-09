@@ -9,7 +9,7 @@ Page({
         list:{},
         group:'',
         grouds:'',
-        action:0,  //1进行收藏 0 =》取消收藏
+        action:0,  //1进行收藏取消收藏 0 :查询状态
         collected:false, //是否已收藏
     },
     changeItem(e){

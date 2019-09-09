@@ -1,4 +1,5 @@
 let brandType = require("../../utils/brandTypeList.js");
+let app = getApp()
 Page({
     data:{
         typeArr:[]
@@ -27,17 +28,6 @@ Page({
                 return element
             }
         })
-        let allExit = typeArray.some((item)=>{
-            return item.id == 0
-        })
-        if(allExit&&index!=0){
-            wx.showToast({
-                title:"选中全部类别,不能选择其他类别",
-                icon:'none'
-            })
-
-            return
-        }
         typeArr[index].checked = !check
         this.setData({
             typeArr
@@ -50,10 +40,7 @@ Page({
                 return element
             }
         })
-        var pages = getCurrentPages();
-        var prevPage = pages[pages.length - 2];
-        prevPage.setData({
-            typeArr:typeArray
-        })
+        let sbclasses = typeArray.map((element)=>{return element.id}).join(',')
+        app.sbclasses = sbclasses
     },
 })

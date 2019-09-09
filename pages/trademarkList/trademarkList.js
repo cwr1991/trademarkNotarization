@@ -1,5 +1,5 @@
+let brandType = require("../../utils/brandTypeList.js");
 const app = getApp()
-
 Page({
     data:{
        searchVal:'',
@@ -377,7 +377,7 @@ Page({
         } 
     },
     onLoad(option){
-        this.getData()
+        // this.getData()
     },
     onShow(){
         this.setData({
@@ -386,7 +386,25 @@ Page({
             loadEnd:false,
             empty:false
         })
+        let intCls = app.sbclasses
+        let typeArr = []
+        let intClsArr = []
+        if(!intCls){
+            typeArr = []
+        }else{
+            intClsArr = intCls.split(',')
+            typeArr = brandType.filter((element)=>{
+                let id = ''+element.id
+                if(intClsArr.includes(id)){
+                    return element
+                }
+            })
+        }
+        this.setData({
+            typeArr
+        })
         this.getData()
+        console.log("show")
     },
     onPageScroll: function (e) {
        let windowHeight = wx.getSystemInfoSync().windowHeight   

@@ -75,20 +75,27 @@ Page({
             success:result=>{
               let res = result.data
               let order_id = res.result.order_id
-              console.log(order_id)
               wx.hideLoading()
-            //   wx.navigateTo({
-            //       url: '/',
-            //       success: function(res){
-            //           // success
-            //       },
-            //       fail: function() {
-            //           // fail
-            //       },
-            //       complete: function() {
-            //           // complete
-            //       }
-            //   })
+              if(res.status == '0'){
+                wx.navigateTo({
+                    url: `/pages/payment/payment?order_id=${order_id}&type=1`,
+                    success: function(res){
+                        // success
+                    },
+                    fail: function() {
+                        // fail
+                    },
+                    complete: function() {
+                        // complete
+                    }
+                })
+              }else{
+                  wx.showToast({
+                      title:res.msg,
+                      icon:"none"
+                  })
+              }
+              console.log(order_id,"order_id")           
             }
         })
     },
