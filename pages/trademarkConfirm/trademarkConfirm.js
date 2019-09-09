@@ -75,10 +75,11 @@ Page({
             success:result=>{
               let res = result.data
               let order_id = res.result.order_id
+              let price = this.data.list.reserve_price*0.3
               wx.hideLoading()
               if(res.status == '0'){
                 wx.navigateTo({
-                    url: `/pages/payment/payment?order_id=${order_id}&type=1`,
+                    url: `/pages/payment/payment?order_id=${order_id}&type=1&price=${price}`,
                     success: function(res){
                         // success
                     },
