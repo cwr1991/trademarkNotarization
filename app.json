@@ -46,7 +46,7 @@
         "selectedIconPath": "images/tabbar01.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/trademarkList/trademarkList",
         "text": "买商标",
         "iconPath": "images/tabbar02.png",
         "selectedIconPath": "images/tabbar02.png"

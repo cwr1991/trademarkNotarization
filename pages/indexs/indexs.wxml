@@ -11,16 +11,17 @@
           热门商标分类
           <image src="https://b.86sb.com.cn/wximg/indexs04.png" mode="widthFix"></image>    
       </view>
-      <view class="more">
-        更多
-        <image src="../../images/indexs01.png" mode="widthFix"></image> 
+
+      <view class="more" bindtap="bindtoall">
+          更多
+          <image src="../../images/indexs01.png" mode="widthFix"></image> 
       </view>
   </view>
 
 
   <view class="classbox">
     <view class="classList">
-      <view class="classitem" wx:for="{{classdata}}" wx:key="{{index}}">
+      <view class="classitem" wx:for="{{classdata}}" wx:key="{{index}}" bindtap="bindTosblist" data-id="{{item.classnum}}">
          <image src="{{item.classicons}}" mode="widthFix"></image> 
          <view>{{item.classnum}}</view>
          <text>{{item.classname}}</text>
@@ -79,7 +80,7 @@
            限时抢购
           <image src="https://b.86sb.com.cn/wximg/indexs04.png" mode="widthFix"></image>
         </view>
-        <view class="more">
+        <view class="more" bindtap="bindtoall">
           更多
           <image src="../../images/indexs01.png" mode="widthFix"></image> 
         </view>

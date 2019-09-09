@@ -14,7 +14,7 @@ Page({
       },
       {
         classicons: 'https://b.86sb.com.cn/wximg/class03.png',
-        classnum: '03',
+        classnum: '3',
         classname: '日化用品'
       },
       {
@@ -29,12 +29,12 @@ Page({
       },
       {
         classicons: 'https://b.86sb.com.cn/wximg/class05.png',
-        classnum: '05',
+        classnum: '5',
         classname: '医药品'
       },
       {
         classicons: 'https://b.86sb.com.cn/wximg/class09.png',
-        classnum: '09',
+        classnum: '9',
         classname: '科学仪器'
       },
       {
@@ -79,7 +79,18 @@ Page({
         })
       }
     })
-
+  },
+  bindtoall:function(){
+    app.sbclasses = '';
+    wx.switchTab({
+      url: '/pages/trademarkList/trademarkList'
+    })
+  },
+  bindTosblist:function(e){
+    app.sbclasses = e.currentTarget.dataset.id
+    wx.switchTab({
+      url: '/pages/trademarkList/trademarkList'
+    })
   },
   bindMultiPickerColumnChange: function (e){
     var data = {
@@ -104,7 +115,10 @@ Page({
         id: this.data.multiArray[1][e.detail.value[1]].id
       },
       success(res) {
-        console.log(res.data.data.join());
+        app.sbclasses = res.data.data.join();
+        wx.switchTab({
+          url: '/pages/trademarkList/trademarkList'
+        })
       }
     })
 
@@ -134,7 +148,10 @@ Page({
         keyword: this.data.keyword
       },
       success(res) {
-        console.log(res.data.data.join());
+        app.sbclasses = res.data.data.join();
+        wx.switchTab({
+          url: '/pages/trademarkList/trademarkList'
+        })
       }
     })
   },

@@ -67,5 +67,6 @@ App({
   baseUrl:'https://wwxs.86sb.com',
   newbaseUrl:'https://api.86sb.com.cn',
   username:'',
-  usermob:''
+  usermob:'',
+  sbclasses:''
 })
