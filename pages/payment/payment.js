@@ -8,6 +8,7 @@ Page({
   data: {
     orderid: '',
     order_id:'',
+    type:'',
     data:{},
     price:'',
     sharedata:[]
@@ -16,74 +17,99 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     var that = this;
-    that.setData({
-      orderid: options.orderid,
-      order_id: options.order_id
-    })
-    wx.request({
-      url: app.baseUrl + '/gzynew/isoperator',
-      data: {
-        orderid: that.data.orderid,
-        openid: app.openid
-      },
-      success(res) {
-        if(res.data.status==0){
+    if (options.type){
+      that.setData({
+        order_id: options.order_id,
+        type: options.type,
+        price: options.price
+      })
+
+      wx.request({
+        url: app.baseUrl + '/gzytrading/get-pay-data',
+        data: {
+          openid: app.openid,
+          type: options.type,
+          order_id: options.order_id
+        },
+        success(res) {
+          that.setData({
+            data: res.data.result
+          })
+        }
+      })
+    }else{
+      that.setData({
+        orderid: options.orderid,
+        order_id: options.order_id
+      })
+      wx.request({
+        url: app.baseUrl + '/gzynew/isoperator',
+        data: {
+          orderid: that.data.orderid,
+          openid: app.openid
+        },
+        success(res) {
+          if (res.data.status == 0) {
             that.setData({
               sharedata: res.data.result
             })
-          var phone = app.usermob;
-          if (res.data.result.operator == 1) {
-            phone = res.data.result.yun_mobile;
-          }
-          wx.request({
-            url: app.baseUrl + '/gzynew/get-order-pay-charge',
-            data: {
-              openid: app.openid,
-              phone: phone,
-              order_id: options.order_id
-            },
-            success(res) {
-              that.setData({
-                price: res.data.result.price
-              })
+            var phone = app.usermob;
+            if (res.data.result.operator == 1) {
+              phone = res.data.result.yun_mobile;
             }
-          })
-
-          wx.request({
-            url: app.baseUrl + '/gzynew/get-pay-data',
-            data: {
-              order_id: options.order_id,
-              openid: app.openid,
-              phone: phone,
-            },
-            success(res) {
-              if (res.data.status == 1) {
-                wx.showToast({
-                  icon: 'none',
-                  title: res.data.msg
+            wx.request({
+              url: app.baseUrl + '/gzynew/get-order-pay-charge',
+              data: {
+                openid: app.openid,
+                phone: phone,
+                order_id: options.order_id
+              },
+              success(res) {
+                that.setData({
+                  price: res.data.result.price
                 })
-                return false;
               }
-              that.setData({
-                data: res.data.res
-              })
-            }
-          })
-        }else{
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg
-          })
-          return false;
+            })
+
+            wx.request({
+              url: app.baseUrl + '/gzynew/get-pay-data',
+              data: {
+                order_id: options.order_id,
+                openid: app.openid,
+                phone: phone,
+              },
+              success(res) {
+                if (res.data.status == 1) {
+                  wx.showToast({
+                    icon: 'none',
+                    title: res.data.msg
+                  })
+                  return false;
+                }
+                that.setData({
+                  data: res.data.res
+                })
+              }
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+            return false;
+          }
         }
-      }
-    })
+      })
+    }
+
 
   },
   topayment:function(){
     var that = this;
     var timeStamp = that.data.data.timestamp;
+    console.log(timeStamp);
     wx.requestPayment({
       timeStamp: timeStamp.toString(),
       nonceStr: that.data.data.nonceStr,

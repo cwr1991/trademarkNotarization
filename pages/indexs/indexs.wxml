@@ -30,7 +30,7 @@
   </view>
 
 
-  <view class="seemore">
+  <view class="seemore" bindtap="bindtoall">
       查看更多类别商标
       <image src="../../images/indexs03.png" mode="widthFix"></image> 
   </view>

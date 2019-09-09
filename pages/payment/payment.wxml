@@ -10,7 +10,8 @@
   </view>
   <view class="item">
     订单内容
-    <text>商标转让公证服务费</text>
+    <text wx:if="{{type==1}}">支付定金</text>
+    <text wx:if="{{type==2}}">支付尾款</text>
   </view>
   <view class="item">
     支付方式
