@@ -104,8 +104,7 @@ height: 100%;
 .hot_item{
     float: left;
     border: 1px solid #E3E3E3;
-    border-radius: 2px;
-    border-radius: 2px;
+    border-radius: 2rpx;
     background: #F1F1F1;
     height: 44rpx;
     line-height: 44rpx;
@@ -116,6 +115,7 @@ height: 100%;
     box-sizing: border-box;
     margin-right: 16rpx;
     margin-bottom: 20rpx;
+    min-width: 125rpx;
 }
 .hot_items .active{
     background: #F44444;

@@ -30,7 +30,7 @@
         </view>
     </view>
     <!-- 热门类别&项目 -->
-    <view wx:if="{{typeArr.length == 1 }}" class="hot_section" >
+    <view wx:if="{{typeArr.length == 1 && hotProduct.length > 0 }}" class="hot_section" >
         <view class="hot_header">
             <image src="../../images/trademark02.png"></image>
             热门项目推荐
@@ -38,7 +38,7 @@
         <view class="hot_items">
             <block wx:for="{{hotProduct}}" wx:key="item.id">
                 <view class="hot_item {{item.checked ? 'active' : ''}}" data-idx="{{index}}" bind:tap="handleHotP" >
-                    {{item.name}}
+                    {{item.cate_code}}{{item.name}}
                 </view>    
             </block>
         </view>

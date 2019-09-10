@@ -1,4 +1,5 @@
 let brandType = require("../../utils/brandTypeList.js");
+let jsMD5  = require("../../utils/hexMD5.js");
 const app = getApp()
 Page({
     data:{
@@ -19,6 +20,7 @@ Page({
        list:[],
        typeArr:[],     //45类商标选中的类别 
        hotTypes:[],    //热门类别
+       trademark_type:0,
        hotProduct:[],  //热门项目
        group:'',//选中热门项目的id
        floorstatus:false   //是否显示返回顶部按钮
@@ -161,11 +163,16 @@ Page({
             element.checked = false
         })
         hotProduct[index].checked = true
-        let group =  hotProduct[index].id
+        let group =  hotProduct[index].cate_code
         this.setData({
             hotProduct,
-            group
+            group,
+            page:1,
+            list:[],
+            loadEnd:false,
+            empty:false
         })
+        this.getData();
     },
     // 热门类别FUN
     handleHotT(e){
@@ -173,8 +180,18 @@ Page({
         let hotTypes =  this.data.hotTypes
         let typeArr =  [hotTypes[index]]
         this.setData({
-            typeArr
+            typeArr,
+            page:1,
+            list:[],
+            loadEnd:false,
+            empty:false
         })
+        this.setData({
+            trademark_type:hotTypes[index].id
+        })
+        app.sbclasses = hotTypes[index].id
+        this.getTypeData()
+        this.getData()
     },
     // 对data进行组装
     dataFun(){
@@ -226,95 +243,8 @@ Page({
     getData(){
         let list = this.data.list
         let url  = app.newbaseUrl 
-        let openid = app.openid || 'oKjx85fKXjZHMP2l3qyLfhryqFSM'
         let page = this.data.page
         let data  = this.dataFun()
-            // let hotProduct = this.data.hotProduct
-            // hotProduct = [
-            //     {
-            //         name:"0201防腐剂1",
-            //         id:1
-            //     },
-            //     {
-            //         name:"0201防腐剂12",
-            //         id:12
-            //     },
-            //     {
-            //         name:"0201防腐剂13",
-            //         id:13
-            //     },
-            //     {
-            //         name:"0201防腐剂14",
-            //         id:14
-            //     },
-            //     {
-            //         name:"0201防腐剂15",
-            //         id:15
-            //     },
-            //     {
-            //         name:"0201防腐剂16",
-            //         id:16
-            //     },
-            //     {
-            //         name:"0201防腐剂17",
-            //         id:17
-            //     },
-            //     {
-            //         name:"0201防腐剂18",
-            //         id:18
-            //     },
-            // ]
-            // hotProduct.forEach(element => {
-            //     element.checked = false
-            // });
-            // let hotTypes = this.data.hotTypes
-            //     hotTypes = [ 
-            //         {
-            //             name:'服装项目',
-            //             id:'1',
-            //             type:"第1类"
-            //         },
-            //         {
-            //             name:'服装项目2',
-            //             id:'12',
-            //             type:"第12类"
-            //         },
-            //         {
-            //             name:'服装项目3',
-            //             id:'13',
-            //             type:"第13类"
-            //         },
-            //         {
-            //             name:'服装项目4',
-            //             id:'14',
-            //             type:"第14类"
-            //         },
-            //         {
-            //             name:'服装项目5',
-            //             id:'15',
-            //             type:"第15类"
-            //         },
-            //         {
-            //             name:'服装项目6',
-            //             id:'16',
-            //             type:"第16类"
-            //         },
-            //         {
-            //             name:'服装项目7',
-            //             id:'17',
-            //             type:"第17类"
-            //         },
-            //         {
-            //             name:'服装项目8',
-            //             id:'18',
-            //             type:"第18类"
-            //         }
-            //     ]
-            // this.setData({
-            //     list,
-            //     hotProduct,
-            //     hotTypes
-            // })
              wx.showLoading({
                 title:'加载中',
                 mask:true
@@ -376,8 +306,54 @@ Page({
             this.getData()
         } 
     },
+    // 获取热门类别及热门项目
+    getTypeData(){
+        let trademark_type = this.data.trademark_type
+        let sign = jsMD5.hexMD5(trademark_type)
+         let data = {
+             sign,
+             trademark_type
+         }
+        wx.request({
+            url:'http://172.19.20.97/trademark_subcategory/read?trademark_type='+trademark_type ,
+            method:"POST",
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+            },
+            data,
+            success:result=>{
+              let res = result.data
+              if(res.errorCode == 200 ){
+                 
+                  if(trademark_type ==0 ){
+                    let hotTypes = res.data
+                    hotTypes.forEach(element=>{
+                        element.id  = element.cate_code
+                    })
+                    this.setData({
+                        hotTypes
+                    })
+                  }else{
+                    let hotProduct = res.data 
+                    hotProduct.forEach((element)=>{
+                        element.checked = false
+                    })
+                    this.setData({
+                        hotProduct
+                    })
+                  }
+              }else{
+                  wx.showToast({
+                      title:res.message,
+                      icon:'none'
+                  })
+              }
+            }
+        })
+    },
     onLoad(option){
         // this.getData()
+     
     },
     onShow(){
         this.setData({
@@ -389,6 +365,7 @@ Page({
         let intCls = app.sbclasses
         let typeArr = []
         let intClsArr = []
+        let group = this.data.group;
         if(!intCls){
             typeArr = []
         }else{
@@ -399,12 +376,21 @@ Page({
                     return element
                 }
             })
+            if(typeArr.length > 1 ){
+               group = ''   //多个类别清空热门项目
+            }
+        }
+        if(intClsArr.length < 2){
+            this.setData({
+                trademark_type : intCls || 0
+            })
+            this.getTypeData()   
         }
         this.setData({
-            typeArr
+            typeArr,
+            group
         })
         this.getData()
-        console.log("show")
     },
     onPageScroll: function (e) {
        let windowHeight = wx.getSystemInfoSync().windowHeight   
