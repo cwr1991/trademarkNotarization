@@ -18,17 +18,17 @@ App({
               code:res.code
             },
             success(res){
-              that.openid = res.data.result.openid;
               if (res.data.status==1){
-                wx.reLaunch({
-                  url: '/pages/login/login',
-                })
+                // wx.reLaunch({
+                //   url: '/pages/login/login',
+                // })
               }else{
+                that.openid = res.data.result.openid;
                 that.username = res.data.result.username;
                 that.usermob = res.data.result.usermob;
-                wx.switchTab({
-                  url: '/pages/index/index',
-                })
+                // wx.switchTab({
+                //   url: '/pages/index/index',
+                // })
               }
             }
           })

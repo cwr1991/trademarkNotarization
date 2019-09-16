@@ -44,6 +44,7 @@ Page({
               mobile: res.data.phoneNumber
             },
             success(res) {
+              console.log(res);
               if(res.data.status==0){
                 app.username = res.data.result.username;
                 app.usermob = res.data.result.usermob;

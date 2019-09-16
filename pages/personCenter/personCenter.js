@@ -23,6 +23,11 @@ Page({
   },
 
   onLoad: function() {
+    if (!app.usermob){
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+    }
     var that = this;
     wx.login({
       success: res => {
