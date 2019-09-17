@@ -89,32 +89,18 @@
 
 <view class="datalist">
 
-  <view class="item">
-    <image src="http://vi-picture.oss-cn-shanghai.aliyuncs.com/biao/12436808_25_1.png" mode="widthFix"></image> 
-    <view class="name">化学香料</view>
-    <text>第03类 化学颜料</text>
-    <view class="price">¥1366</view>
+<block wx:for="{{datalist}}" wx:key="{{index}}">
+  <view class="item" wx:for="{{item.data}}" wx:for-item="items"  wx:key="{{index}}">
+  <navigator url="/pages/trademarkDetail/trademarkDetail?id={{items.application_number}}{{items.trademark_category}}">
+    <image src="{{items.imagesurl}}" mode="widthFix"></image> 
+    <view class="name">{{items.trademark_name}}</view>
+    <text>{{item.name}}</text>
+    <view class="price">¥{{items.price}}</view>
+  </navigator>
   </view>
+</block>
 
-  <view class="item">
-    <image src="http://vi-picture.oss-cn-shanghai.aliyuncs.com/biao/12436808_25_1.png" mode="widthFix"></image> 
-    <view class="name">化学香料</view>
-    <text>第03类 化学颜料</text>
-    <view class="price">¥1366</view>
-  </view>
-  <view class="item">
-    <image src="http://vi-picture.oss-cn-shanghai.aliyuncs.com/biao/12436808_25_1.png" mode="widthFix"></image> 
-    <view class="name">化学香料</view>
-    <text>第03类 化学颜料</text>
-    <view class="price">¥1366</view>
-  </view>
 
-  <view class="item">
-    <image src="http://vi-picture.oss-cn-shanghai.aliyuncs.com/biao/12436808_25_1.png" mode="widthFix"></image> 
-    <view class="name">化学香料</view>
-    <text>第03类 化学颜料</text>
-    <view class="price">¥1366</view>
-  </view>
 
 </view>
 

@@ -109,7 +109,6 @@ Page({
   topayment:function(){
     var that = this;
     var timeStamp = that.data.data.timestamp;
-    console.log(timeStamp);
     wx.requestPayment({
       timeStamp: timeStamp.toString(),
       nonceStr: that.data.data.nonceStr,
@@ -117,26 +116,63 @@ Page({
       signType: that.data.data.signType,
       paySign: that.data.data.paySign,
       success(res) {
-        wx.request({
-          url: app.baseUrl + '/gzynew/get-order-info',
-          data: {
-            order_id: that.data.order_id,
-            field: 'pay_status,gz_url'
-          },
-          success(res) {
-            if (res.data.result.pay_status==1){
-              if (that.data.sharedata.operator==1){
-                wx.navigateTo({
-                  url: '/pages/paymentresult/paymentresult?orderid=' + that.data.orderid+'&weburl=' + res.data.result.gz_url,
-                })
-                return false;
+        console.log(that.data.type);
+        if(that.data.type){
+          wx.request({
+            url: app.baseUrl + '/gzytrading/orderdetail',
+            data: {
+              order_id: that.data.order_id,
+              openid: app.openid
+            },
+            success(res) {
+              if (res.data.status==0){
+                if (res.data.result.pay_status == 1){
+                  wx.showToast({
+                    icon: 'success',
+                    title: '定金付款成功',
+                  })
+                  setTimeout(function(){
+                    wx.navigateTo({
+                      url: '/pages/buyerorder/buyerorder',
+                    })
+                  },2000)
+                } else if (res.data.result.pay_status == 2){
+                  wx.showToast({
+                    icon: 'success',
+                    title: '尾款付款成功'
+                  }) 
+                  setTimeout(function () {
+                    wx.navigateTo({
+                      url: '/pages/buyerorder/buyerorder',
+                    })
+                  }, 2000)
+                }
+                
               }
-              wx.navigateTo({
-                url: '/pages/webview/webview?orderid=' + that.data.orderid +'&weburl=' + res.data.result.gz_url,
-              })
             }
-          }
-        })
+          })
+        }else{
+          wx.request({
+            url: app.baseUrl + '/gzynew/get-order-info',
+            data: {
+              order_id: that.data.order_id,
+              field: 'pay_status,gz_url'
+            },
+            success(res) {
+              if (res.data.result.pay_status == 1) {
+                if (that.data.sharedata.operator == 1) {
+                  wx.navigateTo({
+                    url: '/pages/paymentresult/paymentresult?orderid=' + that.data.orderid + '&weburl=' + res.data.result.gz_url,
+                  })
+                  return false;
+                }
+                wx.navigateTo({
+                  url: '/pages/webview/webview?orderid=' + that.data.orderid + '&weburl=' + res.data.result.gz_url,
+                })
+              }
+            }
+          })
+        }
       },
       fail(res) { 
         wx.showToast({

@@ -19,12 +19,13 @@ App({
               code:res.code
             },
             success(res){
+              console.log(res);
               that.openid = res.data.result.openid;
-              if (res.data.status==1){
-                wx.reLaunch({
-                  url: '/pages/login/login',
-                })
-              }else{
+              if (res.data.status==0){
+                // wx.reLaunch({
+                //   url: '/pages/login/login',
+                // })
+              // }else{
                 that.username = res.data.result.username;
                 that.usermob = res.data.result.usermob;
                 // wx.switchTab({

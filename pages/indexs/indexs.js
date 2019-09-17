@@ -1,5 +1,6 @@
 // pages/indexs/indexs.js
 const app = getApp();
+let jsMD5 = require("../../utils/hexMD5.js");
 Page({
 
   /**
@@ -62,9 +63,21 @@ Page({
     phone:'',
     multiArray:[],
     city:[],
-    multiIndex:[0,0]
+    multiIndex:[0,0],
+    appkey:'7EoYU04WiaaY^qkHOP*%dc@*LNVnN1NK',
+    datalist:[]
   },
+  signGenerate:function(data) {
 
+    let ret = [];
+    for (let it in data) {
+      let val = data[it];
+      ret.push(it + '=' + val);
+    }
+    ret.sort();
+    let res = encodeURI(ret.join('&')) + '&appkey=' + this.data.appkey;
+    return jsMD5.hexMD5(res);
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -79,6 +92,30 @@ Page({
         })
       }
     })
+
+    var signdata = that.signGenerate({
+      aid: 77,
+      terminal: 2
+    });
+    wx.request({
+      url: app.newbaseUrl+'/trademark_adv/list',
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      data:{
+        sign: signdata,
+        aid: 77,
+        terminal: 2
+      },
+      success(res) {
+        that.setData({
+          datalist:res.data.data
+        })
+      }
+    })
+
+
   },
   bindtoall:function(){
     app.sbclasses = '';
