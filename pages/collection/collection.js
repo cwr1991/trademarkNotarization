@@ -101,6 +101,14 @@ Page({
       })
     }
     console.log(this.data)
-  }
+  },
 
+  toTrademarkDetail(e){
+    let id = e.currentTarget.dataset.pid;
+    if(id){
+      wx.navigateTo({
+        url: '/pages/trademarkDetail/trademarkDetail?id=' + id,
+      })
+    }
+  }
 });

@@ -107,7 +107,7 @@ open-data[type="userAvatarUrl"] {
 /* 地址，申请人，开票信息，退出登录 */
 
 .infoBox {
-  padding: 0 20rpx;
+  padding:20rpx;
 }
 
 .info, .quit {
@@ -158,4 +158,10 @@ open-data[type="userAvatarUrl"] {
   margin: 20rpx 0;
   color: #080808;
   font-size: 30rpx;
+}
+
+.islogin{
+  position: fixed;
+  top: 0;left: 0;right: 0;bottom: 0;
+  margin: auto;
 }

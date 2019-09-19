@@ -3,9 +3,11 @@
 <view class="banner">
   <view class="userinfo">
     <view class="header">
-      <open-data type="userAvatarUrl" default-avatar="/images/eleheader.png"></open-data>
+      <open-data wx:if="{{islogin}}" type="userAvatarUrl" default-avatar="/images/grayheader.png"></open-data>
+      <image wx:else style="width: 110rpx;height: 110rpx;border-radius: 50%;" src="/images/grayheader.png"></image>
     </view>
-    <text style="margin-left:20rpx">{{telnumber}}</text>
+    <text wx:if="{{islogin}}" style="margin-left:20rpx">{{telnumber}}</text>
+    <text wx:else style="margin-left:20rpx">点击登陆</text>
   </view>
 </view>
 
@@ -79,9 +81,13 @@
     </navigator>
   </view>
 
-  <view class="quit" bindtap="quit">退出账号</view>
+  <view class="quit" wx:if="{{islogin}}" bindtap="quit">退出账号</view>
+  <view class="quit" wx:else bindtap="quit">去登陆</view>
+
 </view>
 
 <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 
 <!-- <view bindtap="pay">支付</view> -->
+
+<view class="islogin" wx:if="{{!islogin}}" bindtap="bindlogin"></view>

@@ -118,7 +118,7 @@ Page({
       }
     })
 
-  },
+  },  
 
   // 点击编辑按钮toggle
   clickEdit(e) {
@@ -351,7 +351,7 @@ Page({
     })
 
   },
-  // 索取发票
+  // 索取公证书
   gz_sure(id) {
     var that = this;
     wx.request({

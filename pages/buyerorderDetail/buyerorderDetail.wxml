@@ -1,0 +1,68 @@
+<!--pages/buyerorderDetail/buyerorderDetail.wxml-->
+<view class="wrapper">
+  <view class="title">商标信息</view>
+  <view class="contain">
+    <view class="picture">
+      <image src="{{detail.sbpic}}"></image>
+    </view>
+    <view class="sbname">
+      <text style="font-weight:600;font-size:28rpx;color:#181818">{{detail.sbname}}</text>
+      <text style="font-size:24rpx;color:#666">{{detail.className}}</text>
+    </view>
+    <view class="price">
+      <text style="font-size:28rpx;color:#F44444">￥{{detail.total_price}}</text>
+      <text style="font-size:24rpx;color:#666">预付款￥{{detail.first_price}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="wrapper">
+  <view class="title">订单信息</view>
+  <view class="info">
+    <view class="info_left">下单时间：</view>
+    <view class="info_right">{{detail.add_time}}</view>
+  </view>
+  <view class="info">
+    <view class="info_left">订单编号：</view>
+    <view class="info_right">{{detail.order_id}}</view>
+  </view>
+  <view class="info">
+    <view class="info_left">业务类型：</view>
+    <view class="info_right">商标交易</view>
+  </view>
+  <view class="info">
+    <view class="info_left">当前状态：</view>
+    <view class="info_right red" wx:if="{{detail.pay_status==2}}">已完成</view>
+    <view class="info_right red" wx:elif="{{detail.pay_status==1}}">处理中</view>
+    <view class="info_right red" wx:else>代付款</view>
+  </view>
+</view>
+
+<view class="wrapper" style="margin-bottom:100rpx;border:0">
+  <view class="title">付款信息</view>
+  <view class="info">
+    <view class="info_left">订单金额：</view>
+    <view class="info_right">￥{{detail.total_price}}</view>
+  </view>
+  <view class="info">
+    <view class="info_left">预付金额：</view>
+    <view class="info_right" wx:if="{{detail.pay_status==0}}">￥{{detail.first_price}}未支付</view>
+    <view class="info_right" wx:else>￥{{detail.first_price}}已支付</view>
+
+  </view>
+  <view class="info">
+    <view class="info_left">尾款金额：</view>
+    <view class="info_right red" wx:if="{{detail.pay_status==2}}">￥{{detail.last_price}}已支付</view>
+    <view class="info_right red" wx:else>￥{{detail.last_price}}未支付</view>
+  </view>
+</view>
+
+<view class="bottom" wx:if="{{detail.pay_status==2}}">
+  <view class="calltel large" bindtap="calltel">联系客服</view>
+</view>
+<view class="bottom" wx:else>
+  <view class="calltel mid" bindtap="calltel">联系客服</view>
+  <view class="topay" bindtap="topayment" wx:if="{{detail.pay_status==1}}" data-type="2" data-price="{{detail.last_price}}" data-orderid="{{detail.order_id}}">支付尾款</view>
+  <view class="topay" bindtap="topayment" wx:if="{{detail.pay_status==0}}" data-type="1" data-price="{{detail.first_price}}" data-orderid="{{detail.order_id}}">支付定金</view>
+
+</view>

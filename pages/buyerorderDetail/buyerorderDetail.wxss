@@ -1,0 +1,83 @@
+/* pages/buyerorderDetail/buyerorderDetail.wxss */
+
+.wrapper {
+  padding: 56rpx 0;
+  border-bottom: 20rpx solid #f4f4f4;
+  background: #fff;
+}
+
+.wrapper .title {
+  padding: 0 40rpx;
+  font-size: 30rpx;
+  color: #333;
+  line-height: 30rpx;
+}
+
+.wrapper .contain {
+  margin: 18rpx 30rpx 0;
+  background: #fff;
+  box-shadow: 0 2px 26px 0 #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 33rpx;
+}
+
+.wrapper .contain .picture image {
+  width: 154rpx;
+  height: 154rpx;
+}
+
+.sbname text, .price text {
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.wrapper .info {
+  padding: 0 40rpx;
+  margin-top: 52rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 28rpx;
+}
+
+.info_right.red {
+  color: #f44444;
+  font-size: 30rpx;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  box-shadow: 0 0 14px 0 rgba(241, 241, 241, 0.50);
+  display: flex;
+}
+
+.calltel {
+  background: #fee;
+  color: #f44444;
+  text-align: center;
+}
+
+.calltel.large {
+  width: 100%;
+}
+
+.calltel.mid {
+  width: 50%;
+}
+.topay{
+  width: 50%;
+  background: #F44444;
+  color: #fff;
+  text-align: center;
+}

@@ -1,6 +1,6 @@
 <!--pages/collection/collection.wxml-->
 
-<mp-slideview ext-class="myslideview" buttons="{{slideButtons}}" data-pid="{{item.pid}}" bindbuttontap="slideButtonTap" wx:for="{{content}}" wx:key="*this" wx:if="{{item || item.pid}}">
+<mp-slideview ext-class="myslideview" buttons="{{slideButtons}}" data-pid="{{item.pid}}" data-id="{{item.id}}" bindbuttontap="slideButtonTap" wx:for="{{content}}" wx:key="*this" wx:if="{{item || item.pid}}" bindtap="toTrademarkDetail">
   <mp-cell value="" footer="" ext-class="extra">
     <view class="collect_sb">
       <image src="{{item.sbpic}}"></image>

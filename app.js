@@ -29,7 +29,7 @@ App({
                 that.username = res.data.result.username;
                 that.usermob = res.data.result.usermob;
                 // wx.switchTab({
-                //   url: '/pages/index/index',
+                //   url: '/pages/index/index', 
                 // })
               }
             }
