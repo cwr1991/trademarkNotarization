@@ -395,7 +395,6 @@ Page({
         let intCls = app.sbclasses
         let typeArr = []
         let intClsArr = []
-        let group = this.data.group;
         if(!intCls){
             typeArr = []
         }else{
@@ -406,9 +405,6 @@ Page({
                     return element
                 }
             })
-            if(typeArr.length > 1 ){
-               group = ''   //多个类别清空热门项目
-            }
         }
         if(intClsArr.length < 2){
             this.setData({
@@ -418,7 +414,7 @@ Page({
         }
         this.setData({
             typeArr,
-            group
+            group:""
         })
         this.getData()
     },
