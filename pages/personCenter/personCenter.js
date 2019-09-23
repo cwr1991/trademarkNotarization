@@ -23,7 +23,7 @@ Page({
     telnumber: ''
   },
   bindlogin:function(){
-    wx.reLaunch({
+    wx.navigateTo({
       url: '/pages/login/login',
     })
   },

@@ -1,0 +1,8 @@
+<!--pages/search/search.wxml-->
+<view class="search_box">
+  <view class="search" bindtap="search">
+    <image src="/images/search01 small.png"></image>
+    <text>输入商标名/注册号查询订单</text>
+  </view>
+  <text class="tosearch">搜索</text>
+</view>

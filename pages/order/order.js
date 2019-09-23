@@ -13,6 +13,7 @@ Page({
     allChecked: false,
     // isfapiao:false,
     fapiao_alert: false,
+    express_alert:false,
     content: [],
     email: "",
     allid: ''
@@ -401,4 +402,80 @@ Page({
       }
     })
   },
+
+  // 20190919在线公证优化
+  // 查看物流
+  showExpress:function(e){
+    let that=this;
+    wx.showLoading({
+      title: '请稍后',
+    })
+    var express_alert = !this.data.express_alert
+    
+    
+    wx.request({
+      url: `${app.baseUrl}/gzynew/orderinfo`,
+      data:{
+        openid:app.openid,
+        review:1,
+        orderid: e.currentTarget.dataset.id
+      },
+      success(res){
+        if(res.data.status==0 || res.data.msg == "成功"){
+          wx.hideLoading();
+          if (res.data.result.order_code==3){
+            that.setData({
+              flow_remark: res.data.result.flow_remark,
+              express_alert
+            })
+          }
+          else{
+            wx.showToast({
+              title: '暂无快递信息',
+              icon:'none',
+              duration:2000
+            })
+          }
+          
+        }
+        else{
+          console.log(res.data.msg)
+        }
+      }
+    })
+  },
+  copyExpressNum:function(e){
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.expressno,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+  },
+  closeExpress(){
+    var express_alert = !this.data.express_alert
+    this.setData({
+      express_alert
+    })
+  },
+
+  // 跳转补充材料
+  extraFiles(e){
+    var orderid=e.currentTarget.dataset.orderid
+    wx.navigateTo({
+      url: '../extrafiles/extrafiles?orderid=' + orderid,
+    })
+  },
+  // 跳转搜索页
+  search:function(e){
+    wx.navigateTo({
+      url: '../search/search',
+    })
+  }
+  // 20190919在线公证优化
+
 })

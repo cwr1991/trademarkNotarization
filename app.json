@@ -29,7 +29,9 @@
     "pages/collection/collection",
     "pages/about/about",
     "pages/buyerorder/buyerorder",
-    "pages/buyerorderDetail/buyerorderDetail"
+    "pages/buyerorderDetail/buyerorderDetail",
+    "pages/extrafiles/extrafiles",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

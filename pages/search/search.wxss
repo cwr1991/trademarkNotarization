@@ -1,0 +1,30 @@
+/* pages/search/search.wxss */
+/* 搜索 */
+.search_box{
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: space-between
+}
+.search_box .tosearch{
+  font-size: 36rpx;
+}
+.search_box .search{
+  width: 663rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  margin: 0 auto;
+  background: #f5f5f5;
+  border-radius: 20px;
+}
+.search_box .search image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 15rpx;
+}
+.search_box .search text{
+  font-size: 24rpx;
+  color: #c6c6c6;
+}
