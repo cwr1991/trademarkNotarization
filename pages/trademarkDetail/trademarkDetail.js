@@ -19,11 +19,26 @@ Page({
         })
     },
     // // 立即购买fun
-    // purchase(){
-
-    // },
+    purchaseFun(){
+        if (!app.usermob) {
+            wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            return false;
+        }
+        let id = this.data.list.id
+        wx.navigateTo({
+            url: `/pages/trademarkConfirm/trademarkConfirm?id=${id}`,
+        })
+    },
     // 收藏
     collectFun(){
+        if (!app.usermob) {
+            wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            return false;
+        }
         this.setData({
             action:1
         })
@@ -104,8 +119,6 @@ Page({
     getData(){
         let list = this.data.list
         let url  = app.newbaseUrl 
-
-        // let openid = app.openid || 'oKjx85fKXjZHMP2l3qyLfhryqFSM'
         let id = this.data.id
         let that = this
         wx.request({
@@ -145,7 +158,7 @@ Page({
         let that = this
         let action = this.data.action
         let data = {
-            openid : app.openid || 'oKjx85fKXjZHMP2l3qyLfhryqFSM',
+            openid : app.openid,
             pid,
             action
         }

@@ -11,20 +11,25 @@
                 <block  wx:if="{{item.sbtypes == '1'}}">
                     <navigator wx:if="{{item.sbtypes == '1'}}"  url="/pages/buyercompany/buyercompany?id={{item.id}}" open-type="navigate">
                             <view class="list" >
-                                <view class="name">{{item.username}}</view>
+                                <view class="name">{{item.username}}
+                                    <text class="phone">{{item.phone}}</text>
+                                </view>
                             </view>
                         </navigator>
                 </block>
                 <block wx:if="{{item.sbtypes != '1' && item.yun_uid != 0 }}">
                      <navigator   url="/pages/buyercompany/buyercompany?id={{item.id}}" open-type="navigate">
                         <view class="list" >
-                            <view class="name">{{item.enterprise_name}}</view>
+                            <view class="name">{{item.enterprise_name}}
+                                    <text class="phone">{{item.phone}}</text>
+                            </view>
                         </view>
                     </navigator>
                 </block>
                 <view class="list" wx:if="{{item.sbtypes == '3'&&item.yun_uid == 0 }}" >
                     <view class="name" >
                         {{item.enterprise_name}}
+                        <text class="phone">{{item.phone}}</text>
                         <text class="auditing " >审核中</text>
                     </view>
                 </view>

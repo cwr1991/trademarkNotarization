@@ -51,7 +51,7 @@ page{
     box-sizing: border-box;
 }
 .list{
-    height: 100rpx;
+    min-height: 100rpx;
     display: flex;
     align-items: center;
     border-bottom:1px solid #ededed;
@@ -87,6 +87,9 @@ page{
 }
 .add_f{
     font-size: 40rpx;
+}
+.phone{
+    margin-left: 15rpx;
 }
 /* 空状态 */
 .empty{

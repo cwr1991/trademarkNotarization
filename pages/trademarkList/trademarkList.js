@@ -23,7 +23,8 @@ Page({
        trademark_type:0,
        hotProduct:[],  //热门项目
        group:'',//选中热门项目的id
-       floorstatus:false   //是否显示返回顶部按钮
+       floorstatus:false ,  //是否显示返回顶部按钮,
+       appkey:'7EoYU04WiaaY^qkHOP*%dc@*LNVnN1NK'
     },
     // 类别fun
     navigateTo(){
@@ -171,6 +172,7 @@ Page({
             list:[],
             loadEnd:false,
             empty:false
+           
         })
         this.getData();
     },
@@ -306,21 +308,33 @@ Page({
             this.getData()
         } 
     },
+    signGenerate:function(data) {
+
+        let ret = [];
+        for (let it in data) {
+          let val = data[it];
+          ret.push(it + '=' + val);
+        }
+        ret.sort();
+        let res = encodeURI(ret.join('&')) + '&appkey=' + this.data.appkey;
+        return jsMD5.hexMD5(res);
+    },
     // 获取热门类别及热门项目
     getTypeData(){
         let trademark_type = this.data.trademark_type
-        let sign = jsMD5.hexMD5(trademark_type)
-         let data = {
-             sign,
-             trademark_type
-         }
+         var signdata = this.signGenerate({
+            trademark_type
+        });
         wx.request({
-            url:'http://172.19.20.97/trademark_subcategory/read?trademark_type='+trademark_type ,
+            url:app.newbaseUrl+'/trademark_subcategory/read?trademark_type='+trademark_type ,
             method:"POST",
             header: {
               'content-type': 'application/x-www-form-urlencoded' // 默认值
             },
-            data,
+            data:{
+                sign:signdata,
+                trademark_type
+            },
             success:result=>{
               let res = result.data
               if(res.errorCode == 200 ){

@@ -102,11 +102,9 @@
                 咨询
             </view>
         </view>
-        <navigator url="/pages/trademarkConfirm/trademarkConfirm?id={{list.id}}"  open-type="navigate">
-            <view class="bottom_right" >
+            <view class="bottom_right" bind:tap = "purchaseFun">
                 立即购买
             </view>
-        </navigator>
     </view>
     <!-- 咨询模块 -->
     <view class="consult_box" wx:if="{{consult_show}}">

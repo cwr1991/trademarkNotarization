@@ -59,7 +59,7 @@ Page({
             lx_name,
             lx_phone,
             id,
-            openid:app.openid ||'oKjx85fKXjZHMP2l3qyLfhryqFSM'
+            openid:app.openid
         }
         wx.showLoading({
             title:'加载中',
@@ -102,7 +102,6 @@ Page({
     },
     getData(){
         let url  = app.newbaseUrl 
-        // let openid = app.openid || 'oKjx85fKXjZHMP2l3qyLfhryqFSM'
         let id = this.data.id
         let that = this
         wx.request({

@@ -10,11 +10,16 @@
             <block wx:for="{{list}}" wx:key="{{item.id}}">
                     <navigator class="edit" url="/pages/applicantAE/applicantAE?id={{item.id}}&types={{item.sbtypes}}" hover-class="navigator-hover">
                         <view class="list">
-                            <view class="name" wx:if="{{item.sbtypes == '1'}}">{{item.username}}</view>
-                            <view class="name" wx:if="{{item.sbtypes == '2'}}">{{item.enterprise_name}}</view>
+                            <view class="name" wx:if="{{item.sbtypes == '1'}}">{{item.username}}
+                                    <text class="phone">{{item.phone}}</text>
+                            </view>
+                            <view class="name" wx:if="{{item.sbtypes == '2'}}">{{item.enterprise_name}}
+                                    <text class="phone">{{item.phone}}</text>
+                            </view>
                             <block>
                                 <view class="name" wx:if="{{item.sbtypes == '3'}}">
                                     {{item.enterprise_name}}
+                                    <text class="phone">{{item.phone}}</text>
                                     <text class="auditing " wx:if="{{item.yun_uid == 0 }}">审核中</text>
                                 </view>
                             </block>
