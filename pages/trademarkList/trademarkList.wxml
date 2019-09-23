@@ -38,7 +38,7 @@
         <view class="hot_items">
             <block wx:for="{{hotProduct}}" wx:key="item.id">
                 <view class="hot_item {{item.checked ? 'active' : ''}}" data-idx="{{index}}" bind:tap="handleHotP" >
-                    {{item.cate_code}}{{item.name}}
+                    {{item.cate_code}}{{item.id || item.alias}}
                 </view>    
             </block>
         </view>

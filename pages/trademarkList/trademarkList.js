@@ -338,20 +338,36 @@ Page({
             success:result=>{
               let res = result.data
               if(res.errorCode == 200 ){
-                 
                   if(trademark_type ==0 ){
                     let hotTypes = res.data
                     hotTypes.forEach(element=>{
                         element.id  = element.cate_code
-                    })
+                    })   
                     this.setData({
                         hotTypes
                     })
                   }else{
+                    let hotSmallProduct = []
                     let hotProduct = res.data 
-                    hotProduct.forEach((element)=>{
+                    hotProduct.forEach((element,index)=>{
                         element.checked = false
+                        let alias = element.alias
+                        if(alias&&alias.includes('|')){
+                            let aliasArr = alias.split('|')
+                            for(let i = 0; i<aliasArr.length; i++){
+                                let smallProduct = {
+                                    cate_code:element.cate_code,
+                                    checked:element.checked,
+                                    name:element.name,
+                                    alias:aliasArr[i]
+                                }
+                                hotSmallProduct.push(smallProduct)
+                            }
+                            console.log(index)
+                            hotProduct.splice(index,1)
+                        }
                     })
+                    hotProduct = [...hotProduct,...hotSmallProduct]
                     this.setData({
                         hotProduct
                     })
