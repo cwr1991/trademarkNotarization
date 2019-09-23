@@ -44,7 +44,7 @@ Page({
   },
   toczroperation:function(){
     if (!app.usermob) {
-      wx.reLaunch({
+      wx.navigateTo({
         url: '/pages/login/login',
       })
       return false;
@@ -55,7 +55,7 @@ Page({
   },
   tobuyercompany:function(){
     if (!app.usermob) {
-      wx.reLaunch({
+      wx.navigateTo({
         url: '/pages/login/login',
       })
       return false;

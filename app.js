@@ -19,7 +19,6 @@ App({
               code:res.code
             },
             success(res){
-              console.log(res);
               that.openid = res.data.result.openid;
               if (res.data.status==0){
                 // wx.reLaunch({

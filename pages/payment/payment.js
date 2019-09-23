@@ -133,7 +133,7 @@ Page({
                   })
                   setTimeout(function(){
                     wx.navigateTo({
-                      url: '/pages/buyerorder/buyerorder',
+                      url: '/pages/buyerorder/buyerorder?status=-1',
                     })
                   },2000)
                 } else if (res.data.result.pay_status == 2){
@@ -143,7 +143,7 @@ Page({
                   }) 
                   setTimeout(function () {
                     wx.navigateTo({
-                      url: '/pages/buyerorder/buyerorder',
+                      url: '/pages/buyerorder/buyerorder?status=-1',
                     })
                   }, 2000)
                 }
