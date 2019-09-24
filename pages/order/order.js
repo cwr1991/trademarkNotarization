@@ -10,7 +10,9 @@ Page({
     navTab: ['全部', '未公证', '受理中', '已发证', '已终止'],
     currentTab: 0,
     isClickEdit: false,
+    isClickEdit2: false,
     allChecked: false,
+    allChecked2: false,
     // isfapiao:false,
     fapiao_alert: false,
     express_alert: false,
@@ -46,7 +48,8 @@ Page({
         let content = res.data.result.datas
         if (content != 0) {
           content.forEach((element) => {
-            element.checked = false
+            element.checked = false;
+            element.checked2 = false;
           })
         }
         var length = res.data.result.datas.length
@@ -77,7 +80,9 @@ Page({
             return x.check == 1;
           });
           that.setData({
-            gz_address: r[0].scity + r[0].address
+            gz_address: r[0].scity + r[0].address,
+            gz_name:r[0].sname,
+            gz_tel:r[0].stel
           })
         }
       }
@@ -106,6 +111,13 @@ Page({
       },
       success(res) {
         content = res.data.result.datas
+        if (content != 0) {
+          content.forEach((element) => {
+            element.checked = false;
+            element.checked2 = false;
+          })
+        }
+
         var length = content.length
         if (length == undefined) {
           length = 0
@@ -113,15 +125,16 @@ Page({
         that.setData({
           currentTab: e.currentTarget.dataset.idx,
           content: content,
-          contentLength: length
-
+          contentLength: length,
+          allChecked: false,
+          allChecked2: false
         })
       }
     })
 
   },
 
-  // 点击编辑按钮toggle
+  // 点击编辑按钮toggle(索取发票)
   clickEdit(e) {
     var toggle = !this.data.isClickEdit
     this.setData({
@@ -130,7 +143,7 @@ Page({
 
   },
 
-  // 点击全选按钮
+  // 点击全选按钮(索取发票)
   allChecked(e) {
     var allchecked = !this.data.allChecked;
 
@@ -146,7 +159,7 @@ Page({
       isClickEdit: true
     })
   },
-  // 点击单选按钮
+  // 点击单选按钮(索取发票)
   singleChecked(e) {
     var index = e.currentTarget.dataset.index
     let content = this.data.content
@@ -330,7 +343,9 @@ Page({
           });
 
           that.setData({
-            gz_address: r[0].scity + r[0].address
+            gz_address: r[0].scity + r[0].address,
+            gz_name: r[0].sname,
+            gz_tel: r[0].stel
           })
         }
 
@@ -365,6 +380,8 @@ Page({
         email: that.data.email,
         is_zhengshu: 1,
         addr: that.data.gz_address,
+        sendName:that.data.gz_name,
+        sendPhone:that.data.gz_tel,
         openid: app.openid,
         type: 1
       },
@@ -479,7 +496,12 @@ Page({
   },
 
   // 删除单个订单
-  deleteSingleorder(e) {
+  deleteSingleorder(e, order_id) {
+    // 避免批量删除orderid undefined
+    let order_ids = e.currentTarget.dataset.orderid;
+    if(order_ids == undefined){
+      order_ids = order_id;
+    }
     let that = this;
     wx.showModal({
       title: '',
@@ -492,7 +514,7 @@ Page({
             url: `${app.baseUrl}/gzynew/cancel-order`,
             data: {
               openid: app.openid,
-              order_id: e.currentTarget.dataset.orderid
+              order_id: order_ids
             },
             success(res) {
 
@@ -507,10 +529,13 @@ Page({
                   let content = res.data.result.datas
                   if (content != 0) {
                     content.forEach((element) => {
-                      element.checked = false
+                      element.checked = false,
+                      element.checked2 = false
+
                     })
                   }
-                  var length = res.data.result.datas.length
+                  var length = res.data.result.datas.length;
+                  var isClickEdit2=false;
                   if (length == undefined) {
                     length = 0
                   }
@@ -518,7 +543,8 @@ Page({
                   that.setData({
                     content,
                     contentLength: length,
-                    currentTab: 4
+                    currentTab: 4,
+                    isClickEdit2
                   })
                 }
               })
@@ -529,7 +555,76 @@ Page({
         }
       }
     })
-  }
+  },
+
+  // 点击编辑按钮toggle(删除订单)
+  clickEdit2(e) {
+    var toggle = !this.data.isClickEdit2
+    this.setData({
+      isClickEdit2: toggle
+    })
+
+  },
+
+  // 点击全选按钮(删除订单)
+  allChecked2(e) {
+    var allchecked2 = !this.data.allChecked2;
+
+    let content = this.data.content
+
+    content.forEach((element) => {
+      element.checked2 = allchecked2
+    })
+
+    this.setData({
+      allChecked2: allchecked2,
+      content: content,
+      isClickEdit2: true
+    })
+  },
+  // 点击单选按钮(删除订单)
+  singleChecked2(e) {
+    var index = e.currentTarget.dataset.index
+    let content = this.data.content
+    let allChecked2 = this.data.allChecked2
+    content[index].checked2 = !e.currentTarget.dataset.checked2;
+    // every()检测数组中的所有元素的checked是否为true
+    let result = content.every((elm) => {
+      return elm.checked2 == true
+    })
+    console.log(result)
+    result ? allChecked2 = result : allChecked2 = false
+    this.setData({
+      allChecked2,
+      content
+    })
+  },
+  // 批量删除
+  deleteAllOrder: function(e) {
+    var that = this;
+    var arrnum = [];
+    for (var i = 0; i < that.data.content.length; i++) {
+      if (that.data.content[i].checked2) {
+        arrnum.push(that.data.content[i].order_id)
+      }
+    }
+    if (arrnum.length == 0) {
+      wx.showToast({
+        title: '请先选择订单',
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+    let order_ids = arrnum.join(',');
+    that.setData({
+      alldeleteid: order_ids
+    })
+
+    this.deleteSingleorder(e, this.data.alldeleteid);
+
+
+  },
   // 20190919在线公证优化end
 
 })

@@ -36,8 +36,6 @@ page {
   width: 31rpx;
   height: 31rpx;
   /* padding: 0 20rpx 20rpx; */
-  position: absolute;
-  bottom: 20rpx;right: 20rpx;
 }
 
 .address-item .username {
@@ -70,10 +68,10 @@ page {
   display: flex;
   justify-content: space-between;
   margin-top: 25rpx;
+  flex-wrap: nowrap;
 }
 
 .address-item .bottom .address {
-  width: 620rpx;
   font-size: 24rpx;
   color: #666;
   line-height: 40rpx;
