@@ -3,7 +3,7 @@
 <!-- 搜索框 -->
 <view class="search_box">
   <view class="search" bindtap="search">
-    <image src="/images/search01 small.png"></image>
+    <image src="/images/search01small.png"></image>
     <text>输入商标名/注册号查询订单</text>
   </view>
 </view>
@@ -23,18 +23,20 @@
       <view class="nulltips">订单信息为空</view>
     </view>
     <!-- 已发证编辑 -->
-    <!-- <view wx:if="{{currentTab==3}}" class="edit"> -->
     <view class="edit" wx:if="{{contentLength!=0}}">
       <view class="edit_left">共
         <text>{{contentLength}}</text>件商品</view>
-      <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 && contentLength!=0}}" bindtap="clickEdit">编辑</view>
-      <view class="edit_right" wx:elif="{{isClickEdit &&currentTab==3 }}" bindtap="clickEdit">完成</view>
+      <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 && contentLength!=0 }}" bindtap="clickEdit">编辑</view>
+      <view class="edit_right" wx:elif="{{isClickEdit && currentTab==3 && contentLength!=0 }}" bindtap="clickEdit">完成</view>
     </view>
 
     <!-- 每条订单信息 -->
     <view class="editBox {{isClickEdit && infoIdx==content.length-1?'last':''}}" wx:for="{{content}}" wx:key="*this" wx:for-item="contentItem" wx:for-index="infoIdx" data-infoIdx="{{infoIdx}}" data-checkd="{{contentItem.checked}}">
       <!-- 单选checked -->
       <view wx:if="{{currentTab==3 && isClickEdit}}" class="{{!contentItem.checked?'circle mar':'circle mar checked'}}" bindtap="singleChecked" data-checked="{{contentItem.checked}}" data-index="{{infoIdx}}"></view>
+
+      <!-- <view wx:if="{{currentTab==4 && isClickEdit}}" class="{{!contentItem.checked?'circle mar':'circle mar checked'}}" bindtap="singleChecked" data-checked="{{contentItem.checked}}" data-index="{{infoIdx}}"></view> -->
+
       <!-- 订单item -->
       <view class="{{infoIdx >= contentItem.info.length-1? 'infoItem last': 'infoItem'}}">
         <view class="first_row">
@@ -43,10 +45,15 @@
             <!-- <text>{{infoItem.times.time}}</text> -->
           </view>
 
-          <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==2}}">已退款</view>
-          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==1}}">已支付</view>
-          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">待付款</view>
+          <view wx:if="{{currentTab!=4}}">
+            <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==2}}">已退款</view>
+            <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==1}}">已支付</view>
+            <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">待付款</view>
+          </view>
 
+          <view wx:else>
+            <image src="/images/group 6 copy.png" style="width:27rpx;height:27rpx;" data-orderid="{{contentItem.order_id}}" bindtap="deleteSingleorder"></image>
+          </view>
 
 
 
@@ -89,9 +96,9 @@
           <!-- <text style="width:220rpx;" wx:elif="{{contentItem.is_zhengshu==1 && contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn hasgz" data-id="{{contentItem.id}}">已索取纸质证书</text> -->
 
           <text wx:elif="{{contentItem.is_zhengshu==1 && contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn gz" data-id="{{contentItem.id}}" bindtap="showExpress">查看物流</text>
-           <!-- <text class="btn gz" data-id="{{contentItem.id}}" bindtap="showExpress">查看物流</text> -->
+          <!-- <text class="btn gz" data-id="{{contentItem.id}}" bindtap="showExpress">查看物流</text> -->
 
-           <text data-orderid="{{contentItem.order_id}}" wx:if="{{contentItem.order_code==1}}" class="btn detail" bindtap="extraFiles">补充材料</text>
+          <text data-orderid="{{contentItem.order_id}}" wx:if="{{contentItem.order_code==1}}" class="btn detail" bindtap="extraFiles">补充材料</text>
         </view>
       </view>
     </view>

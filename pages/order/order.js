@@ -13,7 +13,7 @@ Page({
     allChecked: false,
     // isfapiao:false,
     fapiao_alert: false,
-    express_alert:false,
+    express_alert: false,
     content: [],
     email: "",
     allid: ''
@@ -27,24 +27,24 @@ Page({
     //   infolength:content.info.length
     // })
 
-    var status,currentTab
-    if (options.status){
+    var status, currentTab
+    if (options.status) {
       status = options.status
-      currentTab = parseInt(status)+1
-    }else{
-      currentTab=0
+      currentTab = parseInt(status) + 1
+    } else {
+      currentTab = 0
     }
     let that = this;
     wx.request({
       url: `${app.baseUrl}/gzynew/queryorder`,
       data: {
         openid: app.openid,
-        flowStatus:status
+        flowStatus: status
       },
       success: function(res) {
 
         let content = res.data.result.datas
-        if(content!=0){
+        if (content != 0) {
           content.forEach((element) => {
             element.checked = false
           })
@@ -63,7 +63,7 @@ Page({
     })
 
   },
-  onShow(){
+  onShow() {
     this.getTicket();
     var that = this;
     wx.request({
@@ -73,7 +73,7 @@ Page({
       },
       success(res) {
         if (res.data.result.length > 0) {
-          var r = res.data.result.filter(function (x) {
+          var r = res.data.result.filter(function(x) {
             return x.check == 1;
           });
           that.setData({
@@ -119,14 +119,15 @@ Page({
       }
     })
 
-  },  
+  },
 
   // 点击编辑按钮toggle
   clickEdit(e) {
-    var toggle=!this.data.isClickEdit
+    var toggle = !this.data.isClickEdit
     this.setData({
       isClickEdit: toggle
     })
+
   },
 
   // 点击全选按钮
@@ -151,9 +152,11 @@ Page({
     let content = this.data.content
     let allChecked = this.data.allChecked
     content[index].checked = !e.currentTarget.dataset.checked;
+    // every()检测数组中的所有元素的checked是否为true
     let result = content.every((elm) => {
       return elm.checked == true
     })
+    console.log(result)
     result ? allChecked = result : allChecked = false
     this.setData({
       allChecked,
@@ -189,7 +192,7 @@ Page({
     })
     this.getTicket()
   },
-  getTicket(){
+  getTicket() {
     var that = this;
 
     wx.request({
@@ -199,7 +202,7 @@ Page({
       },
       success(res) {
         //fapiao_title抬头展示用
-        if(res.data.msg!="fail"){
+        if (res.data.msg != "fail") {
           let fapiao_title = res.data.result[0].title
           // fapiao_id 发票主体id
           let fapiao_id = res.data.result[0].id
@@ -287,7 +290,7 @@ Page({
     }
     if (arrnum.length == 0) {
       wx.showToast({
-        title: '请选择订单索取发票',
+        title: '请先选择订单',
         icon: 'none',
         duration: 2000
       })
@@ -322,7 +325,7 @@ Page({
       },
       success(res) {
         if (res.data.result.length > 0) {
-          var r = res.data.result.filter(function (x) {
+          var r = res.data.result.filter(function(x) {
             return x.check == 1;
           });
 
@@ -360,10 +363,10 @@ Page({
       data: {
         orderid: that.data.gz_order_id,
         email: that.data.email,
-        is_zhengshu:1,
+        is_zhengshu: 1,
         addr: that.data.gz_address,
-        openid:app.openid,
-        type:1
+        openid: app.openid,
+        type: 1
       },
       success(res) {
 
@@ -403,48 +406,46 @@ Page({
     })
   },
 
-  // 20190919在线公证优化
+  // 20190919在线公证优化start
   // 查看物流
-  showExpress:function(e){
-    let that=this;
+  showExpress: function(e) {
+    let that = this;
     wx.showLoading({
       title: '请稍后',
     })
     var express_alert = !this.data.express_alert
-    
-    
+
+
     wx.request({
       url: `${app.baseUrl}/gzynew/orderinfo`,
-      data:{
-        openid:app.openid,
-        review:1,
+      data: {
+        openid: app.openid,
+        review: 1,
         orderid: e.currentTarget.dataset.id
       },
-      success(res){
-        if(res.data.status==0 || res.data.msg == "成功"){
+      success(res) {
+        if (res.data.status == 0 || res.data.msg == "成功") {
           wx.hideLoading();
-          if (res.data.result.order_code==3){
+          if (res.data.result.order_code == 3) {
             that.setData({
               flow_remark: res.data.result.flow_remark,
               express_alert
             })
-          }
-          else{
+          } else {
             wx.showToast({
               title: '暂无快递信息',
-              icon:'none',
-              duration:2000
+              icon: 'none',
+              duration: 2000
             })
           }
-          
-        }
-        else{
+
+        } else {
           console.log(res.data.msg)
         }
       }
     })
   },
-  copyExpressNum:function(e){
+  copyExpressNum: function(e) {
     wx.setClipboardData({
       data: e.currentTarget.dataset.expressno,
       success(res) {
@@ -456,7 +457,7 @@ Page({
       }
     })
   },
-  closeExpress(){
+  closeExpress() {
     var express_alert = !this.data.express_alert
     this.setData({
       express_alert
@@ -464,18 +465,71 @@ Page({
   },
 
   // 跳转补充材料
-  extraFiles(e){
-    var orderid=e.currentTarget.dataset.orderid
+  extraFiles(e) {
+    var orderid = e.currentTarget.dataset.orderid
     wx.navigateTo({
       url: '../extrafiles/extrafiles?orderid=' + orderid,
     })
   },
   // 跳转搜索页
-  search:function(e){
-    wx.navigateTo({
+  search: function(e) {
+    wx.redirectTo({
       url: '../search/search',
     })
+  },
+
+  // 删除单个订单
+  deleteSingleorder(e) {
+    let that = this;
+    wx.showModal({
+      title: '',
+      content: '确定要删除此公证订单吗?',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+
+          wx.request({
+            url: `${app.baseUrl}/gzynew/cancel-order`,
+            data: {
+              openid: app.openid,
+              order_id: e.currentTarget.dataset.orderid
+            },
+            success(res) {
+
+              wx.request({
+                url: `${app.baseUrl}/gzynew/queryorder`,
+                data: {
+                  openid: app.openid,
+                  flowStatus: 3
+                },
+                success: function(res) {
+
+                  let content = res.data.result.datas
+                  if (content != 0) {
+                    content.forEach((element) => {
+                      element.checked = false
+                    })
+                  }
+                  var length = res.data.result.datas.length
+                  if (length == undefined) {
+                    length = 0
+                  }
+
+                  that.setData({
+                    content,
+                    contentLength: length,
+                    currentTab: 4
+                  })
+                }
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   }
-  // 20190919在线公证优化
+  // 20190919在线公证优化end
 
 })

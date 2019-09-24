@@ -1,8 +1,137 @@
 <!--pages/search/search.wxml-->
-<view class="search_box">
-  <view class="search" bindtap="search">
-    <image src="/images/search01 small.png"></image>
-    <text>输入商标名/注册号查询订单</text>
+<view class="search1_box">
+  <image src="/images/search01small.png"></image>
+  <input class="search" bindinput="inputSearch" focus='{true}' placeholder="输入商标名/注册号查询订单" placeholder-class=" placeholder-text"></input>
+  <text class="tosearch" bindtap="tosearch">搜索</text>
+</view>
+
+
+<!-- 内容 -->
+<view class="content">
+  <view id="itemBox">
+    <!-- 数据为空状态 -->
+    <view class="null" wx:if="{{contentLength==0}}">
+      <image src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/null@2x.png" style="width:126px;height:156px;"></image>
+      <view class="nulltips">订单信息为空</view>
+    </view>
+
+    <!-- 每条订单信息 -->
+    <view class="editBox {{isClickEdit && infoIdx==content.length-1?'last':''}}" wx:for="{{content}}" wx:key="*this" wx:for-item="contentItem" wx:for-index="infoIdx" data-infoIdx="{{infoIdx}}" data-checkd="{{contentItem.checked}}">
+     
+      <!-- 订单item -->
+      <view class="{{infoIdx >= contentItem.info.length-1? 'infoItem last': 'infoItem'}}">
+        <view class="first_row">
+          <view class="datetime">
+            <text>{{contentItem.add_at}}</text>
+            <!-- <text>{{infoItem.times.time}}</text> -->
+          </view>
+
+          <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==2}}">已退款</view>
+          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==1}}">已支付</view>
+          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">待付款</view>
+        </view>
+
+        <view class="second_row">
+          <view>
+            <text class="SB bot" style="font-size:30rpx;color:#080808">{{contentItem.sbname}}</text>
+            <text class="SB">
+            
+            <text>注册号：{{contentItem.sbid}}</text>
+            </text>
+          </view>
+          <view>
+            <text class="SB bot">
+            <text>操作人：{{contentItem.username}}</text>
+
+            </text>
+            <text class="SB">
+            <text>类别：{{contentItem.sbbigclassid}}</text>
+
+            </text>
+          </view>
+        </view>
+
+        <view class="third_row">订单编号：{{contentItem.order_id}}</view>
+
+        <view class="last_row">
+          <!-- <text wx:if="{{contentItem.type==0}}" wx:for="{{infoItem.btntype}}" wx:key="0" class="{{item=='查看详情'?'btn detail':'btn pay'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text>
+          <text wx:if="{{contentItem.type==3}}" wx:for="{{infoItem.btntype}}" wx:key="3" class="{{item=='索取发票'?'btn fapiao':'btn detail'}}" data-type="{{item}}" bindtap="goto" data-orderid="{{infoItem.orderNum}}">{{item}}</text> -->
+          <text class="btn detail" bindtap="goto" data-orderid="{{contentItem.id}}" data-type="查看详情">查看详情</text>
+          <text class="btn pay" bindtap="goto" data-id="{{contentItem.id}}" data-orderid="{{contentItem.order_id}}" data-type="立即支付" wx:if="{{contentItem.pay_status==0}}">立即支付</text>
+          <text class="btn pay" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==4&&contentItem.pay_status==1}}" bindtap="towebview">扫脸认证</text>
+          <text class="btn hasrenzhen" data-id="{{contentItem.id}}" wx:if="{{contentItem.flow_status==1 && contentItem.pay_status==1}}">已扫脸认证</text>
+
+          <text wx:if="{{contentItem.flow_status==2 &&contentItem.fapiao_status==0 && contentItem.pay_status==1}}" class="btn fapiao" data-id="{{contentItem.id}}" bindtap="fapiao">索取发票</text>
+          <text wx:elif="{{ contentItem.flow_status==2 && contentItem.fapiao_status==1 && contentItem.pay_status==1}}" class="btn hasfapiao" data-id="{{contentItem.id}}">已开票</text>
+
+          <text style="width:220rpx;" wx:if="{{contentItem.is_zhengshu!=1 &&contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn gz" data-id="{{contentItem.id}}" bindtap="gongzhengshu">索取纸质公证书</text>
+          <!-- <text style="width:220rpx;" wx:elif="{{contentItem.is_zhengshu==1 && contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn hasgz" data-id="{{contentItem.id}}">已索取纸质证书</text> -->
+
+          <text wx:elif="{{contentItem.is_zhengshu==1 && contentItem.flow_status==2  && contentItem.pay_status==1}}" class="btn gz" data-id="{{contentItem.id}}" bindtap="showExpress">查看物流</text>
+           <!-- <text class="btn gz" data-id="{{contentItem.id}}" bindtap="showExpress">查看物流</text> -->
+
+           <text data-orderid="{{contentItem.order_id}}" wx:if="{{contentItem.order_code==1}}" class="btn detail" bindtap="extraFiles">补充材料</text>
+        </view>
+      </view>
+    </view>
   </view>
-  <text class="tosearch">搜索</text>
+</view>
+
+
+
+<!-- 索取发票弹框 -->
+<view wx:if="{{fapiao_alert}}" class="cover_black">
+  <view class="white_alert">
+    <image src="/images/indexicon01.png" style="width:40rpx;height:40rpx;position: absolute;right: 20rpx;top: 20rpx;" bindtap="closefapiao"></image>
+    <view class="tit">接收信息</view>
+    <view class="email">
+      <text>电子邮箱</text>
+      <input type="text" placeholder="请输入电子邮箱地址" style="width:300rpx;" value="{{email}}" bindinput="bindemail"></input>
+    </view>
+    <view class="address">
+      <text>选择开票主体</text>
+      <view class="select_address" bindtap="toSelectInvoice">
+        <text>{{fapiao_title}}</text>
+        <image src="/images/lefticon.png" style="width:14rpx;height:25rpx;margin-left:20rpx;"></image>
+      </view>
+    </view>
+    <view class="btn_sure" bindtap="fapiao_sure">确定</view>
+  </view>
+</view>
+
+<!-- 纸质公证书弹框 -->
+
+<view class="cover_black" wx:if="{{gz_alert}}">
+  <view class="white_alert">
+    <image src="/images/indexicon01.png" style="width:40rpx;height:40rpx;position: absolute;right: 20rpx;top: 20rpx;" bindtap="closegz"></image>
+    <view class="tit">接收信息</view>
+    <view class="email">
+      <text>电子邮箱</text>
+      <input type="text" placeholder="请输入电子邮箱地址" style="width:300rpx;" value="{{email}}" bindinput="bindemail"></input>
+    </view>
+    <view class="address">
+      <text>收件地址</text>
+      <view class="select_address" bindtap="toSelectAddress">
+        <text>{{gz_address}}</text>
+        <image src="/images/lefticon.png" style="width:14rpx;height:25rpx;margin-left:20rpx;"></image>
+      </view>
+    </view>
+    <view class="btn_sure" bindtap="gz_sure">确定</view>
+  </view>
+</view>
+
+<!-- 物流信息弹框 -->
+<view class="cover_black" wx:if="{{express_alert}}">
+  <view class="expressBox">
+    <view class="gzspic">
+      <image src="/images/icongzs.png"></image>
+    </view>
+    <view class="h2">纸质公证书快递信息</view>
+    <view class="graytext">快递公司：{{flow_remark.express}}快递</view>
+    <view class="graytext">快递单号：{{flow_remark.expressNo}}
+      <view class="btn fapiao" style="border:0;margin:0;" bindtap="copyExpressNum" data-expressNo="{{flow_remark.expressNo}}">复制单号</view>
+    </view>
+    <image bindtap="closeExpress" class="closeExpress" src="/images/whiteclose.png"></image>
+  </view>
+
 </view>

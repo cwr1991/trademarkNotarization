@@ -136,7 +136,7 @@ page {
 .third_row {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding: 20rpx 0;
   margin: 0 40rpx;
   border-bottom: 1px dashed #cfcfcf;

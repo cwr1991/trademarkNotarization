@@ -1,30 +1,39 @@
 /* pages/search/search.wxss */
+@import "../order/order.wxss";
 /* 搜索 */
-.search_box{
-  width: 100%;
+.search1_box{
+  padding: 0 25rpx;  
+  margin: 20rpx 0;
   background: #fff;
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
-.search_box .tosearch{
-  font-size: 36rpx;
-}
-.search_box .search{
-  width: 663rpx;
+
+.search1_box .search{
+  display: block;
+  width: 600rpx;
   height: 68rpx;
   line-height: 68rpx;
-  text-align: center;
-  margin: 0 auto;
   background: #f5f5f5;
   border-radius: 20px;
+  padding-left: 60rpx;
+  background: #f5f5f5;
+  box-sizing: border-box;
 }
-.search_box .search image{
+.search1_box  image{
+  position: absolute;
+  left: 45rpx;
   width: 30rpx;
   height: 30rpx;
   vertical-align: middle;
   margin-right: 15rpx;
 }
-.search_box .search text{
+ .placeholder-text{
   font-size: 24rpx;
   color: #c6c6c6;
+}
+.search1_box .tosearch{
+  font-size: 32rpx;
 }
