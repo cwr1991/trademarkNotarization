@@ -96,7 +96,6 @@ Page({
                       icon:"none"
                   })
               }
-              console.log(order_id,"order_id")           
             }
         })
     },

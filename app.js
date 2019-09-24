@@ -68,5 +68,6 @@ App({
   newbaseUrl:'https://api.86sb.com.cn',
   username:'',
   usermob:'',
-  sbclasses:''
+  sbclasses:'',
+  detailBack:false  //详情页回退是否加载数据
 })

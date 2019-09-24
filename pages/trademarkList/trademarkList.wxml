@@ -20,7 +20,6 @@
                 热门类别推荐
             </view>
             <view class="hot_items">
-                
                 <block wx:for="{{hotTypes}}" wx:key="item.id">
                     <view class="hot_item"  data-idx="{{index}}" bind:tap="handleHotT" >
                         {{item.name}}
@@ -86,7 +85,7 @@
         <!-- 列表 -->
         <block wx:if="{{list.length > 0 }}">
                 <view class="list_box clearfix">
-                    <view class="list_item " wx:for="{{list}}" wx:key="{{item.id}}">
+                    <view class="list_item " wx:for="{{firstList}}" wx:key="{{item.id}}">
                         <navigator url="/pages/trademarkDetail/trademarkDetail?id={{item.id}}"  open-type="navigate">
                             <image src="{{item.images}}" lazy-load="true"></image>
                             <view class="list_item_title">{{item.trademark_name}}</view>
@@ -97,6 +96,14 @@
                     <view class="list_consult ">
                        <input type="number" value="{{phoneVal}}" bindinput="phoneFun" placeholder="请输入您的联系电话" />
                         <view class="submit_phone" bind:tap="subPhone">提交</view> 
+                    </view>
+                    <view class="list_item " wx:for="{{lastList}}" wx:key="{{item.id}}">
+                        <navigator url="/pages/trademarkDetail/trademarkDetail?id={{item.id}}"  open-type="navigate">
+                            <image src="{{item.images}}" lazy-load="true"></image>
+                            <view class="list_item_title">{{item.trademark_name}}</view>
+                            <view class="list_item_des">{{item.trademark_type}}类 {{item.trademark_type_name}}</view>
+                            <view class="list_item_price">¥{{item.reserve_price}}</view>
+                        </navigator>
                     </view>
                 </view>
         </block>

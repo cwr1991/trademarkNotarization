@@ -4,13 +4,13 @@ const app = getApp()
 Page({
     data:{
        searchVal:'',
-       priceList:["全部","一万以下","1-3万","3-5万"],
+       priceList:["全部","1万以下","1-3万","3-5万"],
        priceIndex:'',
        typeList:["全部","中文","英文","图形"],
        typeIndex:'',
        fontList:["全部","1-2字","2个字","3个字","4个字","4字以上"],
        fontIndex:'',
-       yearList:["全部","一年以上","二年以上","三年以上"],
+       yearList:["全部","1年以上","2年以上","3年以上"],
        yearIndex:'',
        phoneVal:'' , //留电
        helpPhoneVal:"", //客服帮助 留电
@@ -18,6 +18,8 @@ Page({
        loadEnd:false, //false 不显示加载中
        empty:false,  
        list:[],
+       firstList:[],   //第一页数据
+       lastList : [],  //剩余列表数据
        typeArr:[],     //45类商标选中的类别 
        hotTypes:[],    //热门类别
        trademark_type:0,
@@ -264,10 +266,14 @@ Page({
                   wx.hideLoading()
                   if(res.data.length == 0 && page == 1){
                     list = res.data
+                    let firstList = list
+                    let lastList = []
                     this.setData({
                         loadEnd:false,
                         empty:true,
-                        list
+                        list,
+                        firstList,
+                        lastList
                     })
                     return
                   }
@@ -283,13 +289,19 @@ Page({
                     this.setData({
                         loadEnd:false,
                         empty:true,
-                        list
+                        list,
+                        firstList:list,
+                        lastList:[]
                     })
                   }else{
                     list = [...list,...res.data]
+                    let firstList = list.slice(0,20);
+                    let lastList = list.slice(20)
                     this.setData({
                       list,
-                      loadEnd:false
+                      loadEnd:false,
+                      lastList,
+                      firstList
                     })
                   }
                 }
@@ -386,6 +398,10 @@ Page({
      
     },
     onShow(){
+        if(app.detailBack){
+            app.detailBack = false
+            return
+        }
         this.setData({
             page:1,
             list:[],

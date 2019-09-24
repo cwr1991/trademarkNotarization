@@ -207,5 +207,8 @@ Page({
         })
         this.getData()
         this.getCollectStatus()
+    },
+    onUnload(){
+        app.detailBack = true
     }
 })
