@@ -48,7 +48,7 @@
 
      <view class="intelligentForm">
         <view class="form">
-          <input placeholder="例如你从事服装行业，可输入‘服装’" bindinput="bindKeyintelligent" value="{{keyword}}"  placeholder-class="place-holder"/>
+          <input placeholder="你要买带什么字的商标" bindinput="bindKeyintelligent" value="{{keyword}}"  placeholder-class="place-holder"/>
           <view class="but" bindtap="tapintelligent">智能推荐</view>
         </view>
      </view> 

@@ -179,18 +179,11 @@ Page({
       })
       return false;
     }
-    wx.request({
-      url: app.newbaseUrl + '/product/search',
-      data:{
-        keyword: this.data.keyword
-      },
-      success(res) {
-        app.sbclasses = res.data.data.join();
-        wx.switchTab({
-          url: '/pages/trademarkList/trademarkList'
-        })
-      }
+    app.searchWord = this.data.keyword;
+    wx.switchTab({
+      url: '/pages/trademarkList/trademarkList'
     })
+    
   },
   tapsavephone:function(){
     if (this.data.phone == '') {

@@ -116,7 +116,6 @@ Page({
       signType: that.data.data.signType,
       paySign: that.data.data.paySign,
       success(res) {
-        console.log(that.data.type);
         if(that.data.type){
           wx.request({
             url: app.baseUrl + '/gzytrading/orderdetail',
