@@ -8,6 +8,7 @@ Page({
   data: {
     orderid: '',
     order_id:'',
+    type:'',
     data:{},
     price:'',
     sharedata:[]
@@ -16,69 +17,93 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     var that = this;
-    that.setData({
-      orderid: options.orderid,
-      order_id: options.order_id
-    })
-    wx.request({
-      url: app.baseUrl + '/gzynew/isoperator',
-      data: {
-        orderid: that.data.orderid,
-        openid: app.openid
-      },
-      success(res) {
-        if(res.data.status==0){
+    if (options.type){
+      that.setData({
+        order_id: options.order_id,
+        type: options.type,
+        price: options.price
+      })
+
+      wx.request({
+        url: app.baseUrl + '/gzytrading/get-pay-data',
+        data: {
+          openid: app.openid,
+          type: options.type,
+          order_id: options.order_id
+        },
+        success(res) {
+          that.setData({
+            data: res.data.result
+          })
+        }
+      })
+    }else{
+      that.setData({
+        orderid: options.orderid,
+        order_id: options.order_id
+      })
+      wx.request({
+        url: app.baseUrl + '/gzynew/isoperator',
+        data: {
+          orderid: that.data.orderid,
+          openid: app.openid
+        },
+        success(res) {
+          if (res.data.status == 0) {
             that.setData({
               sharedata: res.data.result
             })
-          var phone = app.usermob;
-          if (res.data.result.operator == 1) {
-            phone = res.data.result.yun_mobile;
-          }
-          wx.request({
-            url: app.baseUrl + '/gzynew/get-order-pay-charge',
-            data: {
-              openid: app.openid,
-              phone: phone,
-              order_id: options.order_id
-            },
-            success(res) {
-              that.setData({
-                price: res.data.result.price
-              })
+            var phone = app.usermob;
+            if (res.data.result.operator == 1) {
+              phone = res.data.result.yun_mobile;
             }
-          })
-
-          wx.request({
-            url: app.baseUrl + '/gzynew/get-pay-data',
-            data: {
-              order_id: options.order_id,
-              openid: app.openid,
-              phone: phone,
-            },
-            success(res) {
-              if (res.data.status == 1) {
-                wx.showToast({
-                  icon: 'none',
-                  title: res.data.msg
+            wx.request({
+              url: app.baseUrl + '/gzynew/get-order-pay-charge',
+              data: {
+                openid: app.openid,
+                phone: phone,
+                order_id: options.order_id
+              },
+              success(res) {
+                that.setData({
+                  price: res.data.result.price
                 })
-                return false;
               }
-              that.setData({
-                data: res.data.res
-              })
-            }
-          })
-        }else{
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg
-          })
-          return false;
+            })
+
+            wx.request({
+              url: app.baseUrl + '/gzynew/get-pay-data',
+              data: {
+                order_id: options.order_id,
+                openid: app.openid,
+                phone: phone,
+              },
+              success(res) {
+                if (res.data.status == 1) {
+                  wx.showToast({
+                    icon: 'none',
+                    title: res.data.msg
+                  })
+                  return false;
+                }
+                that.setData({
+                  data: res.data.res
+                })
+              }
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg
+            })
+            return false;
+          }
         }
-      }
-    })
+      })
+    }
+
 
   },
   topayment:function(){
@@ -91,26 +116,62 @@ Page({
       signType: that.data.data.signType,
       paySign: that.data.data.paySign,
       success(res) {
-        wx.request({
-          url: app.baseUrl + '/gzynew/get-order-info',
-          data: {
-            order_id: that.data.order_id,
-            field: 'pay_status,gz_url'
-          },
-          success(res) {
-            if (res.data.result.pay_status==1){
-              if (that.data.sharedata.operator==1){
-                wx.navigateTo({
-                  url: '/pages/paymentresult/paymentresult?orderid=' + that.data.orderid+'&weburl=' + res.data.result.gz_url,
-                })
-                return false;
+        if(that.data.type){
+          wx.request({
+            url: app.baseUrl + '/gzytrading/orderdetail',
+            data: {
+              order_id: that.data.order_id,
+              openid: app.openid
+            },
+            success(res) {
+              if (res.data.status==0){
+                if (res.data.result.pay_status == 1){
+                  wx.showToast({
+                    icon: 'success',
+                    title: '定金付款成功',
+                  })
+                  setTimeout(function(){
+                    wx.navigateTo({
+                      url: '/pages/buyerorder/buyerorder?status=-1',
+                    })
+                  },2000)
+                } else if (res.data.result.pay_status == 2){
+                  wx.showToast({
+                    icon: 'success',
+                    title: '尾款付款成功'
+                  }) 
+                  setTimeout(function () {
+                    wx.navigateTo({
+                      url: '/pages/buyerorder/buyerorder?status=-1',
+                    })
+                  }, 2000)
+                }
+                
               }
-              wx.navigateTo({
-                url: '/pages/webview/webview?orderid=' + that.data.orderid +'&weburl=' + res.data.result.gz_url,
-              })
             }
-          }
-        })
+          })
+        }else{
+          wx.request({
+            url: app.baseUrl + '/gzynew/get-order-info',
+            data: {
+              order_id: that.data.order_id,
+              field: 'pay_status,gz_url'
+            },
+            success(res) {
+              if (res.data.result.pay_status == 1) {
+                if (that.data.sharedata.operator == 1) {
+                  wx.navigateTo({
+                    url: '/pages/paymentresult/paymentresult?orderid=' + that.data.orderid + '&weburl=' + res.data.result.gz_url,
+                  })
+                  return false;
+                }
+                wx.navigateTo({
+                  url: '/pages/webview/webview?orderid=' + that.data.orderid + '&weburl=' + res.data.result.gz_url,
+                })
+              }
+            }
+          })
+        }
       },
       fail(res) { 
         wx.showToast({

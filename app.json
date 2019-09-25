@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/indexs/indexs",
+    "pages/personCenter/personCenter",
     "pages/index/index",
     "pages/login/login",
-    "pages/personCenter/personCenter",
     "pages/webview/webview",
     "pages/order/order",
     "pages/paymentresult/paymentresult",
@@ -20,7 +21,17 @@
     "pages/address/editAddress/editAddress",
     "pages/invoice/invoice",
     "pages/invoice/editInvoice/editInvoice",
-    "pages/order/orderDetail/orderDetail"
+    "pages/order/orderDetail/orderDetail",
+    "pages/trademarkList/trademarkList",
+    "pages/trademarkType/trademarkType",
+    "pages/trademarkDetail/trademarkDetail",
+    "pages/trademarkConfirm/trademarkConfirm",
+    "pages/collection/collection",
+    "pages/about/about",
+    "pages/buyerorder/buyerorder",
+    "pages/buyerorderDetail/buyerorderDetail",
+    "pages/extrafiles/extrafiles",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -33,18 +44,31 @@
     "selectedColor": "#F44444",
     "list": [
       {
+        "pagePath": "pages/indexs/indexs",
+        "text": "首页",
+        "iconPath": "images/tabbar01.png",
+        "selectedIconPath": "images/tabbar01.png"
+      },
+      {
+        "pagePath": "pages/trademarkList/trademarkList",
+        "text": "买商标",
+        "iconPath": "images/tabbar02.png",
+        "selectedIconPath": "images/tabbar02.png"
+      },
+      {
         "pagePath": "pages/index/index",
         "text": "在线公证",
-        "iconPath": "images/tabbar1.png",
-        "selectedIconPath": "images/tabbar1.png"
+        "iconPath": "images/tabbar03.png",
+        "selectedIconPath": "images/tabbar03.png"
       },
       {
         "pagePath": "pages/personCenter/personCenter",
         "text": "个人中心",
-        "iconPath": "images/tabbar2.png",
-        "selectedIconPath": "images/tabbar2.png"
+        "iconPath": "images/tabbar04.png",
+        "selectedIconPath": "images/tabbar04.png"
       }
     ]
   },
+  "component": true,
   "sitemapLocation": "sitemap23.json"
 }

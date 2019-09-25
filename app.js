@@ -18,17 +18,10 @@ App({
               code:res.code
             },
             success(res){
-              if (res.data.status==1){
-                // wx.reLaunch({
-                //   url: '/pages/login/login',
-                // })
-              }else{
-                that.openid = res.data.result.openid;
+              that.openid = res.data.result.openid;
+              if (res.data.status==0){
                 that.username = res.data.result.username;
                 that.usermob = res.data.result.usermob;
-                // wx.switchTab({
-                //   url: '/pages/index/index',
-                // })
               }
             }
           })
@@ -62,7 +55,12 @@ App({
     userInfo: null
   },
   openid:'',
-  baseUrl:'https://www.86sb.com',
+  // baseUrl:'https://www.86sb.com',
+  baseUrl:'https://wwxs.86sb.com',
+  newbaseUrl:'https://api.86sb.com.cn',
+  searchWord:'',
   username:'',
-  usermob:''
+  usermob:'',
+  sbclasses:'',
+  detailBack:false  //详情页回退是否加载数据
 })

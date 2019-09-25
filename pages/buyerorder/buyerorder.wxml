@@ -1,0 +1,127 @@
+<!--pages/buyerorder/buyerorder.wxml-->
+<view class="orderTitle">
+  <text wx:for="{{navTab}}" wx:key="index" data-idx="{{index}}" bindtap="currentTab" class="{{currentTab==index ? 'cur' : ''}}">{{item}}
+  </text>
+</view>
+<!-- 内容 -->
+<view class="content">
+  <view id="itemBox">
+    <!-- 数据为空状态 -->
+    <view class="null" wx:if="{{contentLength==0}}">
+      <image src="https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/null@2x.png" style="width:126px;height:156px;"></image>
+      <view class="nulltips">订单信息为空</view>
+    </view>
+    <!-- 已发证编辑 -->
+    <!-- <view wx:if="{{currentTab==3}}" class="edit"> -->
+    <view class="edit" wx:if="{{contentLength!=0}}">
+      <view class="edit_left">共
+        <text>{{contentLength}}</text>件商品</view>
+      <!-- <view class="edit_right" wx:if="{{!isClickEdit &&currentTab==3 && contentLength!=0}}" bindtap="clickEdit">编辑</view>
+      <view class="edit_right" wx:elif="{{isClickEdit &&currentTab==3 }}" bindtap="clickEdit">完成</view> -->
+    </view>
+
+    <!-- 每条订单信息 -->
+    <view class="editBox {{isClickEdit && infoIdx==content.length-1?'last':''}}" wx:for="{{content}}" wx:key="*this" wx:for-item="contentItem" wx:for-index="infoIdx" data-infoIdx="{{infoIdx}}" data-checkd="{{contentItem.checked}}">
+      <!-- 单选checked -->
+      <!-- <view wx:if="{{currentTab==3 && isClickEdit}}" class="{{!contentItem.checked?'circle mar':'circle mar checked'}}" bindtap="singleChecked" data-checked="{{contentItem.checked}}" data-index="{{infoIdx}}"></view> -->
+      <!-- 订单item -->
+      <view class="{{infoIdx >= contentItem.info.length-1? 'infoItem last': 'infoItem'}}">
+        <view class="first_row">
+          <view class="datetime">
+            <text>{{contentItem.add_time}}</text>
+          </view>
+
+          <view style="font-size:24rpx;color:#F44444" wx:if="{{contentItem.pay_status==2}}">已完成</view>
+          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==1}}">处理中</view>
+          <view style="font-size:24rpx;color:#F44444" wx:elif="{{contentItem.pay_status==0}}">待付款</view>
+        </view>
+
+        <view class="second_row">
+          <view style="margin-right:29rpx">
+            <image src="{{contentItem.sbpic}}" style="width:154rpx;height:154rpx;"></image>
+          </view>
+          <view>
+            <text class="SB" style="font-size:30rpx;color:#080808">{{contentItem.sbname}}</text>
+            <text class="SB center">
+            
+            <text>注册号：{{contentItem.sbid}}</text>
+            </text>
+            <text class="SB">
+            <text>类别：{{contentItem.sbbigclassid}}</text>
+
+            </text>
+          </view>
+        </view>
+
+        <view class="third_row">
+          <view>订单编号：{{contentItem.order_id}}</view>
+          <view class="JYprice">价格：
+            <text>￥{{contentItem.total_price}}</text>
+          </view>
+        </view>
+
+        <view class="last_row">
+          <text class="btn fapiao" bindtap="goto" data-id="{{contentItem.id}}" data-orderid="{{contentItem.order_id}}" data-type="取消订单" wx:if="{{contentItem.pay_status==0}}">取消订单</text>
+          <text class="btn detail" bindtap="goto" data-orderid="{{contentItem.order_id}}" data-type="查看详情">查看详情</text>
+          <text class="btn pay" bindtap="goto" data-id="{{contentItem.id}}" data-price="{{contentItem.total_price}}" data-orderid="{{contentItem.order_id}}" data-type="支付定金" wx:if="{{contentItem.pay_status==0}}">支付定金</text>
+          <text class="btn pay" bindtap="goto" data-id="{{contentItem.id}}" data-price="{{contentItem.total_price}}" data-orderid="{{contentItem.order_id}}" data-type="支付尾款" wx:elif="{{contentItem.pay_status==1}}">支付尾款</text>
+
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 已发证底部全选 -->
+    <!-- <view class="bottom" wx:if="{{currentTab==3&&isClickEdit}}">
+      <view class="bot_left">
+        <view class="{{!allChecked?'circle':'circle.checked'}}" bindtap="allChecked"></view>
+        <text>全选</text>
+      </view>
+      <view class="bot_right" bindtap="allfapiao" data-id="001">批量索取发票</view>
+    </view> -->
+
+  </view>
+</view>
+
+
+
+<!-- 索取发票弹框 -->
+<!-- <view wx:if="{{fapiao_alert}}" class="cover_black">
+  <view class="white_alert">
+    <image src="/images/indexicon01.png" style="width:40rpx;height:40rpx;position: absolute;right: 20rpx;top: 20rpx;" bindtap="closefapiao"></image>
+    <view class="tit">接收信息</view>
+    <view class="email">
+      <text>电子邮箱</text>
+      <input type="text" placeholder="请输入电子邮箱地址" style="width:300rpx;" value="{{email}}" bindinput="bindemail"></input>
+    </view>
+    <view class="address">
+      <text>选择开票主体</text>
+      <view class="select_address" bindtap="toSelectInvoice">
+        <text>{{fapiao_title}}</text>
+        <image src="/images/lefticon.png" style="width:14rpx;height:25rpx;margin-left:20rpx;"></image>
+      </view>
+    </view>
+    <view class="btn_sure" bindtap="fapiao_sure">确定</view>
+  </view>
+</view> -->
+
+<!-- 纸质公证书弹框 -->
+
+<!-- <view class="cover_black" wx:if="{{gz_alert}}">
+  <view class="white_alert">
+    <image src="/images/indexicon01.png" style="width:40rpx;height:40rpx;position: absolute;right: 20rpx;top: 20rpx;" bindtap="closegz"></image>
+    <view class="tit">接收信息</view>
+    <view class="email">
+      <text>电子邮箱</text>
+      <input type="text" placeholder="请输入电子邮箱地址" style="width:300rpx;" value="{{email}}" bindinput="bindemail"></input>
+    </view>
+    <view class="address">
+      <text>收件地址</text>
+      <view class="select_address" bindtap="toSelectAddress">
+        <text>{{gz_address}}</text>
+        <image src="/images/lefticon.png" style="width:14rpx;height:25rpx;margin-left:20rpx;"></image>
+      </view>
+    </view>
+    <view class="btn_sure" bindtap="gz_sure">确定</view>
+  </view>
+</view> -->

@@ -1,0 +1,171 @@
+.title{
+    font-size: 30rpx;
+    color: #333333;
+    padding-left: 40rpx;
+    padding-top: 40rpx;
+    box-sizing: border-box;
+}
+.clearfix::after{
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: "";
+  }
+.section{
+    background: #FFFFFF;
+    box-shadow: 0 2rpx 26rpx 0 #DDDDDD;
+    border-radius: 5rpx;
+    width:690rpx;
+    height: 210rpx;
+    margin: auto;
+    margin-top: 18rpx;
+    padding:28rpx;
+    box-sizing: border-box;
+    display: flex;
+}
+.section_box{
+    flex:1;
+    padding-top: 35rpx;
+}
+.image{
+    width:154rpx;
+    height: 154rpx;
+    background: #f3f3f3;
+}
+.section_item{
+    font-size: 28rpx;
+    color: #181818;
+    height: 40rpx;
+    line-height: 40rpx;
+    padding-left: 50rpx;
+    margin-bottom: 18rpx;
+}
+.section_fc{
+  font-size: 24rpx;
+  color: #666666;
+}
+.prepare{
+  float: right;
+  text-align: left;
+  width:160rpx;
+}
+.section_item .price{
+font-size: 28rpx;
+color: #F44444;
+float: right;
+width:160rpx;
+}
+.pay_info{
+  border-top: 20rpx solid #f4f4f4;
+  border-bottom: 20rpx solid #f4f4f4;
+  margin-top: 67rpx;
+  padding:40rpx 50rpx 50rpx 40rpx;
+}
+.pay_info .title,.relate_info .title{
+  padding: 0;
+}
+.pay_item{
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.pay_item .label{
+  float: left;
+}
+.pay_item .val{
+  float: right;
+}
+.pay_item .price{
+  font-size: 34rpx;
+  color: #F44444;
+}
+.pay_item .price_sym{
+  font-size: 22rpx;
+  color:#F44444;
+  line-height: 46rpx;
+  position: relative;
+  top: 1rpx;
+}
+.relate_info{
+  padding:40rpx 50rpx 50rpx 40rpx;
+}
+.relate_info .pay_item .label_sym{
+  color: #F44444;
+  position: relative;
+  top: -3rpx;
+}
+.relate_info .val{
+  width:260rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.relate_info .input-placeholder{
+  font-size: 28rpx;
+  color: #999999;
+}
+.agreement{
+  padding-left: 33rpx;
+  box-shadow: 0 0 14px 0 rgba(241,241,241,0.50);
+  border-top: 1px solid #ededed;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  height: 50rpx;
+}
+.agreement .radio_radius{
+  border: 1px solid #979797;
+  box-sizing: border-box;
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 33rpx;
+  border-radius: 50%;
+
+}
+.agreement text{
+  font-size: 24rpx;
+color: #181818;
+}
+.agreement .fc{
+  color:#F44444
+}
+.agreement .radio_checked{
+  border:1px solid red;
+}
+.radio_icon{
+  width:36rpx;
+  height: 36rpx;
+  margin-right: 33rpx;
+}
+/* 底部付款 */
+.pay{
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+}
+.pay_left{
+  flex:1;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #181818;
+  padding-left: 40rpx;
+}
+.pay_left .fc{
+  font-size: 34rpx;
+  color:#f44444;
+}
+.pay_left .fc_sym{
+  font-size: 28rpx;
+  color:#f44444;
+  margin-left: 20rpx;
+}
+.pay_btn{
+  height: 100rpx;
+  width:282rpx;
+  color:#fff;
+  text-align: center;
+  line-height: 100rpx;
+  background: #F44444;
+  font-size: 32rpx;
+}

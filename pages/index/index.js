@@ -44,7 +44,7 @@ Page({
   },
   toczroperation:function(){
     if (!app.usermob) {
-      wx.reLaunch({
+      wx.navigateTo({
         url: '/pages/login/login',
       })
     }else{
@@ -54,8 +54,8 @@ Page({
     }
   },
   tobuyercompany:function(){
-    if (!app.usermob){
-      wx.reLaunch({
+    if (!app.usermob) {
+      wx.navigateTo({
         url: '/pages/login/login',
       })
       return false;
@@ -89,44 +89,6 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (res.code) {
-          that.code = res.code;
-          wx.request({
-            url: app.baseUrl + '/gzynew/openid',
-            data: {
-              code: res.code
-            },
-            success(res) {
-              that.setData({
-                openid: res.data.result.openid
-  
-              });
-              app.openid = res.data.result.openid;
-              app.usermob = res.data.result.usermob;
-              app.username = res.data.result.username;
-              // wx.request({
-              //   url: app.baseUrl + '/gzynew/get-order-pay-charge',
-              //   data: {
-              //     openid: res.data.result.openid,
-              //     phone: res.data.result.username
-              //   },
-              //   success(res) {
-              //     if(res.data.status==0){
-              //       that.setData({
-              //         price: res.data.result.price
-              //       })
-              //     }
-              //   }
-              // })
-            }
-          })
-        }
-      }
-    })
-
     wx.request({
       url: app.baseUrl +'/gzynew/get-xie-yi-info',
       success(res) {

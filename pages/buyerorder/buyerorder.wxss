@@ -1,0 +1,344 @@
+/* pages/buyerorder/buyerorder.wxss */
+page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderTitle {
+  display: flex;
+  height: 100rpx;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rpx;
+}
+
+.orderTitle text {
+  box-sizing: border-box;
+  font-size: 24rpx;
+  color: #070707;
+  text-align: center;
+  width: 114rpx;
+  padding: 10rpx 0;
+}
+
+.orderTitle .cur {
+  background: #f44444;
+  color: #fff;
+  border-radius: 16px;
+}
+
+/* tabcontent */
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.content {
+  padding: 29rpx 0;
+  background: #f1f1f3;
+  /* height: 100%; */
+  flex: 1;
+  overflow-y: scroll;
+}
+
+#itemBox {
+  height: 100%;
+}
+
+.content.active {
+  padding-bottom: 110rpx;
+  box-sizing: border-box;
+}
+
+.edit {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 24rpx;
+  padding: 0 25rpx;
+}
+
+.edit_left text, .edit_right {
+  color: #ff5652;
+}
+
+.editBox {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.circle.mar {
+  margin-left: 25rpx;
+}
+
+.circle.mar.checked {
+  background: url('https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/y@2x.png') no-repeat center;
+  background-size: 100%;
+  border: none;
+}
+
+.infoItem {
+  background: #fff;
+  border-radius: 5px;
+  padding: 18rpx 0;
+  margin: 0 25rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0px 0.5px 2px #c9c9c9;
+  flex: 1;
+}
+
+.editBox.last {
+  margin-bottom: 110rpx;
+}
+
+.first_row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40rpx;
+  margin-bottom: 18rpx;
+}
+
+.datetime {
+  font-size: 28rpx;
+  color: #4c4c4c;
+}
+
+.datetime text {
+  margin-right: 20rpx;
+}
+
+.second_row {
+  display: flex;
+  background: #f8f8f8;
+  padding: 29rpx 40rpx;
+}
+
+.second_row .SB {
+  display: block;
+  font-size: 26rpx;
+}
+
+.SB text {
+  color: #9b9b9b;
+}
+
+.SB.center {
+  margin: 14rpx 0;
+}
+
+.third_row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 20rpx 0;
+  margin: 0 40rpx;
+  border-bottom: 1px dashed #cfcfcf;
+  font-size: 26rpx;
+  color: #999;
+}
+.JYprice{
+  color: #333;
+  font-size: 28rpx;
+  /* margin-top: 15rpx; */
+}
+.JYprice text{
+  color: #F44444 ;
+}
+.last_row {
+  display: flex;
+  justify-content: flex-end;
+  height: 116rpx;
+  align-items: center;
+  padding-right: 37rpx;
+}
+
+/* 三种按钮 */
+
+.btn {
+  width: 153rpx;
+  height: 54rpx;
+  border-radius: 5px;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 54rpx;
+  margin-left: 20rpx;
+}
+
+.detail {
+  color: #f44444;
+  border: 1px solid #f44444;
+  background: #fff6f7;
+}
+
+.pay {
+  color: #fd601c;
+  border: 1px solid #fd601c;
+  background: #ffede3;
+}
+
+.hasrenzhen {
+  color: #fd601c;
+  border: 1px solid #fd601c;
+  background: #ffede3;
+  opacity: 0.5;
+}
+
+.gz {
+  color: #2bbb07;
+  border: 1px solid #2bbb07;
+  background: #eefff2;
+}
+
+.hasgz {
+  color: #2bbb07;
+  border: 1px solid #2bbb07;
+  background: #eefff2;
+  opacity: 0.5;
+}
+
+.fapiao {
+  color: #5995f3;
+  border: 1px solid #5995f3;
+  background: #eff6ff;
+}
+
+.hasfapiao {
+  color: #5995f3;
+  border: 1px solid #5995f3;
+  background: #eff6ff;
+  opacity: 0.5;
+}
+
+/* 底部全选 */
+
+.bottom {
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 95rpx;
+  background: #fff;
+  padding: 0 35rpx;
+}
+
+.bot_left {
+  display: flex;
+  color: #181818;
+  font-size: 28rpx;
+  align-items: center;
+}
+
+.bot_left text {
+  margin-left: 24rpx;
+}
+
+.circle {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  border: 2px solid #cbcbcb;
+}
+
+.circle.checked {
+  background: url('https://tmstore.oss-cn-hangzhou.aliyuncs.com/gzynew/y@2x.png') no-repeat center;
+  background-size: 100%;
+  border: none;
+}
+
+.bot_right {
+  width: 214rpx;
+  height: 66rpx;
+  text-align: center;
+  line-height: 66rpx;
+  color: #fff;
+  font-size: 28rpx;
+  background: #f94342;
+  border-radius: 5px;
+}
+
+/* 遮罩层 */
+
+.cover_black {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+}
+
+.white_alert {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 60rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.tit {
+  border-bottom: 1px solid #ededed;
+  padding-bottom: 40rpx;
+  font-weight: 600;
+}
+
+.email, .address {
+  display: flex;
+  justify-content: space-between;
+  height: 100rpx;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+}
+
+.address {
+  width: 100%;
+}
+
+.select_address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select_address text {
+  text-align: right;
+  width: 400rpx;
+  color: #8c8c8c;
+  max-height: 70rpx;
+  overflow: hidden;
+  font-size: 24rpx;
+}
+
+.btn_sure {
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: #fff;
+  background: #f44444;
+  border-radius: 5px;
+  margin-top: 60rpx;
+}
+
+
+/* 空状态 */
+.null{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40%
+}
+.nulltips{
+  font-size: 26rpx;
+  color: #a0a0a0;
+}

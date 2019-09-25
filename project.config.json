@@ -4,12 +4,13 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
@@ -51,30 +52,31 @@
 			"current": 3,
 			"list": [
 				{
-					"id": -1,
-					"name": "申请列表",
-					"pathName": "pages/applicantList/applicantList",
+					"id": 0,
+					"name": "商标列表",
+					"pathName": "pages/trademarkList/trademarkList",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "添加申请人",
-					"pathName": "pages/applicantAE/applicantAE",
+					"name": "商标类别",
+					"pathName": "pages/trademarkType/trademarkType",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": 2,
-					"name": "选择申请人",
-					"pathName": "pages/applicantSelect/applicantSelect",
-					"query": "openid= oKjx85fKXjZHMP2l3qyLfhryqFSM",
+					"id": -1,
+					"name": "商标详情",
+					"pathName": "pages/trademarkDetail/trademarkDetail",
+					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "web",
-					"pathName": "pages/webview/webview",
+					"id": 3,
+					"name": "确认订单",
+					"pathName": "pages/trademarkConfirm/trademarkConfirm",
+					"query": "",
 					"scene": null
 				}
 			]

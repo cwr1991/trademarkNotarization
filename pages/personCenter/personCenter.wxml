@@ -1,58 +1,71 @@
 <!-- banner用户信息 -->
+
 <view class="banner">
   <view class="userinfo">
-  <view class="header">
-    <open-data type="userAvatarUrl" ></open-data>
-  </view>
-    <text style="margin-left:20rpx">{{telnumber}}</text>
+    <view class="header">
+      <open-data wx:if="{{islogin}}" type="userAvatarUrl" default-avatar="/images/grayheader.png"></open-data>
+      <image wx:else style="width: 110rpx;height: 110rpx;border-radius: 50%;" src="/images/grayheader.png"></image>
+    </view>
+    <text wx:if="{{islogin}}" style="margin-left:20rpx">{{telnumber}}</text>
+    <text wx:else style="margin-left:20rpx">点击登陆</text>
   </view>
 </view>
 
 <!-- 公证订单 -->
 <view class="centerContent">
   <view class="order">
-    <view class="order_title" bindtap="toOrder">
-      <image src="/images/gzorder.png"></image>
-      <text bindtap="test">公证订单</text>
+    <view class="order_title">
+      <!-- <image src="/images/gzorder.png"></image> -->
+      <text bindtap="test">全部订单</text>
     </view>
-
     <view class="order_itembox">
-      <view class="item" data-id="-1" bindtap="toOrder">
-        <view class="count">{{orderItems.total}}</view>
-        <view class="type">全部</view>
+      <view class="orders" bindtap="tojyOrder">
+        <image src="{{imgUrl}}/buyer_order.png"></image>
+        买家订单管理
       </view>
-      <view class="item" data-id="0" bindtap="toOrder">
-        <view class="count">{{orderItems.onenum}}</view>
-        <view class="type">未认证</view>
-      </view>
-      <view class="item" data-id="1" bindtap="toOrder">
-        <view class="count">{{orderItems.twonum}}</view>
-        <view class="type">受理中</view>
-      </view>
-      <view class="item" data-id="2" bindtap="toOrder">
-        <view class="count">{{orderItems.threenum}}</view>
-        <view class="type">已发证</view>
-      </view>
-      <view class="item" data-id="3" bindtap="toOrder">
-        <view class="count">{{orderItems.fournum}}</view>
-        <view class="type">已终止</view>
+      <view style="width:1rpx;height:54rpx;border-right:1rpx solid #979797"></view>
+      <view class="orders" bindtap="togzOrder">
+        <image src="{{imgUrl}}/buyer_order.png"></image>
+        在线公证订单
       </view>
     </view>
   </view>
-
 </view>
-<!-- 地址，申请人，开票信息，退出登录 -->
+
+
+
 <view class="infoBox">
+  <!-- 地址，申请人，开票信息 -->
   <view class="info">
     <view class="infoItem" wx:for="{{infoItems}}" wx:for-index="idx" bindtap="toWork" data-idx="{{idx}}">
       <image class="icon" src="{{item.icon}}"></image>
       <text class="infoTitle">{{item.iconTitle}}<text wx:if="{{item.titleElse}}">{{item.titleElse}}</text></text>
       <image class="arrow" src="/images/arrow-right.png"></image>
     </view>
-
   </view>
 
-  <view class="quit" bindtap="quit">退出账号</view>
+  <!-- 我的收藏 关于尚标 -->
+  <view class="info" style="margin-top:20rpx">
+    <navigator url="/pages/collection/collection" class="infoItem" hover-class="none">
+      <image class="icon" src="{{imgUrl}}/collection.png"></image>
+      <text class="infoTitle">我的收藏</text>
+      <image class="arrow" src="/images/arrow-right.png"></image>
+    </navigator>
+
+    <navigator url="/pages/about/about" class="infoItem" hover-class="none">
+      <image class="icon" src="{{imgUrl}}/about.png"></image>
+      <text class="infoTitle">关于尚标</text>
+      <image class="arrow" src="/images/arrow-right.png"></image>
+    </navigator>
+  </view>
+
+  <view class="quit" wx:if="{{islogin}}" bindtap="quit">退出账号</view>
+  <view class="quit" wx:else bindtap="quit">去登陆</view>
+
 </view>
 
 <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+
+<!-- <view bindtap="pay">支付</view> -->
+
+<view class="islogin" wx:if="{{!islogin}}" bindtap="bindlogin"></view>

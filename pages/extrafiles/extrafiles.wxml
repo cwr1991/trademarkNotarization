@@ -1,0 +1,47 @@
+<!--pages/extrafiles/extrafiles.wxml-->
+<view class="top-tip">
+  请重新上传以下信息，确保上传的图片边框完整，字体清晰，亮度均匀！
+</view>
+
+<view class="fileBox">
+  <view class="title">身份证</view>
+  <view class="flexbox">
+    <view class="itemfile {{idcard1?'nobg':''}}" bindtap="chooseImage1">
+      <image class="{{idcard1?'hide':'addimg'}}" src="/images/circle+.png"></image>
+      <view class="{{idcard1?'hide':'tip-text'}}">请上传身份证国徽面</view>
+      <image class="{{idcard1?'showimg':'hide'}}" src="{{idcard1}}" mode="aspectFit"></image>
+    </view>
+
+    <view class="itemfile {{idcard2?'nobg':''}}" bindtap="chooseImage2">
+      <image class="{{idcard2?'hide':'addimg'}}" src="/images/circle+.png"></image>
+      <view class="{{idcard2?'hide':'tip-text'}}">请上传身份证人像面</view>
+      <image class="{{idcard2?'showimg':'hide'}}" src="{{idcard2}}" mode="aspectFit"></image>
+    </view>
+  </view>
+
+</view>
+
+
+<view class="fileBox">
+  <view class="title">受理通知书</view>
+  <view class="flexbox">
+    <view class="itemfile {{resnotice?'nobg':''}}" bindtap="chooseImage3">
+      <image class="{{resnotice?'hide':'addimg'}}" src="/images/circle+.png"></image>
+      <view class="{{resnotice?'hide':'tip-text'}}">请上传受理通知书</view>
+      <image class="{{resnotice?'showimg':'hide'}}" src="{{resnotice}}" mode="aspectFit"></image>
+    </view>
+  </view>
+</view>
+
+<view class="fileBox">
+  <view class="title">受让人身份证明材料</view>
+  <view class="flexbox">
+    <view class="itemfile {{rescertificate?'nobg':''}}" bindtap="chooseImage4">
+      <image class="{{rescertificate?'hide':'addimg'}}" src="/images/circle+.png"></image>
+      <view class="{{rescertificate?'hide':'tip-text'}}">请上传受理通知书</view>
+      <image class="{{rescertificate?'showimg':'hide'}}" src="{{rescertificate}}" mode="aspectFit"></image>
+    </view>
+  </view>
+</view>
+
+<button class="button" type="warn" hover-class="none" bindtap="goback">提交</button>

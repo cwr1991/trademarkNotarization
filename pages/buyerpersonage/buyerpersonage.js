@@ -45,7 +45,7 @@ Page({
     }
     if (that.data.isradioActive == 0) {
       var evidType = 3;
-      var evidName = '受理通知书'
+      var evidName = '商标受理通知书'
     }
     wx.chooseImage({
       count: 6,

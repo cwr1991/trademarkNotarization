@@ -1,0 +1,31 @@
+/* pages/about/about.wxss */
+
+.Box {
+  padding: 20rpx 43rpx;
+}
+
+.Box .bannerimg {
+  border-radius: 5px;
+  width: 100%;
+  height: 259rpx;
+  background: url("https://tmstore.oss-cn-hangzhou.aliyuncs.com/vxxcx/sbjy/banner_about.jpg") no-repeat center;
+  background-size: 100%;
+  margin-bottom: 37rpx;
+}
+.content{
+  margin-bottom: 32rpx;
+}
+.content .title {
+  padding-left: 11rpx;
+  border-left: 9rpx solid #f44444;
+  font-size: 32rpx;
+  color: #333;
+  line-height: 32rpx;
+  margin-bottom: 22rpx;
+}
+
+.content .txt {
+  color: #666;
+  font-size: 26rpx;
+  line-height: 42rpx;
+}

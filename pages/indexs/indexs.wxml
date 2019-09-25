@@ -1,0 +1,107 @@
+<!--pages/indexs/indexs.wxml-->
+<view class="banner">
+   <image src="https://b.86sb.com.cn/wximg/indexs01.png" mode="widthFix"></image>
+</view>
+
+<view class="classNav">
+  <view class="title">
+      <text>POPULAR CATEGORIES</text> 
+      <view class="h6">
+          <image src="https://b.86sb.com.cn/wximg/indexs03.png" mode="widthFix"></image>
+          热门商标分类
+          <image src="https://b.86sb.com.cn/wximg/indexs04.png" mode="widthFix"></image>    
+      </view>
+
+      <view class="more" bindtap="bindtoall">
+          更多
+          <image src="../../images/indexs01.png" mode="widthFix"></image> 
+      </view>
+  </view>
+
+
+  <view class="classbox">
+    <view class="classList">
+      <view class="classitem" wx:for="{{classdata}}" wx:key="{{index}}" bindtap="bindTosblist" data-id="{{item.classnum}}">
+         <image src="{{item.classicons}}" mode="widthFix"></image> 
+         <view>{{item.classnum}}</view>
+         <text>{{item.classname}}</text>
+      </view>
+  </view>
+  </view>
+
+
+  <view class="seemore" bindtap="bindtoall">
+      查看更多类别商标
+      <image src="../../images/indexs03.png" mode="widthFix"></image> 
+  </view>
+</view>
+
+<view class="intelligent">
+    <view class="title">
+      <text>INTELLIGENT RECOMMENDATION</text> 
+      <view class="h6">
+        <image src="https://b.86sb.com.cn/wximg/indexs03.png" mode="widthFix"></image>
+        智能推荐
+        <image src="https://b.86sb.com.cn/wximg/indexs04.png" mode="widthFix"></image>
+      </view>
+    </view>
+
+     <view class="intelligentForm">
+        <view class="form">
+          <input placeholder="你要买带什么字的商标" bindinput="bindKeyintelligent" value="{{keyword}}"  placeholder-class="place-holder"/>
+          <view class="but" bindtap="tapintelligent">智能推荐</view>
+        </view>
+     </view> 
+
+     <view class="intelligentText">
+         你也可以选择 <text>商标要应用的行业</text>，进行商标智能推荐。
+         <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+            <view class="picker">
+               当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
+            </view>
+         </picker>
+     </view>
+</view>
+
+<view class="savephone">
+    <view class="save">
+        <view class="savetitle">
+          <view class="h6">专家帮我推荐一款合适的商标</view>
+          <view class="savetext">已成功帮助 <text>87980</text> 人购买到心仪的商标</view>
+        </view>
+        <input placeholder="输入您的联系方式" bindinput="bindKeyInput" value="{{phone}}"  placeholder-class="place-holder"/>
+        <view class="savebut" bindtap="tapsavephone">立即推荐给我</view>
+    </view>
+
+    <view class="title">
+        <text>TIME-LIMITED SECONDKILL</text> 
+        <view class="h6">  
+          <image src="https://b.86sb.com.cn/wximg/indexs03.png" mode="widthFix"></image>
+           限时抢购
+          <image src="https://b.86sb.com.cn/wximg/indexs04.png" mode="widthFix"></image>
+        </view>
+        <view class="more" bindtap="bindtoall">
+          更多
+          <image src="../../images/indexs01.png" mode="widthFix"></image> 
+        </view>
+    </view>    
+</view>
+
+<view class="datalist">
+
+<block wx:for="{{datalist}}" wx:key="{{index}}">
+  <view class="item" wx:for="{{item.data}}" wx:for-item="items"  wx:key="{{index}}">
+  <navigator url="/pages/trademarkDetail/trademarkDetail?id={{items.application_number}}{{items.trademark_category}}">
+    <image src="{{items.imagesurl}}" mode="widthFix"></image> 
+    <view class="name">{{items.trademark_name}}</view>
+    <text>{{item.name}}</text>
+    <view class="price">¥{{items.price}}</view>
+  </navigator>
+  </view>
+</block>
+
+
+
+</view>
+
+<view class="bottomnull">已经到底了</view>

@@ -1,0 +1,136 @@
+<view class="trademark">
+    <view class="search_box">
+            <view class="trademark_type" bind:tap="navigateTo">
+                <text class="text" wx:if="{{typeArr.length == 0}}">全部类别</text>
+                <text class="text" wx:if="{{typeArr.length == 1}}">{{typeArr[0].name}}</text>
+                <text class="text" wx:if="{{typeArr.length > 1}}">{{typeArr[0].name}},{{typeArr[1].name}}</text>
+                <image src="../../images/trademark01.png"></image>
+            </view>
+        <view class="search_input">
+            <input type="text" value="{{searchVal}}" bindinput="handleInput" placeholder="你要买带什么字的商标" />
+        </view>
+        <view class="btn_search" bind:tap="searchFun">
+            搜索
+        </view>
+    </view>
+    <view wx:if="{{typeArr.length == 0 }}">
+        <view  class="hot_section" >
+            <view class="hot_header">
+                <image src="../../images/trademark02.png"></image>
+                热门类别推荐
+            </view>
+            <view class="hot_items">
+                <block wx:for="{{hotTypes}}" wx:key="item.id">
+                    <view class="hot_item"  data-idx="{{index}}" bind:tap="handleHotT" >
+                        {{item.name}}
+                    </view>   
+                </block>
+            </view>
+        </view>
+    </view>
+    <!-- 热门类别&项目 -->
+    <view wx:if="{{typeArr.length == 1 && hotProduct.length > 0 }}" class="hot_section" >
+        <view class="hot_header">
+            <image src="../../images/trademark02.png"></image>
+            热门项目推荐
+        </view>
+        <view class="hot_items">
+            <block wx:for="{{hotProduct}}" wx:key="item.id">
+                <view class="hot_item {{item.checked ? 'active' : ''}}" data-idx="{{index}}" bind:tap="handleHotP" >
+                    {{item.cate_code}}{{item.id || item.alias}}
+                </view>    
+            </block>
+        </view>
+    </view>
+    
+    <!-- 当前项目 -->
+    <view class="current_select">
+        当前选择 - 
+        <text wx:if="{{typeArr.length == 0 }}">全部类别</text>   
+        <text wx:if="{{typeArr.length == 1 }}">{{typeArr[0].name}}</text>   
+        <text wx:if="{{typeArr.length > 1 }}">多个类别(同名多类标)</text>   
+    </view>
+    <!-- 商标列表 -->
+    <view class="list_content">
+        <view class="list_header">
+            <picker class="picker_list" bindchange="bindPriceChange" value="{{priceIndex}}" range="{{priceList}}">
+                <view class="picker_item {{ priceList[priceIndex] ? 'active' : '' }} ">
+                    {{priceList[priceIndex] ? priceList[priceIndex] : "价格" }}
+                    <image wx:if="{{!priceList[priceIndex]}}" src="../../images/trademark04.png"></image>
+                    <image wx:if="{{priceList[priceIndex]}}" src="../../images/trademark03.png"></image>
+                </view> 
+            </picker>
+            <picker class="picker_list" bindchange="bindTypeChange" value="{{typeIndex}}" range="{{typeList}}">
+                <view class="picker_item {{ typeList[typeIndex] ? 'active' : '' }} ">
+                    {{typeList[typeIndex]  ? typeList[typeIndex]  : "类型" }}
+                    <image wx:if="{{!typeList[typeIndex] }}" src="../../images/trademark04.png"></image>
+                    <image wx:if="{{ typeList[typeIndex] }}" src="../../images/trademark03.png"></image>
+                </view> 
+            </picker>
+            <picker class="picker_list" bindchange="bindFontChange" value="{{fontIndex}}" range="{{fontList}}">
+                <view class="picker_item {{ fontList[fontIndex] ? 'active' : '' }} ">
+                    {{fontList[fontIndex] ? fontList[fontIndex] : "字数" }}
+                    <image wx:if="{{!fontList[fontIndex]}}" src="../../images/trademark04.png"></image>
+                    <image wx:if="{{fontList[fontIndex]}}" src="../../images/trademark03.png"></image>
+                </view> 
+            </picker>
+            <picker class="picker_list" bindchange="bindYearChange" value="{{yearIndex}}" range="{{yearList}}">
+                <view class="picker_item {{ yearList[yearIndex] ? 'active' : '' }} ">
+                    {{ yearList[yearIndex] ? yearList[yearIndex] : "年限" }}
+                    <image wx:if="{{!yearList[yearIndex]}}" src="../../images/trademark04.png"></image>
+                    <image wx:if="{{yearList[yearIndex]}}" src="../../images/trademark03.png"></image>
+                </view> 
+            </picker>
+        </view>
+        <!-- 列表 -->
+        <block wx:if="{{list.length > 0 }}">
+                <view class="list_box clearfix">
+                    <view class="list_item " wx:for="{{firstList}}" wx:key="{{item.id}}">
+                        <navigator url="/pages/trademarkDetail/trademarkDetail?id={{item.id}}"  open-type="navigate">
+                            <image src="{{item.images}}" lazy-load="true"></image>
+                            <view class="list_item_title">{{item.trademark_name}}</view>
+                            <view class="list_item_des">{{item.trademark_type}}类 {{item.trademark_type_name}}</view>
+                            <view class="list_item_price">¥{{item.reserve_price}}</view>
+                        </navigator>
+                    </view>
+                    <view class="list_consult ">
+                       <input type="number" value="{{phoneVal}}" bindinput="phoneFun" placeholder="请输入您的联系电话" />
+                        <view class="submit_phone" bind:tap="subPhone">提交</view> 
+                    </view>
+                    <view class="list_item " wx:for="{{lastList}}" wx:key="{{item.id}}">
+                        <navigator url="/pages/trademarkDetail/trademarkDetail?id={{item.id}}"  open-type="navigate">
+                            <image src="{{item.images}}" lazy-load="true"></image>
+                            <view class="list_item_title">{{item.trademark_name}}</view>
+                            <view class="list_item_des">{{item.trademark_type}}类 {{item.trademark_type_name}}</view>
+                            <view class="list_item_price">¥{{item.reserve_price}}</view>
+                        </navigator>
+                    </view>
+                </view>
+        </block>
+        <!-- 加载动画 -->
+        <view wx:if="{{loadEnd}}">
+            <view class="weui-loadmore" >
+                <view class="weui-loading"></view>
+                <view class="weui-loadmore__tips">正在加载</view>
+            </view>
+        </view>
+        <block wx:if="{{empty&&list.length>0}}">
+            <view class="weui-loadmore weui-loadmore_line">
+                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多了</view>
+            </view>
+        </block>
+        <!-- 搜索不到数据 -->
+        <view class="empty" wx:if="{{ list.length == 0 && !loadEnd }}">
+            <view class="empty_img">
+                <image src="../../images/applicant_empty.png" />
+            </view>
+            <view class="empty_text">没有找到您心仪的商标？不要急哦，好多好商标没有展示出来，马上联系客服顾问获取！</view>
+            <input type="number" bindinput="phoneFun" value="{{phoneVal}}" placeholder="请输入您的联系电话" />
+            <view class="helperBtn" bind:tap="subPhone">让客服帮您找找</view>
+        </view>
+    </view>
+    <!-- 返回顶部 -->
+    <view class="backTop" bind:tap="backTop" wx:if="{{floorstatus}}">
+        <image src="../../images/trademark10.png"></image>
+    </view>
+</view>

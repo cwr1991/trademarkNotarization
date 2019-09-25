@@ -49,8 +49,8 @@ Page({
                 app.username = res.data.result.username;
                 app.usermob = res.data.result.usermob;
                 app.openid = res.data.result.openid;
-                wx.switchTab({
-                  url: '/pages/index/index',
+                wx.navigateBack({
+                  delta: 1
                 })
               }
             }
@@ -176,8 +176,8 @@ Page({
         app.usermob = res.data.result.usermob;
         app.openid = res.data.result.openid;
         if(res.data.status==0){
-          wx.switchTab({
-            url: '/pages/index/index',
+          wx.navigateBack({
+            delta: 1
           })
         }
       }

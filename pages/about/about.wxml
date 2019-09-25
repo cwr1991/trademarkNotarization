@@ -1,0 +1,22 @@
+<!--pages/about/about.wxml-->
+<view class="Box">
+  <view class="bannerimg"></view>
+  <view class="content">
+    <view class="title">关于尚标</view>
+    <view class="txt" style="margin-bottom:30rpx;">上海尚标互联网科技有限公司（以下简称“尚标”）创建于2002年，总部位于上海，在北京、上海、广东、浙江、河南、四川、山东等地设有分子公司，拥有300+家合作加盟公司和1000家战略合作伙伴。</view>
+
+    <view class="txt">尚标专注为客户提供专业知识产权服务，拥有300万+可交易商标专利资源，为近100w+客户提供专业服务。集团以商标交易为核心业务，逐步延伸到知识产权综合服务，以基础服务作为切入点，重点培育企业进行高新孵化，并取得国家高新企业技术认证。通过研发技术升级，借助互联网工具搭建科技成果转化与知识产权交易系统的知创平台。
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="title">联系方式</view>
+    <view class="txt">400 711 0860 (售前)</view>
+    <view class="txt">400 119 0860 (售后)</view>
+  </view>
+
+  <view class="content">
+    <view class="title">总部地址</view>
+    <view class="txt">上海市浦东新区龙东大道3000号1幢B座11层(张江高科技园区)</view>
+  </view>
+</view>
